@@ -5,35 +5,41 @@
 
     <title>Home</title>
 
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- font awesome CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
 
+    <!-- animation on scroll CDN -->
+     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="{% static 'website/style.css' %}">
 </head>
 <body id="page-top">
 
-    <nav class="navbar bg-dark navbar-dark navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a href="#page-top" class="navbar-brand js-scroll-trigger">
-                <img src="{% static 'website/logo.png' %}" alt="Logo" style="width:40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria- controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img src="{% static 'website/logo.png' %}" alt="Logo" style="width:50px;">
+                    <span>LLA</span>
+                </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a href="#page-top" class="nav-link js-scroll-trigger">Home</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  active">
+                        <a href="{% url 'home' %}" class="nav-link js-scroll-trigger">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'technical' %}" class="nav-link js-scroll-trigger">Technical</a>
@@ -41,13 +47,11 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown">Analysis</a>
                         <div class="dropdown-menu">
-
                             {% for sub in subjects %}
 
                             <a class="dropdown-item" href="{% url 'person' sub.id %}">{{ sub.name }}</a>
 
                             {% endfor %}
-
                         </div>
                     </li>
                     <li class="nav-item">
@@ -57,13 +61,101 @@
                         <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">About Us</a>
                     </li>
                 </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="jumbotron jumbotron-fluid height100p banner" id="home">
+        <div class="container h100">
+            <div class="contentBox h100">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Lower Limb Analysis</h1>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">IoT Big-Data Analytics Cloud Platform for Lower-Limb</p>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="jumbotron">
-        <h1 class="display-3">Home Page .. </h1>
     </div>
 
+    <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="headerText text-center">
+                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Abstract</h2>
+                        <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">Human locomotion affects our daily living activities. Gait analysis is a systematic study of human locomotion, which is defined as body movements through aerial, aquatic, or terrestrial space. This analysis has been used to study people ambulation, registration, and reconstruction of physical location and orientation of individual limbs used to quantify and characterize human locomotion using different gait parameters including gait activities such as walking, stairs ascending/descending, … etc., ., phases, and spatiotemporal parameters of human gait. Additionally, gait analysis parameters can be used to evaluate the functionality of patients and wearable system users. The evaluation is based on patient's stability, energy consumption, gait symmetry, ability to recover from perturbations, and ability to perform activities of daily living.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div>
+                        <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                            <img src="{% static 'website/img1.jpg' %}" class="img-fluid">
+                        </div>
+                        <div class="content">
+                            <h3>Main Building Blocks</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec2">
+        <div class="container h100">
+            <div class="contentBox h100">
+                <div>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">It will be composed of two major components, hardware component and software component. In hardware component, We designed and implemented the IoT that collects the different readings for gait analysis and send them to the cloud. Meanwhile, in the software component, We designed and implemented a set of algorithms to visualize the collected data, then design and implement data analytics to automatically analyze the collected data, so that we can estimate gait events, gait symmetry, gait speed, classify gait activities, stability, energy consumption, …etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec3">
+        <div class="container">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="headerText text-center">
+                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Data Flows Among the Building Blocks</h2>
+                        <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">We aim to develop a cloud platform capable of collect data from wearable and assistive devices such as prostheses, exoskeleton, gait analysis wearable sensors, …etc. using IoT technologies. This platform is capable of automatically use data mining and visualization tools. Additionally, it uses statistical and machine learning techniques to estimate gait events, gait symmetry, gait speed, gait activities, stability, energy consumption, …etc. Also, it is capable of predicting patient's progress over time.</p>
+                        <a href="{% url 'technical' %}" class="btn btnD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Read More</a>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="sci">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Bootstrap JS CDN -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- animation on scroll CDN -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
