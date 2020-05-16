@@ -61,7 +61,7 @@ p{
     top: 0;
     width: 100%;
     height: 100vh;
-    background: url(img6.jpg);
+    background: url(https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/prosthetic-leg.jpg);
     background-position: center;
     background-size: cover;
     margin-bottom: 0;
@@ -162,7 +162,7 @@ p{
 
 .sec2{
     position: relative;
-    background: url(img7.jpg);
+    background: url(https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/machinelearning.jpg);
     height: 100vh;
     background-position: center;
     background-size: cover;
