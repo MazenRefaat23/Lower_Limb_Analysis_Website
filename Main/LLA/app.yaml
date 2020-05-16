@@ -1,6 +1,11 @@
-  
 runtime: python
 env: flex
+entrypoint: gunicorn -b :$PORT LLA.wsgi
+handlers:
+
+- url: /static
+  static_dir: Pages/static
 
 runtime_config:
   python_version: 3
+
