@@ -91,10 +91,10 @@
                 <div class="col-sm-12">
                     <div>
                         <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
-                            <img src="{% static 'website/img1.jpg' %}" class="img-fluid">
-                        </div>
-                        <div class="content">
-                            <h3>Main Building Blocks</h3>
+                            <video width="80%" controls autoplay>
+                                <source src="{% static 'website/movie1.mp4' %}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat & Joseph Moheb</a></p>
                 </div>
             </div>
         </div>
@@ -144,7 +144,11 @@
 
 
 
-
+    <script type="text/javascript">
+        $(document).scroll(function(){
+            $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+        });
+    </script>
     <!-- Bootstrap JS CDN -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
