@@ -10,7 +10,8 @@
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <!--     Fav Icon     -->
+    <link rel="shortcut icon" type="image/png" href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Logo.ico" sizes="1500x1500" />
     <!-- font awesome CDN -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
@@ -21,7 +22,7 @@
     <!-- animation on scroll CDN -->
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <link rel="stylesheet" href="{% static 'website/style.css' %}">
+    <link rel="stylesheet" href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/style.css" />
 </head>
 <body id="page-top">
 
@@ -29,7 +30,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">
-                    <img src="{% static 'website/logo.png' %}" alt="Logo" style="width:50px;">
+                    <img src="{% static 'Logo.png' %}" alt="Logo" style="width:50px;">
                     <span>LLA</span>
                 </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,9 +93,12 @@
                     <div>
                         <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                             <video width="80%" controls>
-                                <source src="{% static 'website/movie1.mp4' %}" type="video/mp4">
+                                <source src="{% static 'Final.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
+                        </div>
+                        <div class="content">
+                            <h3>Main Building Blocks</h3>
                         </div>
                     </div>
                 </div>
@@ -136,19 +140,19 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat & Joseph Moheb</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
                 </div>
             </div>
         </div>
     </footer>
 
 
+<script type="text/javascript">
+    $(document).scroll(function(){
+        $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+    });
+</script>
 
-    <script type="text/javascript">
-        $(document).scroll(function(){
-            $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
-        });
-    </script>
     <!-- Bootstrap JS CDN -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
