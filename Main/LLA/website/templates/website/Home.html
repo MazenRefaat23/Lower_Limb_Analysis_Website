@@ -22,7 +22,7 @@
     <!-- animation on scroll CDN -->
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <link rel="stylesheet" href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/style.css" />
+    <link rel="stylesheet" href="{% static 'website/style.css' %}" />
 </head>
 <body id="page-top">
 
@@ -30,7 +30,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="#page-top">
-                    <img src="{% static 'Logo.png' %}" alt="Logo" style="width:50px;">
+                    <img src="{% static 'website/Logo.png' %}" alt="Logo" style="width:50px;">
                     <span>LLA</span>
                 </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,7 @@
                     <div>
                         <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                             <video width="80%" controls>
-                                <source src="{% static 'Final.mp4' %}" type="video/mp4">
+                                <source src="{% static 'website/movie1.mp4' %}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
