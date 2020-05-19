@@ -110,40 +110,40 @@ p{
     top: 0;
     width: 100%;
     height: 100vh;
-    background: url(img6.jpg);
+    background: url(img8.jpg);
     background-position: center;
     background-size: cover;
     margin-bottom: 0;
 
 }
 
-.banner:before,
-.sec2:before{
+.h100{
+    height: 100%;
+}
+
+.banner::before{
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height:400px;
+    height:500px;
     background: linear-gradient(#000,transparent);
     pointer-events: none;
 }
 
-.banner:after,
-.sec2:after{
+.banner::after{
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height:400px;
+    height:500px;
     background: linear-gradient(360deg,#000,transparent);
     pointer-events: none;
 }
 
-.h100{
-    height: 100%;
-}
+
 
 .contentBox{
     height: 100%;
@@ -160,7 +160,7 @@ p{
     font-weight: 800;
     color:#fff;
     text-transform: uppercase;
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
 .contentBox p{
@@ -168,76 +168,115 @@ p{
     font-size: 1.3rem;
 }
 
-.sec1{
+.main{
     padding: 100px 0;
     background: #000;
 }
 
-
-.headerText{
+.cardD1{
     color: #fff;
-}
-.headerText h2{
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+    background: #000;
+    text-align: center;
 }
 
+.cardD1 h4{
+    font-weight: 500;
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
 
-.imgBx{
+.imgBx1{
     width: 100%;
     height: 100%;
 }
 
-.imgBx img{
+.imgBx1 img{
+    width: 16rem;
+    height: 12rem;
     object-fit: cover;
-    width: 60%;
-}
-
-
-.content h3{
-    position: relative;
-    margin: 0;
-    padding: 10px;
-    background: rgba(0,0,0,0.9);
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    width: 100%;
-    text-align: center;
-}
-
-.sec2{
-    position: relative;
-    background: url(img7.jpg);
-    height: 100vh;
-    background-position: center;
-    background-size: cover;
-    margin-bottom: 0;
-}
-
-.sec2 h2{
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 4.5rem;
 }
 
 .btnD1{
     border: 2px solid #fff;
     color: #000;
     background: #fff;
-    border-radius: 50px;
-    padding: 15px 50px;
-    font-size: 1.15rem;
+    border-radius: 30px;
+    padding: 10px 30px;
     outline: none;
     font-weight: 500;
-    margin-top: 20px;
+    margin: 30px 0;
 }
 
-.sec3{
+.btnD1:hover,
+.btnD1:focus{
+    color: blue;
+}
+
+#iot{
+    background-image: url(im2.jfif);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+
+#cloud{
+    background-image: url(im3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+
+
+.sec1 {
     position: relative;
+    height: 100vh;
+    background: rgba(0,0,0,.8);
+}
+
+
+.contentBox h4{
+    font-weight: 700;
+    color:#fff;
+    font-size: 2.5rem;
+}
+
+.sec2{
     padding: 100px 0;
-    background: #000;
+    background: rgba(0,0,0,.8);
+}
+
+.content{
+    color: #fff;
+}
+
+.content h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.content h2{
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.content p{
+    font-size: 1rem;
+}
+
+.imgBx2{
+    width: 100%;
+    height: 100%;
+    margin: 20px 0;
+}
+
+.imgBx2 img{
+    width: 12rem;
+    height: 12rem;
 }
 
 
@@ -292,39 +331,38 @@ footer{
         background: #fff;
         border-radius: 0;
     }
-    .banner{
-        min-height: 100vh;
-        padding: 100px 0;
+    .navbar-expand-lg .navbar-nav .nav-link {
+        padding-right: 1rem;
+        padding-left: 1rem;
     }
-    .contentBox h1,
-    .headerText h2{
+
+    .contentBox h1 {
         font-size: 2rem;
     }
 
     .contentBox p {
         font-size: 1rem;
     }
-    .navbar-expand-lg .navbar-nav .nav-link {
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-    .sec1,
-    .sec2,
-    .sec3{
-        padding: 50px 0;
-    }
+
     p{
         font-size: 1rem;
     }
-    .btnD1{
-        padding: 10px 40px;
-        margin-top: 10px;
+
+    .content h1 {
+        font-size: 2rem;
+    }
+
+    .content h2 {
+        font-size: 1.7rem;
+        margin-bottom: 20px;
     }
 
     .sci li{
         margin: 0 10px;
     }
+
     .sci li a{
         font-size: 1.5em;
     }
+
 }
