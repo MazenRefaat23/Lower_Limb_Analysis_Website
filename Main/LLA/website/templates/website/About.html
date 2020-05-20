@@ -10,30 +10,38 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--     Fav Icon     -->
-    <link rel="shortcut icon" type="image/png" href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Logo.ico" sizes="1500x1500" />
+    <link rel="shortcut icon" type="image/png" href=" {% static 'website/Favico.ico'  %}" sizes="3000x3000" />
+    <!-- font awesome CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+    <!-- animation on scroll CDN -->
+     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<!--   <link rel="stylesheet" href ="https://storage.googleapis.com/graduationprojectwebsite/static/Pages/style.css" /> -->
+      <link rel="stylesheet" href="{% static 'website/style2.css' %}" />
 
 
 </head>
 <body id="page-top">
+<header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img src="{% static 'website/Logo.png' %}" alt="Logo" style="width:50px;">
+                    <span>LLA</span>
+                </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-    <nav class="navbar bg-dark navbar-dark navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a href="#" class="navbar-brand js-scroll-trigger">
-                <img src="{% static 'website/Logo.png' %}" alt="Logo" style="width:40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria- controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                <ul class="navbar-nav ml-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a href="{% url 'home' %}" class="nav-link js-scroll-trigger">Home</a>
                     </li>
@@ -53,17 +61,214 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link js-scroll-trigger">Prediction</a>
                     </li>
-                    <li class="nav-item active">
-                        <a href="#page-top" class="nav-link js-scroll-trigger">About Us</a>
+                    <li class="nav-item active" >
+                        <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">About Us</a>
                     </li>
                 </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+      <div class="jumbotron jumbotron-fluid height100p banner" id="about">
+        <div class="container h100">
+            <div class="contentBox h100">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Learn more about us</h1>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="jumbotron">
-        <h1 class="display-3">About Us .. </h1>
     </div>
 
+    <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="headerText text-center">
+                        <img  data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500" src="{% static 'website/ainshams2.png'%}" style="margin: 50px 0" : important />
+                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Faculty of Engineering Ain-Shams University</h2>
+                        <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">Ain Shams University was established in 1950 under the name of Ibrahim Pasha University. It was the third university in Egypt after Fouad I University and Farouk I University (Cairo and Alexandria Universities), read more at https://eng.asu.edu.eg/education</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="headerText text-center">
+                        <h7 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500" style="color: #fff ;font-size:45px;"> <strong> Doctors who supervise the project </strong> </h7>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main">
+        <div class="container container-fluid h100">
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="imgBx2 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/Drgamal.jpg' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Dr Gamal Abdel Shafy Ebrahim</h4>
+                            <p class="card-text">Associate Professor at Computer and Systems Engineering</p>
+                            <a class="btn btnD1" onclick="fn1()" href="#Gamal">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx2 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/Mohamed.jpg' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Dr Mohamed Ibrahim Mohamed Hassan Awad</h4>
+                            <p class="card-text">Associate Professor at Mechatronics  </p>
+
+                            <a class="btn btnD2" onclick="fn2()" href="#Mohamed">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="Gamal">
+
+        <section class="sec1">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-sm-2 col-sm-8">
+                        <div class="headerText text-center">
+                            <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500"> <strong>Dr Gamal Abdel Shafy Ebrahim</strong> </h2>
+                            <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">Dr Gamal A. Ebrahim received his B.Sc. and M.Sc. degrees in 1994 and 2000
+                                                                                                respectively from the Faculty of Engineering, Ain Sham University, Cairo,
+                                                                                                Egypt. Additionally, He received his Ph.D. degree in Electrical and Computer
+                                                                                                Engineering in 2004 from University of Miami, Coral Gables, FL, USA. He has
+                                                                                                been a faculty member at the Computer and Systems Engineering
+                                                                                                Department, Faculty of Engineering, Ain Shams University since Oct. 2005.
+                                                                                                He was a post-doctoral associate at University of Miami, Coral Gables, FL,
+                                                                                                USA from Mar. 2007 until Jan. 2009. His major research interests include
+                                                                                                intelligent systems, e-learning systems, software engineering, data mining,
+                                                                                                VoIP SPAM identification, computer communication networks, cloud
+                                                                                                computing, big-data analytics, network security, and software-defined
+                                                                                                networks.</p>
+                            <p style="color: #fff ;font-size:40px;" > <strong>Awards </strong> </p>
+                            <p >"EMC2 Distinction Award, 2015"</p>
+                            <p >"Award of Academic Merits, University of Miami, Coral Gables, FL, USA, May 2004"</p>
+                            <p >"Graduate Assistantship, Department of Electrical and Computer Engineering, University of Miami, Miami, FL, USA, Fall. 2000 - Spring 2004"</p>
+                            <p > Read more at https://eng.asu.edu.eg/staff/gamal.ebrahim </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div id="Mohamed">
+
+        <section class="sec1">
+            <div class="container">
+                <div class="row">
+                    <div class="offset-sm-2 col-sm-8">
+                        <div class="headerText text-center">
+                            <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500"> <strong>Dr Mohamed Ibrahim Mohamed Hassan Awad </strong> </h2>
+                            <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">Dr Mohamed I. Awad an Associate Professor in Mechatronics and Mechanical Engineering at Ain Shams University working in mechatronic systems design. My current research interests focus on interdisciplinary research such as: smart robotic prosthetic leg, biomechatronic, mechanisms design, automation, robotics, precision farming, smart agricultural and mechanization, autonomous systems design, and smart manufacturing.</p>
+                            <p style="color: #fff ;font-size:40px;" > <strong>EMPLOYMENT</strong> </p>
+                            <p > (01/2017-Present) ASSISTANT PROFESSOR, MECHANICAL ENGINEERING, FACULTY OF ENGINEERING, AIN SHAMS UNIVERSITY, CAIRO, EGYPT</p>
+                            <p > (09/2013-01/2017) RESEARCH FELLOW, INSTITUTE OF DESIGN, ROBOTICS AND OPTIMISATION (IDRO), MECHANICAL ENGINEERING, UNIVERSITY OF LEEDS, LEEDS, UK</p>
+                            <p > (01/2013-08/2013) ASSISTANT PROFESSOR, MECHANICAL ENGINEERING, FACULTY OF ENGINEERING, AIN SHAMS UNIVERSITY, CAIRO, EGYPT</p>
+                            <p > (07/2007-01/2008) PART-TIME RESEARCH ASSISTANT IN PROJECT TITLED “DIAGNOSIS AND MAINTENANCE OF RELAY LADDER LOGIC PROGRAMS AND PLC LADDER DIAGRAMS USING ARTIFICIAL NEURAL NETWORKS” AT AIN SHAMS UNIVERSITY</p>
+                            <p > (01/2003-07/2003) PART-TIME MECHANICAL ENGINEER IN “DESIGN, CONSTRUCTION AND MAINTENANCE OF METAL PRODUCTION LINES, ROSHDY METAL INDUSTRY CORP. (RMI)”, EGYPT.</p>
+                            <p > (02/2002-08/2008) TEACHING ASSISTANT, FACULTY OF ENGINEERING, AIN SHAMS UNIVERSITY, CAIRO, EGYPT. </p>
+                            <p > Read more at https://eng.asu.edu.eg/staff/293</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="sci">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p class="cpryt"><a href="#page-top">Back Top</a> | <a href="{% url 'home' %}">Home Page</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        setTimeout(function(){
+            $('.loader-wrapper, .load').hide();
+        },2000);
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).scroll(function(){
+        $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        document.getElementById("Gamal").style.display= "none";
+        document.getElementById("Mohamed").style.display= "none";
+
+        function fn1() {
+            if (document.getElementById("Gamal").style.display === "none") {
+                document.getElementById("Gamal").style.display= "block";
+                document.getElementById("Mohamed").style.display= "none";
+
+            }
+        }
+
+
+        function fn2() {
+            if (document.getElementById("Mohamed").style.display === "none") {
+                document.getElementById("Gamal").style.display= "none";
+                document.getElementById("Mohamed").style.display= "block";
+            }
+        }
+    </script>
+    <!-- Bootstrap JS CDN -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- animation on scroll CDN -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
