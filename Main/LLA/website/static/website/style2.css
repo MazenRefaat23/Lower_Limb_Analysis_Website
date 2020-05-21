@@ -137,8 +137,7 @@ p{
     background: #000;
 }
 
-.banner:before,
-.sec2:before{
+.banner:before{
     content: '';
     position: absolute;
     top: 0;
@@ -149,8 +148,7 @@ p{
     pointer-events: none;
 }
 
-.banner:after,
-.sec2:after{
+.banner:after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -191,24 +189,27 @@ p{
 }
 
 .sec1{
-    padding: 100px 0;
+    padding: 100px 0 0 0;
     background: #000;
 }
 
 
 .headerText{
     color: #fff;
+    margin-bottom: 70px;
 }
 .headerText h2{
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.headerText h4{
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
-.headerText h7{
-    font-size: 2.5rem;
-}
-
-
+.headerText pre{
+    color: #fff;
 }
 
 .imgBx2{
@@ -217,8 +218,8 @@ p{
 }
 
 .imgBx2 img{
-    width: 60%;
-    height: 100%;
+    width: 14rem;
+    height: 18rem;
 
     object-fit: cover;
 }
@@ -232,19 +233,15 @@ p{
     outline: none;
     font-weight: 500;
     margin: 30px 0;
-    width: 80%;
+}
+
+.btnD1:hover,
+.btnD1:focus{
+    color: blue;
 }
 
 .btnD2{
-    border: 2px solid #fff;
-    color: #000;
-    background: #fff;
-    border-radius: 30px;
-    padding: 10px 30px;
-    outline: none;
-    font-weight: 500;
     margin: 57px 0;
-    width: 80%;
 }
 
 .content h3{
@@ -260,11 +257,16 @@ p{
 }
 
 #Gamal{
-    background-color: #000;
+    background-image: url(ain.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
 }
 
 #Mohamed{
-    background-image: url(im3.jpg);
+    background-image: url(ain.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -274,32 +276,9 @@ p{
 
 .sec2{
     position: relative;
-    color #000
-    height: 100vh;
-    background-position: center;
-    background-size: cover;
-    margin-bottom: 0;
+    padding: 200px 0 0 0;
+    background: rgba(0,0,0,0.8);
 }
-
-.sec2 h2{
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 4.5rem;
-}
-
-
-.btnD1:hover,
-.btnD1:focus{
-    color: blue;
-}
-
-.sec3{
-    position: relative;
-    padding: 100px 0;
-    background: #000;
-}
-
 
 footer{
     background: #000;
