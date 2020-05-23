@@ -1,8 +1,8 @@
 import pandas as pd
 
-data_raw= pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\AB188_Circuit_Raw.csv')
-data_out1 = pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\data_out1.csv')
-data_out2 = pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\data_out2.csv')
+#data_raw= pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\AB188_Circuit_Raw.csv')
+data_out1 = pd.read_csv('analysis/data_out1.csv')
+data_out2 = pd.read_csv('analysis/data_out2.csv')
 grd=data_out1.loc[data_out1['Activity']=='Level ground walking']
 asc=data_out1.loc[data_out1['Activity']=='Ramp ascent']
 des=data_out1.loc[data_out1['Activity']=='Ramp descent']
