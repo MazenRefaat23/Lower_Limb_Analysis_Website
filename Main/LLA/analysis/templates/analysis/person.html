@@ -521,6 +521,55 @@ var myChart = new Chart(ctx, {
     }
 });
 </script>
+<script>
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+        datasets: [{
+            label: '# of Strides',
+            data: [{{data_out2.Total_strides.0}},{{data_out2.Total_strides.1}},{{data_out2.Total_strides.2}}],
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+<script>
+    new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["Walking", "Ramp Ascent", "Ramp Descent"],
+      datasets: [
+        {
+          label: "Total Distance",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+          barPercentage: 0.5,
+          barThickness: 3,
+          data: [{{data_out2.Total_distance.0}},{{data_out2.Total_distance.1}},{{data_out2.Total_distance.2}}]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: 'Total Distance for each activity '
+      }
+    }
+});
+ </script>
 
 </body>
 </html>
