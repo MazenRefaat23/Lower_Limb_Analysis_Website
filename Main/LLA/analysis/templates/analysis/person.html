@@ -64,6 +64,55 @@
     <div class="jumbotron">
         <h1 class="display-3">{{ sub.name }} .. </h1>
     </div>
+    
+     <h1> Activity: Level Ground Walking</h1>
+    <br>
+<div class="row">
+    <div class="column">
+         <canvas id="grd_sl" width="500" height="300"></canvas>
+         <div class="myDiv">
+         <p>Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+         </div>
+    </div>
+    <div class="column">
+        <canvas id="grd_speed" width="500" height="300"></canvas>
+        <div class="myDiv">
+         <p>Average Speed = {{data_out2.Avg_speed.0}}</p>
+         </div>
+    </div>
+    <div class="column">
+        <canvas id="grd_time" width="500" height="300"></canvas>
+        <div class="myDiv">
+         <p>Average Time = {{data_out2.Avg_stride_time.0}}</p>
+         </div>
+    </div>
+</div>
+
+<br>
+<h1> Activity: Ramp Ascent </h1>
+    <br>
+<div class="row">
+    <div class="column">
+        <canvas id="asc_sl" width="500" height="300"></canvas>
+        <div class="myDiv">
+         <p>Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+         </div>
+    </div>
+    <div class="column">
+        <canvas id="asc_speed" width="500" height="300"></canvas>
+        <div class="myDiv">
+         <p>Average Speed = {{data_out2.Avg_speed.1}}</p>
+         </div>
+    </div>
+    <div class="column">
+        <canvas id="asc_time" width="500" height="300"></canvas>
+        <div class="myDiv">
+         <p>Average Time = {{data_out2.Avg_stride_time.1}}</p>
+         </div>
+    </div>
+</div>
+    <br>
+    
     <h1> Total Statics </h1>
     <br>
 <div class="row">
@@ -107,6 +156,135 @@ for (i = 1; i < {{mas_1}}.length; i++) {
 }
 
 
+      
+new Chart(document.getElementById("grd_sl"), {
+  type: 'line',
+  data: {
+    labels: lbl_grd,
+    datasets: [{
+        data: {{grd_sl}},
+        label: "Level ground walking",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Stride length (in meter)'
+    }
+  }
+});
+
+new Chart(document.getElementById("grd_speed"), {
+  type: 'line',
+  data: {
+    labels: lbl_grd,
+    datasets: [{
+        data: {{grd_speed}},
+        label: "Level ground walking",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Speed (in meter/sec)'
+    }
+  }
+});
+
+new Chart(document.getElementById("grd_time"), {
+  type: 'line',
+  data: {
+    labels: lbl_grd,
+    datasets: [{
+        data: {{grd_time}},
+        label: "Level ground walking",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Stride time (in sec)'
+    }
+  }
+});
+
+new Chart(document.getElementById("asc_sl"), {
+  type: 'line',
+  data: {
+    labels: lbl_asc,
+    datasets: [{
+        data: {{asc_sl}},
+        label: "Ramp ascent",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Stride length (in meters)'
+    }
+  }
+});
+
+new Chart(document.getElementById("asc_speed"), {
+  type: 'line',
+  data: {
+    labels: lbl_asc,
+    datasets: [{
+        data: {{asc_speed}},
+        label: "Ramp ascent",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Speed (in meter/sec)'
+    }
+  }
+});
+
+new Chart(document.getElementById("asc_time"), {
+  type: 'line',
+  data: {
+    labels: lbl_asc,
+    datasets: [{
+        data: {{asc_time}},
+        label: "Ramp ascent",
+        borderColor: "#3e95cd",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      bezierCurve: false,
+      display: true,
+      text: 'Stride time (in sec)'
+    }
+  }
+});
+
+      
+      
 new Chart(document.getElementById("speed"), {
   type: 'line',
   data: {
