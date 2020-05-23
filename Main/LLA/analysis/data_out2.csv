@@ -1,0 +1,4 @@
+Total_strides,Total_distance,Total_time,Avg_stride_length,Avg_speed,Avg_stride_time,Avg_swing%,Avg_stance%,Avg_cadence,Activity
+126,154.81,150.14,1.23,1.03,1.19,44.8,55.2,100,Level ground walking
+41,44.4,49.06,1.08,0.91,1.2,42.05,57.95,100,Ramp ascent
+58,65.54,65.6,1.13,1.0,1.13,47.48,52.52,106,Ramp descent
