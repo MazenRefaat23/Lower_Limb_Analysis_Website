@@ -5,34 +5,31 @@ from . import data_analysis
 
 
 def person(request, id):
-    grd_sl = data_analysis.grd_stride_length
-    asc_sl = data_analysis.asc_stride_length
-    des_sl = data_analysis.des_stride_length
-    grd_speed = data_analysis.grd_speed
-    asc_speed = data_analysis.asc_speed
-    des_speed = data_analysis.des_speed
-    grd_time=data_analysis.grd_time
-    asc_time=data_analysis.asc_time
-    des_time=data_analysis.des_time
-    data_out1 = data_analysis.data_out1
-    data_out2=data_analysis.data_out2
-    mas_1 = data_analysis.mas_1
-    mast_2 =data_analysis.mast_2
-    mean_val =data_analysis.mean_val
-    describe_Stride_length = data_analysis.describe_Stride_length
-    describe_Speed = data_analysis.describe_Speed
     subject = get_object_or_404(peaple, pk=id)
+    data_out1,data_out2=data_analysis.analysis(subject.name)
+    grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
+    asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
+    des = data_out1.loc[data_out1['Activity'] == 'Ramp descent']
+    grd_sl = list(grd.Stride_length)
+    des_sl = list(des.Stride_length)
+    asc_sl = list(asc.Stride_length)
+    grd_speed = list(grd.Speed)
+    asc_speed = list(asc.Speed)
+    des_speed = list(des.Speed)
+    grd_time = list(grd.Stride_time)
+    asc_time = list(asc.Stride_time)
+    des_time = list(des.Stride_time)
+    data_out2['Calories'] = [0,0,0,0,0]
+    describe_Stride_length = data_out1.groupby('Activity')['Stride_length'].describe().to_html()
+    describe_Speed = data_out1.groupby('Activity')['Speed'].describe().to_html()
+
     return render(request, "analysis/person.html",
                   {"sub": subject,'grd_sl':grd_sl,
                    'asc_sl':asc_sl,'des_sl':des_sl,
                    'grd_speed':grd_speed,'asc_speed':asc_speed,
                    'des_speed':des_speed,'grd_time':grd_time,
                    'asc_time':asc_time,'des_time':des_time,
-                   'data_out1': data_out1,
                    'data_out2':data_out2,
-                   'mas_1':mas_1,
-                   'mast_2':mast_2,
-                   'mean_val':mean_val,
                    'describe_Stride_length' : describe_Stride_length,
                    'describe_Speed':describe_Speed,
                    "subjects": peaple.objects.all()})
