@@ -64,50 +64,354 @@ def activity_intervals(df, fs, fc, mode):
     return lst_right
 
 
-#data_raw= pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\AB188_Circuit_Raw.csv')
-data_out1 = pd.read_csv('analysis/data_out1.csv')
-data_out2 = pd.read_csv('analysis/data_out2.csv')
-grd=data_out1.loc[data_out1['Activity']=='Level ground walking']
-asc=data_out1.loc[data_out1['Activity']=='Ramp ascent']
-des=data_out1.loc[data_out1['Activity']=='Ramp descent']
-grd_2=data_out2.loc[data_out2['Activity']=='Level ground walking']
-asc_2=data_out2.loc[data_out2['Activity']=='Ramp ascent']
-des_2=data_out2.loc[data_out2['Activity']=='Ramp descent']
-grd_stride_length=list(grd.Stride_length)
-#grd_stride_length = [x for x in grd_stride_length if str(x) != 'nan']
-des_stride_length = list(des.Stride_length)
-asc_stride_length = list(asc.Stride_length)
-grd_speed = list(grd.Speed)
-asc_speed = list(asc.Speed)
-des_speed =list(des.Speed)
-grd_time = list(grd.Stride_time)
-asc_time = list(asc.Stride_time)
-des_time = list(des.Stride_time)
-grd_2_time = list(grd_2.Total_time)
-asc_2_time = list(asc_2.Total_time)
-des_2_time = list(des_2.Total_time)
-def calcal(time):
-    calories = 0
-    for i in range(time):
-        calories += 3.4
-    return calories
-grd_total_time = int(grd_2_time[0])
-asc_total_time =  int(asc_2_time[0])
-des_total_time = int(des_2_time[0])
-Calories = [calcal(grd_total_time), calcal(asc_total_time), calcal(des_total_time)]
-data_out2['Calories'] =Calories
-describe_Stride_length = data_out1.groupby('Activity')['Stride_length'].describe().to_html()
-describe_Speed = data_out1.groupby('Activity')['Speed'].describe().to_html()
+def analysis(name):
+    discarded=0
+    data_out1 = pd.DataFrame()
+    data_out2 = pd.DataFrame()
+    walk_out1 = pd.DataFrame()
+    walk_out2 = pd.DataFrame()
+    ascent_out1 = pd.DataFrame()
+    ascent_out2 = pd.DataFrame()
+    descent_out1 = pd.DataFrame()
+    descent_out2 = pd.DataFrame()
+    stair_ascent_out2=pd.DataFrame()
+    stair_descent_out2=pd.DataFrame()
+    fs = 1000
+    fc = 5
+    L = 1
 
+    data_in = pd.read_csv("analysis/" + name + ".csv", usecols=["Right_Shank_Gy", "Mode"])
+    lst_activity = activity_segmentation(data_in, [1, 2, 3,4,5])
+    stair_ascent=lst_activity[3]
+    stair_descent=lst_activity[4]
+    if (len(stair_ascent)>2000):
+        w = fc / (fs / 2)
+        b, a = signal.butter(5, w, 'low')
+        str_asc = signal.filtfilt(b, a, np.array(stair_ascent))
+        for i in range(2500):
+            if(str_asc[i]<-2.2):
+                str_asc*=-1
+                break
+        peaks, _ = find_peaks(str_asc, height=2)
+        strA_steps=len(peaks)*2
+        strA_time=len(str_asc)/fs
 
+        stair_ascent_out2['Total_strides']=[strA_steps]
+        stair_ascent_out2['Total_time']=[strA_time]
+        stair_ascent_out2['Activity']=['Stair ascent']
+    else:
+        stair_ascent_out2['Total_strides'] = [0]
+        stair_ascent_out2['Activity'] = ['Stair ascent']
 
+    if (len(stair_descent)>2000):
+        w = fc / (fs / 2)
+        b, a = signal.butter(5, w, 'low')
+        str_des = signal.filtfilt(b, a, np.array(stair_descent))
+        for i in range(2500):
+            if(str_asc[i]<-2.2):
+                str_des*=-1
+                break
+        peaks, _ = find_peaks(str_des, height=2)
+        strD_steps=len(peaks)*2
+        strD_time=len(str_asc)/fs
 
-data_out1['msa']=data_out1['Speed'].rolling(window=60).mean()
-data_out1['mast']=data_out1['Stride_length'].rolling(window=60).mean()
-data_out1.head()
+        stair_descent_out2['Total_strides']=[strD_steps]
+        stair_descent_out2['Total_time']=[strD_time]
+        stair_descent_out2['Activity']=['Stair descent']
+    else:
+        stair_descent_out2['Total_strides'] = [0]
+        stair_descent_out2['Activity'] = ['Stair descent']
 
-mean_val = [data_out1['Stride_length'].mean(), data_out1['Speed'].mean()]
-mas_ = list(data_out1.msa)
-mas_1 =[x for x in mas_ if x == x]
-mast_= list(data_out1.mast)
-mast_2 =[x for x in mast_ if x == x]
+    if (len(lst_activity[0]) > 2000):
+        walk_out1 = pd.DataFrame()
+        walk_out2 = pd.DataFrame()
+        grd_dis = []
+        grd_vel = []
+        grd_mode = []
+        grd_time = []
+        grd_swing = []
+        grd_stance = []
+        walk = activity_intervals(lst_activity[0], fs, fc, 1)
+        for i in range(len(walk)):
+            peaks, _ = find_peaks(walk[i], height=1.7)
+            local_min = argrelextrema(walk[i], np.less)[0]
+            IC_points, TO_points = find_IC(peaks, local_min)
+            maxx = max(len(IC_points), len(TO_points))
+            j = 0
+            if (maxx > 1):
+                if (TO_points[0] < IC_points[0] and len(TO_points) > 1):
+                    for k in range(len(TO_points) - 1):
+                        start = TO_points[k]
+                        end = TO_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (IC_points[j] < start):
+                            j += 1
+                        ic = IC_points[j]
+                        swing = (ic - start) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 38 or swing > 50):
+                            continue
+                        w = walk[i][start:ic]
+                        vel = velocity(w, L, fs)
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        grd_dis.append(round(dis, 2))
+                        grd_vel.append(round(vel, 2))
+                        grd_mode.append("Level ground walking")
+                        grd_time.append(round(stride_time, 2))
+                        grd_swing.append(round(swing, 2))
+                        grd_stance.append(round(stance, 2))
+                else:
+                    for k in range(len(IC_points) - 1):
+                        start = IC_points[k]
+                        end = IC_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (TO_points[j] < start):
+                            j += 1
+                        to = TO_points[j]
+                        swing = (end - to) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 38 or swing > 50):
+                            continue
+                        w = walk[i][to:end]
+                        vel = velocity(w, L, fs)
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        grd_dis.append(round(dis, 2))
+                        grd_vel.append(round(vel, 2))
+                        grd_mode.append("Level ground walking")
+                        grd_time.append(round(stride_time, 2))
+                        grd_swing.append(round(swing, 2))
+                        grd_stance.append(round(stance, 2))
+
+            i += 1
+
+        walk_strides = len(grd_dis)
+        walk_dis = sum(grd_dis)
+        walk_time = sum(grd_time)
+        walk_avg_dis = round(sum(grd_dis) / walk_strides, 2)
+        walk_avg_vel = round(sum(grd_vel) / walk_strides, 2)
+        walk_avg_time = round(sum(grd_time) / walk_strides, 2)
+        walk_avg_swing = round(sum(grd_swing) / walk_strides, 2)
+        walk_avg_stance = 100 - walk_avg_swing
+        walk_cadence = int(walk_strides * 120 / sum(grd_time))
+
+        walk_out1['Stride_length'] = grd_dis
+        walk_out1['Speed'] = grd_vel
+        walk_out1['Stride_time'] = grd_time
+        walk_out1['Swing%'] = grd_swing
+        walk_out1['Stance%'] = grd_stance
+        walk_out1['Activity'] = grd_mode
+
+        walk_out2["Total_strides"] = [walk_strides]
+        walk_out2["Total_distance"] = [walk_dis]
+        walk_out2["Total_time"] = [walk_time]
+        walk_out2["Avg_stride_length"] = [walk_avg_dis]
+        walk_out2["Avg_speed"] = [walk_avg_vel]
+        walk_out2["Avg_stride_time"] = [walk_avg_time]
+        walk_out2["Avg_swing%"] = [walk_avg_swing]
+        walk_out2["Avg_stance%"] = [walk_avg_stance]
+        walk_out2["Avg_cadence"] = [walk_cadence]
+        walk_out2["Activity"] = ["Level ground walking"]
+    else:
+        walk_out2['Total_strides']=[0]
+        walk_out2["Activity"] = ["Level ground walking"]
+
+    if (len(lst_activity[1]) > 2000):
+        asc_dis = []
+        asc_vel = []
+        asc_mode = []
+        asc_time = []
+        asc_swing = []
+        asc_stance = []
+        rampAscent = activity_intervals(lst_activity[1], fs, fc, 2)
+        for i in range(len(rampAscent)):
+            peaks, _ = find_peaks(rampAscent[i], height=1.9)
+            local_min = argrelextrema(rampAscent[i], np.less)[0]
+            IC_points, TO_points = find_IC(peaks, local_min)
+            maxx = max(len(IC_points), len(TO_points))
+            j = 0
+            if (maxx > 1):
+                if (TO_points[0] < IC_points[0] and len(TO_points) > 1):
+                    for k in range(len(TO_points) - 1):
+                        start = TO_points[k]
+                        end = TO_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (IC_points[j] < start):
+                            j += 1
+                        ic = IC_points[j]
+                        swing = (ic - start) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 30 or swing >= 50):
+                            continue
+                        w = rampAscent[i][start:ic]
+                        vel = velocity(w, L, fs) / 0.98
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        asc_dis.append(round(dis, 2))
+                        asc_vel.append(round(vel, 2))
+                        asc_mode.append("Ramp ascent")
+                        asc_time.append(round(stride_time, 2))
+                        asc_swing.append(round(swing, 2))
+                        asc_stance.append(round(stance, 2))
+
+                else:
+                    for k in range(len(IC_points) - 1):
+                        start = IC_points[k]
+                        end = IC_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (TO_points[j] < start):
+                            j += 1
+                        to = TO_points[j]
+                        swing = (end - to) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 30 or swing >= 50):
+                            continue
+                        w = rampAscent[i][to:end]
+                        vel = velocity(w, L, fs) / 0.98
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        asc_dis.append(round(dis, 2))
+                        asc_vel.append(round(vel, 2))
+                        asc_mode.append("Ramp ascent")
+                        asc_time.append(round(stride_time, 2))
+                        asc_swing.append(round(swing, 2))
+                        asc_stance.append(round(stance, 2))
+
+            i += 1
+
+        ascent_strides = len(asc_dis)
+        ascent_dis = sum(asc_dis)
+        ascent_time = sum(asc_time)
+        ascent_avg_dis = round(sum(asc_dis) / ascent_strides, 2)
+        ascent_avg_vel = round(sum(asc_vel) / ascent_strides, 2)
+        ascent_avg_time = round(sum(asc_time) / ascent_strides, 2)
+        ascent_avg_swing = round(sum(asc_swing) / ascent_strides, 2)
+        ascent_avg_stance = 100 - ascent_avg_swing
+        ascent_cadence = int(ascent_strides * 120 / sum(asc_time))
+
+        ascent_out1['Stride_length'] = asc_dis
+        ascent_out1['Speed'] = asc_vel
+        ascent_out1['Stride_time'] = asc_time
+        ascent_out1['Swing%'] = asc_swing
+        ascent_out1['Stance%'] = asc_stance
+        ascent_out1['Activity'] = asc_mode
+
+        ascent_out2["Total_strides"] = [ascent_strides]
+        ascent_out2["Total_distance"] = [ascent_dis]
+        ascent_out2["Total_time"] = [ascent_time]
+        ascent_out2["Avg_stride_length"] = [ascent_avg_dis]
+        ascent_out2["Avg_speed"] = [ascent_avg_vel]
+        ascent_out2["Avg_stride_time"] = [ascent_avg_time]
+        ascent_out2["Avg_swing%"] = [ascent_avg_swing]
+        ascent_out2["Avg_stance%"] = [ascent_avg_stance]
+        ascent_out2["Avg_cadence"] = [ascent_cadence]
+        ascent_out2["Activity"] = ["Ramp ascent"]
+    else:
+        ascent_out2['Total_strides'] = [0]
+        ascent_out2["Activity"] = ["Ramp ascent"]
+
+    if (len(lst_activity[2]) > 2000):
+        des_dis = []
+        des_vel = []
+        des_mode = []
+        des_time = []
+        des_swing = []
+        des_stance = []
+        rampDescent = activity_intervals(lst_activity[2], fs, fc, 3)
+        for i in range(len(rampDescent)):
+            peaks, _ = find_peaks(rampDescent[i], height=2.2)
+            local_min = argrelextrema(rampDescent[i], np.less)[0]
+            IC_points, TO_points = find_IC(peaks, local_min)
+            maxx = max(len(IC_points), len(TO_points))
+            j = 0
+            if (maxx > 1):
+                if (TO_points[0] < IC_points[0] and len(TO_points) > 1):
+                    for k in range(len(TO_points) - 1):
+                        start = TO_points[k]
+                        end = TO_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (IC_points[j] < start):
+                            j += 1
+                        ic = IC_points[j]
+                        swing = (ic - start) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 40 or swing >= 60):
+                            continue
+                        w = rampDescent[i][start:ic]
+                        vel = velocity(w, L, fs) / 0.98
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        des_dis.append(round(dis, 2))
+                        des_vel.append(round(vel, 2))
+                        des_mode.append("Ramp descent")
+                        des_time.append(round(stride_time, 2))
+                        des_swing.append(round(swing, 2))
+                        des_stance.append(round(stance, 2))
+
+                else:
+                    for k in range(len(IC_points) - 1):
+                        start = IC_points[k]
+                        end = IC_points[k + 1]
+                        stride_time = (end - start) / fs
+                        while (TO_points[j] < start):
+                            j += 1
+                        to = TO_points[j]
+                        swing = (end - to) / fs / stride_time * 100
+                        stance = 100 - swing
+                        if (swing < 40 or swing >= 60):
+                            continue
+                        w = rampDescent[i][to:end]
+                        vel = velocity(w, L, fs) / 0.98
+                        if (vel < 0.7):
+                            continue
+                        dis = vel * stride_time
+                        des_dis.append(round(dis, 2))
+                        des_vel.append(round(vel, 2))
+                        des_mode.append("Ramp descent")
+                        des_time.append(round(stride_time, 2))
+                        des_swing.append(round(swing, 2))
+                        des_stance.append(round(stance, 2))
+
+            i += 1
+
+        descent_strides = len(des_dis)
+        descent_dis = sum(des_dis)
+        descent_time = sum(des_time)
+        descent_avg_dis = round(sum(des_dis) / descent_strides, 2)
+        descent_avg_vel = round(sum(des_vel) / descent_strides, 2)
+        descent_avg_time = round(sum(des_time) / descent_strides, 2)
+        descent_avg_swing = round(sum(des_swing) / descent_strides, 2)
+        descent_avg_stance = 100 - descent_avg_swing
+        descent_cadence = int(descent_strides * 120 / sum(des_time))
+
+        descent_out1['Stride_length'] = des_dis
+        descent_out1['Speed'] = des_vel
+        descent_out1['Stride_time'] = des_time
+        descent_out1['Swing%'] = des_swing
+        descent_out1['Stance%'] = des_stance
+        descent_out1['Activity'] = des_mode
+
+        descent_out2["Total_strides"] = [descent_strides]
+        descent_out2["Total_distance"] = [descent_dis]
+        descent_out2["Total_time"] = [descent_time]
+        descent_out2["Avg_stride_length"] = [descent_avg_dis]
+        descent_out2["Avg_speed"] = [descent_avg_vel]
+        descent_out2["Avg_stride_time"] = [descent_avg_time]
+        descent_out2["Avg_swing%"] = [descent_avg_swing]
+        descent_out2["Avg_stance%"] = [descent_avg_stance]
+        descent_out2["Avg_cadence"] = [descent_cadence]
+        descent_out2["Activity"] = ["Ramp descent"]
+    else:
+        descent_out2['Total_strides'] = [0]
+        descent_out2["Activity"] = ["Ramp descent"]
+
+    data_out1 = pd.concat([walk_out1, ascent_out1, descent_out1], ignore_index=True)
+    data_out2 = pd.concat([walk_out2, ascent_out2, descent_out2,stair_ascent_out2,stair_descent_out2], ignore_index=True)
+
+    return data_out1, data_out2
