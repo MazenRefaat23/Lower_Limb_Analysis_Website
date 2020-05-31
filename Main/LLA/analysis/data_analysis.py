@@ -63,6 +63,15 @@ def activity_intervals(df, fs, fc, mode):
         lst_right.append(right_Gy[start:len(lst_index)])
     return lst_right
 
+def velocity(w, l, fs):
+    t = 1 / fs
+    theta = np.trapz(w, dx=t)
+    sintheta = math.sin(theta / 2)
+    time = len(w) / fs
+    if (time == 0):
+        return 1.14036
+    vel = (2 * l * sintheta) / time
+    return vel
 
 def analysis(name):
     discarded=0
@@ -88,7 +97,7 @@ def analysis(name):
         w = fc / (fs / 2)
         b, a = signal.butter(5, w, 'low')
         str_asc = signal.filtfilt(b, a, np.array(stair_ascent))
-        for i in range(2500):
+        for i in range(2000):
             if(str_asc[i]<-2.2):
                 str_asc*=-1
                 break
@@ -107,13 +116,13 @@ def analysis(name):
         w = fc / (fs / 2)
         b, a = signal.butter(5, w, 'low')
         str_des = signal.filtfilt(b, a, np.array(stair_descent))
-        for i in range(2500):
-            if(str_asc[i]<-2.2):
+        for i in range(2000):
+            if(str_des[i]<-2.2):
                 str_des*=-1
                 break
         peaks, _ = find_peaks(str_des, height=2)
         strD_steps=len(peaks)*2
-        strD_time=len(str_asc)/fs
+        strD_time=len(str_des)/fs
 
         stair_descent_out2['Total_strides']=[strD_steps]
         stair_descent_out2['Total_time']=[strD_time]
