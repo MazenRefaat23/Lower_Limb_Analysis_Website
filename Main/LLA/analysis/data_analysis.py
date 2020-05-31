@@ -1,4 +1,68 @@
+import numpy as np
 import pandas as pd
+from scipy import signal
+import math
+from scipy.signal import find_peaks
+from scipy.signal import argrelextrema
+
+
+def find_IC(midSwing, local_min):
+    lst_IC = []
+    lst_TO = []
+    j = 0
+    for item in midSwing:
+        while (item > local_min[j]):
+            if (j < len(local_min) - 1):
+                j = j + 1
+            else:
+                break
+        if (local_min[j] > item):
+            lst_IC.append(local_min[j])
+            if(j>0):
+                lst_TO.append(local_min[j - 1])
+        else:
+            lst_TO.append(local_min[j])
+    return lst_IC, lst_TO
+
+
+def activity_segmentation(df, lst_mode):
+    lst_activity = []
+    for item in lst_mode:
+        df_temp = df.loc[df['Mode'] == item]
+        lst_activity.append(df_temp['Right_Shank_Gy'])
+    return lst_activity
+
+
+def activity_intervals(df, fs, fc, mode):
+    w = fc / (fs / 2)
+    b, a = signal.butter(5, w, 'low')
+    right_Gy = signal.filtfilt(b, a, np.array(df))
+    sum=0
+    sum_iv=0
+    min_ind = min(len(right_Gy), 4000)
+    test = right_Gy[:min_ind]
+    peaks, _ = find_peaks(test, height=1)
+    peaks2, _ = find_peaks(test*-1, height=1)
+    min_p=min(len(peaks),len(peaks2))
+    for i in range(min_p):
+        sum+=abs(right_Gy[peaks[i]])
+        sum_iv+=abs(right_Gy[peaks2[i]])
+    if(sum_iv>sum):
+        right_Gy*=-1
+
+    lst_index = list(df.index)
+    start = 0
+    lst_right = []
+    for i in range(len(lst_index) - 1):
+        if (lst_index[i + 1] > lst_index[i] + 5):
+            lst_right.append(right_Gy[start:i + 1])
+            start = i + 1
+    if (start == 0):
+        lst_right.append(right_Gy)
+    else:
+        lst_right.append(right_Gy[start:len(lst_index)])
+    return lst_right
+
 
 #data_raw= pd.read_csv(r'C:\Users\Abdullah\Desktop\visualization\AB188_Circuit_Raw.csv')
 data_out1 = pd.read_csv('analysis/data_out1.csv')
