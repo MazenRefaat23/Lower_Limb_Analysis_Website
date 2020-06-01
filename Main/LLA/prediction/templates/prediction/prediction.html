@@ -45,7 +45,7 @@
                     <li class="nav-item">
                         <a href="{% url 'technical' %}" class="nav-link js-scroll-trigger">Technical</a>
                     </li>
-                    <li class="nav-item dropdown">
+                                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown">Analysis</a>
                         <div class="dropdown-menu">
                             {% for sub in subjects %}
@@ -55,6 +55,7 @@
                             {% endfor %}
                         </div>
                     </li>
+
                     <li class="nav-item active">
                         <a href="{% url 'prediction' %}" class="nav-link js-scroll-trigger">Prediction</a>
                     </li>
@@ -75,10 +76,10 @@
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2500">Analyze your data by uploading your excel file here</p>
                    <form method="post" enctype="multipart/form-data">
                        {% csrf_token %}
-                   <input type="file" id="real-file" name="document"  hidden="hidden">
-                   <button type="button" id="custom-button" class="btn btnD1">CHOOSE A FILE</button>
-                   <span id="custom-text">NO FILE CHOSEN</span>
-                   <input type="submit" class="btn btnD1">
+                        <input type="file" accept=".csv" id="real-file" name="document" hidden="hidden" >
+                        <button type="button" id="custom-button" class="btn btnD1">CHOOSE A FILE</button>
+                       <span id="custom-text" style="color:white"><strong>NO FILE CHOSEN</strong></span>
+                        <input type="submit" class="btn btnD1">
 
                    </form>
                 </div>
