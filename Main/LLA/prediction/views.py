@@ -4,6 +4,9 @@ from analysis.models import peaple
 from django.http import HttpResponse
 import pandas as pd
 
+from .CNN import prep
+
+
 def prediction(request):
     return render(request, "prediction/prediction.html",
                   {"subjects": peaple.objects.all()})
@@ -15,7 +18,8 @@ def upload(request):
         fs = FileSystemStorage()
         fs.save(uploaded_file.name, uploaded_file)
         data_in = pd.read_csv("media/" + uploaded_file.name)
-        return HttpResponse(data_in.to_html())
+        data_pred = pd.DataFrame(prep(data_in))
+        return HttpResponse(data_pred.to_html())
 
     return render(request, 'prediction/prediction.html',
                   {"subjects": peaple.objects.all()})
