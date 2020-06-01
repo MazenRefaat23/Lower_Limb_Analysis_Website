@@ -25,7 +25,7 @@ SECRET_KEY = 'n-ayrt=@w9__nc+if$ohnik3p20&p6fpe3-dyjlxs7gs-9@^u+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'analysis',
-    'prediction'
-
+    'prediction',
 ]
 
 MIDDLEWARE = [
@@ -121,4 +120,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIR = ('/static/',)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
