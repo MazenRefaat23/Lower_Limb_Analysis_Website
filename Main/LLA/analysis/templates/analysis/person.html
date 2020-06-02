@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{% static 'analysis\person.css' %}" />
 
 </head>
-<div id="page-top">
+<body id="page-top">
    <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
@@ -88,7 +88,7 @@
                         <div class="text-center">
                             <canvas  id="scattered" ></canvas>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -304,64 +304,64 @@
     </div>
 
     <script>
-   var i;
-    new Chart(document.getElementById("scattered"), {
-        type: 'line',
-        data: {
-            datasets: [
-            {% for index in large_data %}
-                 {
+       var i;
+        new Chart(document.getElementById("scattered"), {
+            type: 'line',
+            data: {
+                datasets: [
+                {% for index in large_data %}
+                     {
 
-                        label: 'Scatter Dataset',
-                        backgroundColor: "rgba(246,156,85,1)",
-                        borderColor: "rgba(246,156,85,1)",
-                        fill: false,
-                        borderWidth : 15,
-                        pointRadius : 0,
-                        data: [
-                            {
-                                x: {{index.1}},
-                                y: {{index.0}}
-                            }, {
-                                x: {{index.2}},
-                                y: {{index.0}}
-                            }
-                        ]
-                    },
-             {% endfor %}
-            ]
-        },
-        options: {
-            legend : {
-                display : false
+                            label: 'Scatter Dataset',
+                            backgroundColor: "rgba(246,156,85,1)",
+                            borderColor: "rgba(246,156,85,1)",
+                            fill: false,
+                            borderWidth : 15,
+                            pointRadius : 0,
+                            data: [
+                                {
+                                    x: {{index.1}},
+                                    y: {{index.0}}
+                                }, {
+                                    x: {{index.2}},
+                                    y: {{index.0}}
+                                }
+                            ]
+                        },
+                 {% endfor %}
+                ]
             },
-            scales: {
-                xAxes: [{
-                    type: 'linear',
-                    position: 'bottom',
-                    ticks : {
-                        beginAtzero :true,
-                        stepSize : 1
-                    }
-                }],
-                yAxes : [{
-                    scaleLabel : {
-                        display : false
-                    },
-                    ticks : {
-                        beginAtZero :true,
-                        max : 10
-                    }
-                }]
+            options: {
+                legend : {
+                    display : false
+                },
+                scales: {
+                    xAxes: [{
+                        type: 'linear',
+                        position: 'bottom',
+                        ticks : {
+                            beginAtzero :true,
+                            stepSize : 1
+                        }
+                    }],
+                    yAxes : [{
+                        scaleLabel : {
+                            display : false
+                        },
+                        ticks : {
+                            beginAtZero :true,
+                            max : 10
+                        }
+                    }]
+                }
             }
-        }
-    });
-</script>
+        });
+   </script>
    <script type="text/javascript">
         $(document).scroll(function(){
             $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
         });
-    </script>
+   </script>
 
    <script type="text/javascript">
         setTimeout(function(){
@@ -672,7 +672,7 @@
     });
      </script>
 
-      <script>
+    <script>
         new Chart(document.getElementById("doughnut-chart"), {
         type: 'doughnut',
         data: {
