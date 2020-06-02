@@ -6,6 +6,7 @@ from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 
 ////////////////////
+one = pd.read_csv('analysis/AB156_Circuit_001_raw.csv')
 modename = []
 for i in range(len(one['Mode'])):
     modename.append(one['Mode'][i])
