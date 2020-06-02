@@ -19,7 +19,6 @@ def person(request, id):
     grd_time = list(grd.Stride_time)
     asc_time = list(asc.Stride_time)
     des_time = list(des.Stride_time)
-    //////
     largedata = data_analysis.large_list
     data_out2['Calories'] = [0,0,0,0,0]
     describe_Stride_length = data_out1.groupby('Activity')['Stride_length'].describe().to_html()
@@ -31,7 +30,6 @@ def person(request, id):
                    'grd_speed':grd_speed,'asc_speed':asc_speed,
                    'des_speed':des_speed,'grd_time':grd_time,
                    'asc_time':asc_time,'des_time':des_time,
-                   ///////////////
                    'large_data':largedata,
                    'data_out2':data_out2,
                    'describe_Stride_length' : describe_Stride_length,
