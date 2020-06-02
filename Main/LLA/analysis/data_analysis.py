@@ -6,7 +6,7 @@ from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 
 large_list=[]
-data_in = pd.read_csv('analysis/AB188_Circuit_Raw.csv',usecols=["Mode"])
+data_in = pd.read_csv('analysis/AB156.csv',usecols=["Mode"])
 
 data_in['Interval']=(data_in.Mode != data_in.Mode.shift()).cumsum()
 arr=np.array(data_in.groupby('Interval')['Mode'].agg(['count','max']))
