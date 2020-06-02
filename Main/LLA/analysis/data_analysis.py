@@ -88,6 +88,8 @@ def analysis():
     fs = 1000
     fc = 5
     L = 1
+    #####################
+    
     client = bigquery.Client.from_service_account_json("C:/Users/Dell/Documents/Nodemcu-ac84125d6a81.json")
     query = """
             SELECT Mode,
@@ -98,6 +100,9 @@ def analysis():
         """
     query_job = client.query(query)  # Make an API request.
     data_in = query_job.to_dataframe()
+    
+    ##############
+    
     large_list = []
 
     data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
