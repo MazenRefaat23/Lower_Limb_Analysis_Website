@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{% static 'analysis\person.css' %}" />
 
 </head>
-<body id="page-top">
+<div id="page-top">
    <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
@@ -79,7 +79,9 @@
             </div>
         </nav>
     </header>
-       <section class="main" >
+
+    <div id="divv1">
+        <section class="main" >
         <div class=" h100">
             <div class="row">
                <div class="col-sm-12 col-lg-6">
@@ -107,16 +109,20 @@
             </div>
         </div>
     </section>
+    </div>
+
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Total Statics  </p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{mean_val.0}} </p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+    <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn1()" href=#divv2>show graphs</a>
+
+    <div id="divv2">
         <section class="main" >
-        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Total Statics  </p>
-        <br>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{mean_val.0}} </p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
-        <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo5" class="btn btn-info" data-toggle="collapse">show graphs</a>
-        <div class=" h100 collapse" id="demo5">
+        <div class=" h100" >
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
-                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                         <div class="text-center">
                             <canvas id="total_stridel"width="1500" height="1000"></canvas>
                         </div>
@@ -126,7 +132,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-lg-6">
-                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                         <div class="text-center">
                             <canvas id="speed" width="500" height="300"></canvas>
                         </div>
@@ -138,15 +144,18 @@
             </div>
         </div>
     </section>
+    </div>
 
-   <section class="main">
-        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> Activity: Level Ground Walking</p>
-        <br>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.0}}</p>
-        <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo1" class="btn btn-info" data-toggle="collapse">show graphs</a>
-        <div class=" h100 collapse" id="demo1">
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> Activity: Level Ground Walking</p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.0}}</p>
+    <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn2()" href=#divv3>show graphs</a>
+
+    <div id="divv3">
+        <section class="main">
+        <div class=" h100 " >
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -181,15 +190,17 @@
             </div>
         </div>
    </section>
+    </div>
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.1}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.1}}</p>
+    <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn3()" href=#divv4>show graphs</a>
 
-   <section class="main" >
-        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
-        <br>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.1}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.1}}</p>
-        <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo2" class="btn btn-info" data-toggle="collapse">show graphs</a>
-        <div  id="demo2" class=" h100 collapse">
+    <div id="divv4">
+        <section class="main" >
+        <div class=" h100">
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -224,15 +235,18 @@
             </div>
         </div>
     </section>
+    </div>
 
-    <section class="main" >
-        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
-        <br>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.2}}</p>
-        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.2}}</p>
-        <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo3" class="btn btn-info" data-toggle="collapse">show graphs</a>
-        <div class=" h100 collapse" id="demo3">
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.2}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.2}}</p>
+    <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn4()" href=#divv5>show graphs</a>
+
+    <div id="divv5">
+        <section class="main" >
+         <div class=" h100">
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -267,7 +281,7 @@
             </div>
         </div>
     </section>
-
+    </div>
         <!-- Tables -->
 
         <div class="main">
@@ -332,6 +346,49 @@
     </div>
 
     <script>
+     document.getElementById("divv2").style.display= "none";
+     document.getElementById("divv3").style.display= "none";
+     document.getElementById("divv4").style.display= "none";
+     document.getElementById("divv5").style.display= "none";
+
+        function fn1() {
+            if (document.getElementById("divv2").style.display === "none") {
+                document.getElementById("divv2").style.display= "block";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn2() {
+            if (document.getElementById("divv3").style.display === "none") {
+                document.getElementById("divv3").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn3() {
+            if (document.getElementById("divv4").style.display === "none") {
+                document.getElementById("divv4").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn4() {
+            if (document.getElementById("divv5").style.display === "none") {
+                document.getElementById("divv5").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+
+            }
+        }
+
+
    var i;
     new Chart(document.getElementById("scattered"), {
         type: 'line',
