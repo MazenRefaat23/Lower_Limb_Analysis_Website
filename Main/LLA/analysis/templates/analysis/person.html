@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="{% static 'analysis\person.css' %}" />
 
 </head>
-<body id="page-top">
+<div id="page-top">
    <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div class="container">
@@ -80,7 +80,18 @@
         </nav>
     </header>
 
-    <section class="main" >
+    <div id="person">
+        <div  class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" > </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="scattered" width="1000" height="450"></canvas>
+
+    </div>
+         <br><br>
+         <a class="btn btnD1" onclick="showDiv()" >Click Me!</a>
+         <br><br>
+   </div>
+   <div id="visulize" style="display: none;" >
+        <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">  Total Statics  </p>
         <div class=" h100">
             <div class="row">
@@ -108,7 +119,7 @@
         </div>
     </section>
 
-    <section class="main">
+        <section class="main">
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> Activity: Level Ground Walking</p>
         <br><br>
         <div class=" h100">
@@ -148,7 +159,7 @@
     </section>
 
 
-    <section class="main" >
+        <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
         <br><br>
         <div class=" h100">
@@ -187,7 +198,7 @@
         </div>
     </section>
 
-    <section class="main" >
+        <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
         <br><br>
         <div class=" h100">
@@ -226,42 +237,45 @@
         </div>
     </section>
 
-   <!-- Tables -->
+        <!-- Tables -->
 
-    <div class="main">
+        <div class="main">
             <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Summary ..</h1>
             <br><br>
             <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">Stride length Summary</h2>
             <br><br>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1500" id="my_table" class="table table-striped table-dark" > {{ describe_Stride_length | safe }} </div>
     </div>
-    <div class="main">
+        <div class="main">
             <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Stride Speed Summary</h2>
             <br><br>
             <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="my_table2" class="table table-striped table-dark"> {{ describe_Speed | safe }} </div>
     </div>
 
-    <div  class="main chart-container" >
+        <div  class="main chart-container" >
         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Total Strides per activity </h3>
         <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="myChart" width="1000" height="450"></canvas>
 
     </div>
-    <div class="main chart-container" >
+        <div class="main chart-container" >
         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Total distance per activity </h3>
         <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="bar-chart-horizontal" width="1000" ;  height="450"></canvas>
     </div>
 
-    <div class="main chart-container" >
+        <div class="main chart-container" >
         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Time Taken per activity </h3>
         <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="doughnut-chart" width="1000" height="450"></canvas>
     </div>
 
-    <div  class="main chart-container" >
-        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >Total Calories per activity </h3>
+        <div  class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" > </h3>
         <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" id="myChart2" width="1000" height="450"></canvas>
 
     </div>
-    <br><br><br>
+        <br><br><br>
+    </div>
+
+</div>
     <footer>
         <div class="container">
             <div class="row">
@@ -287,7 +301,67 @@
             </div>
         </div>
     </div>
+    <script>
+            function showDiv() {
+               document.getElementById('person').style.display = "none";
+              document.getElementById('visulize').style.display = "block";
+            }
+    </script>
+    <script>
+   var i;
+    new Chart(document.getElementById("scattered"), {
+        type: 'line',
+        data: {
+            datasets: [
+            {% for index in large_data %}
+                 {
 
+                        label: 'Scatter Dataset',
+                        backgroundColor: "rgba(246,156,85,1)",
+                        borderColor: "rgba(246,156,85,1)",
+                        fill: false,
+                        borderWidth : 15,
+                        pointRadius : 0,
+                        data: [
+                            {
+                                x: {{index.1}},
+                                y: {{index.0}}
+                            }, {
+                                x: {{index.2}},
+                                y: {{index.0}}
+                            }
+                        ]
+                    },
+             {% endfor %}
+
+            ]
+        },
+        options: {
+            legend : {
+                display : false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom',
+                    ticks : {
+                        beginAtzero :true,
+                        stepSize : 1
+                    }
+                }],
+                yAxes : [{
+                    scaleLabel : {
+                        display : false
+                    },
+                    ticks : {
+                        beginAtZero :true,
+                        max : 10
+                    }
+                }]
+            }
+        }
+    });
+</script>
    <script type="text/javascript">
         $(document).scroll(function(){
             $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
@@ -299,6 +373,7 @@
             $('.loader-wrapper, .load').hide();
         },2000);
     </script>
+
 
     <script>
 
@@ -656,6 +731,7 @@
     <script>
         AOS.init();
     </script>
+
 
 </body>
 </html>
