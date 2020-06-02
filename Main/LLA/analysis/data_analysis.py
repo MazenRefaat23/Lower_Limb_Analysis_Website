@@ -5,38 +5,18 @@ import math
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 
-////////////////////
-one = pd.read_csv('analysis/AB156_Circuit_001_raw.csv')
-modename = []
-for i in range(len(one['Mode'])):
-    modename.append(one['Mode'][i])
+large_list=[]
+data_in = pd.read_csv('analysis/AB188_Circuit_Raw.csv',usecols=["Mode"])
 
-mymodename = []
+data_in['Interval']=(data_in.Mode != data_in.Mode.shift()).cumsum()
+arr=np.array(data_in.groupby('Interval')['Mode'].agg(['count','max']))
 
-name=modename[0]
-start = 0
-finish =0
-
-mymodestart = []
-mymodefinish = []
-
-mini_list = []
-large_list = []
-
-for i in range(1,len(modename)):
-    if modename[i] != name:
-        finish = i - 1
-        mini_list.append(name)
-        mini_list.append(start)
-        mini_list.append(finish)
-        large_list.append(mini_list.copy())
-        mini_list.clear()
-        name = modename[i]
-        start = i
-        finish = 0
-
-
-////////////
+start=0
+finish=0
+for i in range(len(arr)):
+    finish+=arr[i][0]
+    large_list.append([arr[i][1],start,finish])
+    start=finish
 
 
 def find_IC(midSwing, local_min):
