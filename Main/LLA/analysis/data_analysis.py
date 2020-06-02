@@ -4,20 +4,7 @@ from scipy import signal
 import math
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
-
-large_list=[]
-data_in = pd.read_csv('analysis/AB156.csv',usecols=["Mode"])
-
-data_in['Interval']=(data_in.Mode != data_in.Mode.shift()).cumsum()
-arr=np.array(data_in.groupby('Interval')['Mode'].agg(['count','max']))
-
-start=0
-finish=0
-for i in range(len(arr)):
-    finish+=arr[i][0]
-    large_list.append([arr[i][1],start,finish])
-    start=finish
-
+from google.cloud import bigquery
 
 def find_IC(midSwing, local_min):
     lst_IC = []
@@ -86,7 +73,7 @@ def velocity(w, l, fs):
     vel = (2 * l * sintheta) / time
     return vel
 
-def analysis(name):
+def analysis():
     discarded=0
     data_out1 = pd.DataFrame()
     data_out2 = pd.DataFrame()
@@ -101,8 +88,28 @@ def analysis(name):
     fs = 1000
     fc = 5
     L = 1
+    client = bigquery.Client.from_service_account_json("C:/Users/Dell/Documents/Nodemcu-ac84125d6a81.json")
+    query = """
+            SELECT Mode,
+            Right_Shank_Gy,
+            FROM `nodemcu-272414.agency_data_pipeline.AB186_circuit_ALLTable` 
+            ORDER BY Row 
+            LIMIT 200000
+        """
+    query_job = client.query(query)  # Make an API request.
+    data_in = query_job.to_dataframe()
+    large_list = []
 
-    data_in = pd.read_csv("analysis/" + name + ".csv", usecols=["Right_Shank_Gy", "Mode"])
+    data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
+    arr = np.array(data_in.groupby('Interval')['Mode'].agg(['count', 'max']))
+
+    start = 0
+    finish = 0
+    for i in range(len(arr)):
+        finish += arr[i][0]/1000
+        large_list.append([arr[i][1], start, finish])
+        start = finish
+    #data_in = pd.read_csv("analysis/" + name + ".csv", usecols=["Right_Shank_Gy", "Mode"])
     lst_activity = activity_segmentation(data_in, [1, 2, 3,4,5])
     stair_ascent=lst_activity[3]
     stair_descent=lst_activity[4]
@@ -117,10 +124,11 @@ def analysis(name):
         peaks, _ = find_peaks(str_asc, height=2)
         strA_steps=len(peaks)*2
         strA_time=len(str_asc)/fs
-
+        strA_cad=int(strA_steps*60/strA_time)
         stair_ascent_out2['Total_strides']=[strA_steps]
         stair_ascent_out2['Total_time']=[strA_time]
         stair_ascent_out2['Activity']=['Stair ascent']
+        stair_ascent_out2['Avg_cadence'] = [strA_cad]
     else:
         stair_ascent_out2['Total_strides'] = [0]
         stair_ascent_out2['Activity'] = ['Stair ascent']
@@ -136,10 +144,11 @@ def analysis(name):
         peaks, _ = find_peaks(str_des, height=2)
         strD_steps=len(peaks)*2
         strD_time=len(str_des)/fs
-
+        strD_cad=int(strD_steps*60/strD_time)
         stair_descent_out2['Total_strides']=[strD_steps]
         stair_descent_out2['Total_time']=[strD_time]
         stair_descent_out2['Activity']=['Stair descent']
+        stair_descent_out2['Avg_cadence'] = [strD_cad]
     else:
         stair_descent_out2['Total_strides'] = [0]
         stair_descent_out2['Activity'] = ['Stair descent']
@@ -435,5 +444,7 @@ def analysis(name):
 
     data_out1 = pd.concat([walk_out1, ascent_out1, descent_out1], ignore_index=True)
     data_out2 = pd.concat([walk_out2, ascent_out2, descent_out2,stair_ascent_out2,stair_descent_out2], ignore_index=True)
-
-    return data_out1, data_out2
+    data_out1['msa'] = data_out1['Speed'].rolling(window=60).mean()
+    data_out1['mast'] = data_out1['Stride_length'].rolling(window=60).mean()
+  
+    return large_list,data_out1, data_out2
