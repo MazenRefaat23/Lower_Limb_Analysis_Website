@@ -109,7 +109,11 @@
     </section>
         <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Total Statics  </p>
-        <div class=" h100">
+        <br>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{mean_val.0}} </p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+        <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo5" class="btn btn-info" data-toggle="collapse">show graphs</a>
+        <div class=" h100 collapse" id="demo5">
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
@@ -117,7 +121,7 @@
                             <canvas id="total_stridel"width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                            <p>Average Stride Length = {{mean_val.0}}</p>
+                            <p>Average Stride Length </p>
                         </div>
                     </div>
                 </div>
@@ -127,7 +131,7 @@
                             <canvas id="speed" width="500" height="300"></canvas>
                         </div>
                         <div class=" text-center">
-                            <p>Average Speed = {{mean_val.1}}</p>
+                            <p>Average Speed  </p>
                         </div>
                      </div>
                 </div>
@@ -135,10 +139,14 @@
         </div>
     </section>
 
-        <section class="main">
+   <section class="main">
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> Activity: Level Ground Walking</p>
-        <br><br>
-        <div class=" h100">
+        <br>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.0}}</p>
+        <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo1" class="btn btn-info" data-toggle="collapse">show graphs</a>
+        <div class=" h100 collapse" id="demo1">
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -146,7 +154,7 @@
                                <canvas id="grd_sl" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+                                <p>Average Stride Length </p>
                         </div>
                      </div>
                 </div>
@@ -156,7 +164,7 @@
                                 <canvas id="grd_speed" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Speed = {{data_out2.Avg_speed.0}}</p>
+                                <p>Average Speed </p>
                         </div>
                     </div>
                  </div>
@@ -166,19 +174,22 @@
                                 <canvas id="grd_time" width="1500" height="1000"></canvas>
                         </div>
                         <div class="text-center">
-                                 <p>Average Time = {{data_out2.Avg_stride_time.0}}</p>
+                                 <p>Average Time </p>
                         </div>
                     </div>
             </div>
             </div>
         </div>
-    </section>
+   </section>
 
-
-        <section class="main" >
+   <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
-        <br><br>
-        <div class=" h100">
+        <br>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.1}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.1}}</p>
+        <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo2" class="btn btn-info" data-toggle="collapse">show graphs</a>
+        <div  id="demo2" class=" h100 collapse">
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -186,7 +197,7 @@
                                <canvas id="asc_sl" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+                                <p>Average Stride Length </p>
                         </div>
                      </div>
                 </div>
@@ -196,7 +207,7 @@
                                 <canvas id="asc_speed" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Speed = {{data_out2.Avg_speed.1}}A</p>
+                                <p>Average Speed </p>
                         </div>
                     </div>
                  </div>
@@ -206,7 +217,7 @@
                                 <canvas id="asc_time" width="1500" height="1000"></canvas>
                         </div>
                         <div class="text-center">
-                                 <p>Average Time = {{data_out2.Avg_stride_time.1}}</p>
+                                 <p>Average Time </p>
                         </div>
                     </div>
             </div>
@@ -214,10 +225,14 @@
         </div>
     </section>
 
-        <section class="main" >
+    <section class="main" >
         <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
-        <br><br>
-        <div class=" h100">
+        <br>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.2}}</p>
+        <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.2}}</p>
+        <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" href="#demo3" class="btn btn-info" data-toggle="collapse">show graphs</a>
+        <div class=" h100 collapse" id="demo3">
             <div class="row">
                 <div class="col-sm-12 col-lg-4">
                     <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
@@ -225,7 +240,7 @@
                                <canvas id="des_sl" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
+                                <p>Average Stride Length </p>
                         </div>
                      </div>
                 </div>
@@ -235,7 +250,7 @@
                                 <canvas id="des_speed" width="1500" height="1000"></canvas>
                         </div>
                         <div class=" text-center">
-                                <p>Average Speed = {{data_out2.Avg_speed.2}}</p>
+                                <p>Average Speed  </p>
                         </div>
                     </div>
                  </div>
@@ -245,7 +260,7 @@
                                 <canvas id="des_time" width="1500" height="1000"></canvas>
                         </div>
                         <div class="text-center">
-                                 <p>Average Time = {{data_out2.Avg_stride_time.2}}</p>
+                                 <p>Average Time </p>
                         </div>
                     </div>
             </div>
