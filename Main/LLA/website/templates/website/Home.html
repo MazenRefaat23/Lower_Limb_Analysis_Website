@@ -22,9 +22,9 @@
     <!-- animation on scroll CDN -->
      <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    <link rel="stylesheet" href="{% static 'website/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'website/style8.css' %}" />
 </head>
-<body id="page-top">
+<body id="page-top" >
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -56,7 +56,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link js-scroll-trigger">Prediction</a>
+                        <a href="{% url 'prediction' %}" class="nav-link js-scroll-trigger">Prediction</a>
                     </li>
                     <li class="nav-item">
                         <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">About Us</a>
@@ -78,18 +78,24 @@
         </div>
     </div>
 
-    <section class="sec1">
-        <div class="container">
-            <div class="row">
-                <div class="offset-sm-2 col-sm-8">
-                    <div class="headerText text-center">
-                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Abstract</h2>
-                        <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">Human locomotion affects our daily living activities. Gait analysis is a systematic study of human locomotion, which is defined as body movements through aerial, aquatic, or terrestrial space. This analysis has been used to study people ambulation, registration, and reconstruction of physical location and orientation of individual limbs used to quantify and characterize human locomotion using different gait parameters including gait activities such as walking, stairs ascending/descending, … etc., ., phases, and spatiotemporal parameters of human gait. Additionally, gait analysis parameters can be used to evaluate the functionality of patients and wearable system users. The evaluation is based on patient's stability, energy consumption, gait symmetry, ability to recover from perturbations, and ability to perform activities of daily living.</p>
+     <section class="sec1" >
+        <div class="container container-fluid h100" >
+            <div class="row headerText text-center">
+                <div class="col-sm-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                    <picture >
+                      <img src="/static/website/home.png" alt="pyramid" class="imgBx2">
+                    </picture>
+                </div>
+                <div class=" offset-sm-1 col-sm-6">
+                    <div class="contentBox">
+                       <div>
+                           <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">our dedication is what you can trust</h2>
+                           <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">we are helping you to know everything about your lower limb through a very well trained machine learning model , just insert your gait data and the analysis is our mission.</p>
+                       </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
+            <div class="col-sm-12">
                     <div>
                         <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
                             <video width="80%" controls>
@@ -97,8 +103,63 @@
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-                        <div class="content">
-                            <h3>Main Building Blocks</h3>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+
+     <section class="sec2">
+        <div class="container container-fluid h100">
+            <div class=" headerText text-center ">
+                <h5 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">How can we co-operate together?</h5>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/Iot.png' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 1:</h4>
+                            <p class="card-text">adjust the device at the bottom of your lower limb and enjoy your day with all kinds of moods.</p>
+                            <a class="btn btnD1" href="/technical/">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/cloud.png' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 2:</h4>
+                            <p class="card-text">collect the data sent from the device to the cloud in .csv file and upload it on our website.</p>
+                            <a class="btn btnD1" href="/technical/">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/machine.png' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 3:</h4>
+                            <p class="card-text">your data is then sent to a well trained model to detect the mode of your activity and be analyzed.</p>
+                            <a class="btn btnD1" href="/technical/">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/data.png' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 4:</h4>
+                            <p class="card-text">the results of the analysis is to be visualized through different types of charts and graphs.</p>
+                            <a class="btn btnD2" href="/prediction/">Try Now</a>
                         </div>
                     </div>
                 </div>
@@ -106,27 +167,24 @@
         </div>
     </section>
 
-    <section class="sec2">
-        <div class="container h100">
-            <div class="contentBox h100">
-                <div>
-                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">It will be composed of two major components, hardware component and software component. In hardware component, We designed and implemented the IoT that collects the different readings for gait analysis and send them to the cloud. Meanwhile, in the software component, We designed and implemented a set of algorithms to visualize the collected data, then design and implement data analytics to automatically analyze the collected data, so that we can estimate gait events, gait symmetry, gait speed, classify gait activities, stability, energy consumption, …etc.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="sec3">
-        <div class="container">
-            <div class="row">
-                <div class="offset-sm-2 col-sm-8">
-                    <div class="headerText text-center">
-                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="500">Data Flows Among the Building Blocks</h2>
-                        <p data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">We aim to develop a cloud platform capable of collect data from wearable and assistive devices such as prostheses, exoskeleton, gait analysis wearable sensors, …etc. using IoT technologies. This platform is capable of automatically use data mining and visualization tools. Additionally, it uses statistical and machine learning techniques to estimate gait events, gait symmetry, gait speed, gait activities, stability, energy consumption, …etc. Also, it is capable of predicting patient's progress over time.</p>
-                        <a href="{% url 'technical' %}" class="btn btnD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Read More</a>
+            <div class="headerText text-center">
+                 <h3 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="0">New Approach</h3>
+                 <div class=" headerText text-center">
+                   <div  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                     <picture >
+                     <img src="/static/website/new york times.PNG" alt="new york" class="imgBx3" >
+                     </picture>
+                   </div>
+                 </div>
+                 <div class=" headerText text-center">
+                   <div  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                      <picture >
+                       <img src="/static/website/computer world.PNG" alt="computer" class="imgBx3">
+                       </picture>
                     </div>
-                </div>
-        </div>
+                 </div>
+            </div>
     </section>
 
     <footer>
@@ -141,7 +199,7 @@
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                     <p class="cpryt"><a href="#page-top">Back Top</a></p>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a></p>
                 </div>
             </div>
         </div>
