@@ -21,6 +21,8 @@ def person(request, id):
     des_time = list(des.Stride_time)
     data_out2['Calories'] = [0,0,0,0,0]
     mean_val = [data_out1['Stride_length'].mean(), data_out1['Speed'].mean()]
+    for i in range(len(mean_val)):
+        mean_val[i]=round(mean_val[i],2)
     mas_ = list(data_out1.msa)
     mas_1 = [x for x in mas_ if x == x]
     mast_ = list(data_out1.mast)
