@@ -449,7 +449,7 @@ def analysis():
 
     data_out1 = pd.concat([walk_out1, ascent_out1, descent_out1], ignore_index=True)
     data_out2 = pd.concat([walk_out2, ascent_out2, descent_out2,stair_ascent_out2,stair_descent_out2], ignore_index=True)
-    data_out1['msa'] = data_out1['Speed'].rolling(window=60).mean()
-    data_out1['mast'] = data_out1['Stride_length'].rolling(window=60).mean()
+    data_out1['msa'] = data_out1['Speed'].rolling(window=30).mean()
+    data_out1['mast'] = data_out1['Stride_length'].rolling(window=30).mean()
   
     return large_list,data_out1, data_out2
