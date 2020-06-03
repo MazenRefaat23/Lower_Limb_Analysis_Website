@@ -19,7 +19,7 @@ from website.views import home, about, technical
 from django.conf.urls import url, include
 from django.conf import settings
 from django.conf.urls.static import static
-from prediction.views import prediction, upload
+from prediction.views import upload
 
 
 urlpatterns = [
