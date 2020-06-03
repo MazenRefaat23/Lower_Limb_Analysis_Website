@@ -110,15 +110,14 @@ p{
     top: 0;
     width: 100%;
     height: 100vh;
-    background: url(img201.jpg);
+    background: url(banner.jpg);
     background-position: center;
     background-size: cover;
     margin-bottom: 0;
 
 }
 
-.banner:before,
-.sec2:before{
+.banner:before{
     content: '';
     position: absolute;
     top: 0;
@@ -129,8 +128,7 @@ p{
     pointer-events: none;
 }
 
-.banner:after,
-.sec2:after{
+.banner:after{
     content: '';
     position: absolute;
     bottom: 0;
@@ -165,79 +163,98 @@ p{
 
 .contentBox p{
     color:#fff;
-    font-size: 1.3rem;
+    font-size: 1rem;
 }
 
-.sec1{
-    padding: 100px 0;
-    background: #000;
+.contentBox h2{
+    font-weight: 700;
+    color:#fff;
+    text-transform: uppercase;
+    font-size: 3rem;
+    margin-top: 50px;
 }
 
-
-.headerText{
-    color: #fff;
-}
-.headerText h2{
-    font-size: 2.5rem;
-    margin-bottom: 20px;
+.content{
+    margin-top: 20px;
 }
 
-
-.imgBx{
-    width: 100%;
-    height: 100%;
+.border-1{
+    border-top: 1px solid rgb(252, 94, 1);
+    border-bottom: 1px solid rgb(252, 94, 1);
+    padding-bottom: 30px;
 }
 
-.imgBx img{
-    object-fit: cover;
-    width: 60%;
+.border-2{
+    border-right: 1px solid rgb(252, 94, 1);
+    border-left: 1px solid rgb(252, 94, 1);
+    padding-bottom: 30px;
 }
-
 
 .content h3{
-    position: relative;
-    margin: 0;
-    padding: 10px;
-    background: rgba(0,0,0,0.9);
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    width: 100%;
+    font-weight: 500;
+    color:#fff;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.content h4{
+    font-weight: 500;
+    color:#fff;
+    font-size: 1.8rem;
+    margin: 20px;
+}
+
+.content h5{
+    font-weight: 400;
+    color:#fff;
+    font-size: 1rem;
+    margin: 10px;
+}
+
+
+.sec1{
+    padding: 50px 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
 
-.sec2{
-    position: relative;
-    background: url(img7.jpg);
-    height: 100vh;
-    background-position: center;
-    background-size: cover;
-    margin-bottom: 0;
+.chartBox{
+    padding: 20px;
+    margin-top: 100px;
+    background-color: #121212;
+    border: 1px solid rgb(252, 94, 1);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-.sec2 h2{
-    font-weight: 800;
-    color: #fff;
-    text-transform: uppercase;
-    font-size: 4.5rem;
+.chartBox .box{
+    width: 450px;
+}
+
+.chartBox .box1{
+    width: 600px;
+}
+
+.chartBox .box2{
+    width: 300px;
 }
 
 .btnD1{
     border: 2px solid #fff;
     color: #000;
     background: #fff;
-    border-radius: 50px;
-    padding: 15px 50px;
-    font-size: 1.15rem;
+    border-radius: 30px;
+    padding: 10px 30px;
+    font-size: 1rem;
     outline: none;
     font-weight: 500;
     margin-top: 20px;
-}
-
-.sec3{
-    position: relative;
-    padding: 100px 0;
-    background: #000;
 }
 
 
@@ -308,23 +325,9 @@ footer{
         padding-right: 1rem;
         padding-left: 1rem;
     }
-    .sec1,
-    .sec2,
-    .sec3{
-        padding: 50px 0;
-    }
-    p{
-        font-size: 1rem;
-    }
-    .btnD1{
-        padding: 10px 40px;
-        margin-top: 10px;
-    }
 
-    .sci li{
-        margin: 0 10px;
-    }
-    .sci li a{
-        font-size: 1.5em;
+    .chartBox .box1,
+    .chartBox .box{
+        width: 300px;
     }
 }

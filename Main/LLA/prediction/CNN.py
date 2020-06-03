@@ -4,8 +4,8 @@ from tensorflow.keras.models import load_model
 from sklearn.preprocessing import StandardScaler
 import scipy.stats as stats
 
-
-Model = load_model(r'C:\Users\user\Desktop\DeskTop\Lower_Limb_Analysis_Website\Main\LLA\prediction\static\prediction\CNN_Triple_version2.h5')
+Model = load_model(
+    r'C:\Users\user\Desktop\DeskTop\Lower_Limb_Analysis_Website\Main\LLA\prediction\static\prediction\CNN_Triple_version2.h5')
 
 
 def get_frames(df, frame_size, hop_size):
@@ -39,17 +39,22 @@ def get_frames(df, frame_size, hop_size):
 
 
 def prep(data):
-    x = data[['Right_Shank_Ax', 'Right_Shank_Ay', 'Right_Shank_Az', 'Right_Shank_Gx', 'Right_Shank_Gy', 'Right_Shank_Gz', 'Right_Thigh_Ax', 'Right_Thigh_Ay', 'Right_Thigh_Az', 'Right_Thigh_Gx', 'Right_Thigh_Gy', 'Right_Thigh_Gz']]
+    df = data[['Right_Shank_Ax', 'Right_Shank_Ay', 'Right_Shank_Az', 'Right_Shank_Gx', 'Right_Shank_Gy',
+                'Right_Shank_Gz', 'Right_Thigh_Ax', 'Right_Thigh_Ay', 'Right_Thigh_Az', 'Right_Thigh_Gx',
+                'Right_Thigh_Gy', 'Right_Thigh_Gz']]
+
     y = data['Mode']
 
     scaler = StandardScaler()
-    x = scaler.fit_transform(x)
+    xxx = scaler.fit_transform(df)
 
-    scaled_X = pd.DataFrame(data = x, columns = ['Right_Shank_Ax', 'Right_Shank_Ay', 'Right_Shank_Az', 'Right_Shank_Gx', 'Right_Shank_Gy', 'Right_Shank_Gz', 'Right_Thigh_Ax', 'Right_Thigh_Ay', 'Right_Thigh_Az', 'Right_Thigh_Gx', 'Right_Thigh_Gy', 'Right_Thigh_Gz'])
+    scaled_X = pd.DataFrame(data=xxx, columns=['Right_Shank_Ax', 'Right_Shank_Ay', 'Right_Shank_Az', 'Right_Shank_Gx',
+                                               'Right_Shank_Gy', 'Right_Shank_Gz', 'Right_Thigh_Ax', 'Right_Thigh_Ay',
+                                               'Right_Thigh_Az', 'Right_Thigh_Gx', 'Right_Thigh_Gy', 'Right_Thigh_Gz'])
     scaled_X['Mode'] = y.values
 
-    frame_size = 1500 # 200 "2 seconds"
-    hop_size = 200 # 1000
+    frame_size = 1500  # 200 "2 seconds"
+    hop_size = 200  # 1000
     xx, y = get_frames(scaled_X, frame_size, hop_size)
 
     xx1 = xx[:, :, 0:3]
@@ -60,4 +65,21 @@ def prep(data):
     y_proba = Model.predict([xx1, xx2, xx3, xx4])
     y_pred = y_proba.argmax(axis=-1)
 
-    return y_pred
+    big_list = []
+    flag = 0
+    x = 0
+    for i in y_pred:
+        if flag == 0:
+            for m in range(1100):
+                big_list.append(i)
+                flag = 1
+        for j in range(200):
+            big_list.append(i)
+        x = i
+    for k in range(xxx.shape[0] - len(big_list)):
+        big_list.append(x)
+
+    df = pd.DataFrame(data=df['Right_Shank_Gy'], columns=['Right_Shank_Gy'])
+    df['Mode'] = big_list
+
+    return df

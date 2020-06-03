@@ -74,14 +74,15 @@
                 <div>
                     <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">Upload your file</h1>
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2500">Analyze your data by uploading your excel file here</p>
-                   <form method="post" enctype="multipart/form-data">
-                       {% csrf_token %}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                         <input type="file" accept=".csv" id="real-file" name="document" hidden="hidden" >
                         <button type="button" id="custom-button" class="btn btnD1">CHOOSE A FILE</button>
-                       <span id="custom-text" style="color:white"><strong>NO FILE CHOSEN</strong></span>
-                        <input type="submit" class="btn btnD1">
-
-                   </form>
+                        <div class="text-center" id="bt2">
+                            <input type="submit" class="btn btnD1">
+                            <p id="custom-text" style="color:white">NO FILE CHOSEN</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -99,7 +100,7 @@
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                     <p class="cpryt"><a href="#page-top">Back Top</a></p>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
                 </div>
             </div>
         </div>
@@ -127,6 +128,7 @@
         });
     </script>
 
+
     <!-- Bootstrap JS CDN -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -141,21 +143,24 @@
     </script>
 
     <script type="text/javascript">
+        document.getElementById("bt2").style.display= "none";
         const realFileBtn = document.getElementById("real-file")
         const customBtn = document.getElementById("custom-button")
         const customTxt = document.getElementById("custom-text")
 
         customBtn.addEventListener("click", function(){
-        realFileBtn.click();
+            realFileBtn.click();
         });
 
         realFileBtn.addEventListener("change", function() {
-        if(realFileBtn.value) {
-        customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
-        }
-        else {
-        customTxt.innerHTML = "NO FILE CHOSEN";
-        }
+            if(realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+                document.getElementById("bt2").style.display= "block";
+                document.getElementById("custom-button").style.display= "none";
+            }
+            else {
+                customTxt.innerHTML = "NO FILE CHOSEN";
+            }
         });
 
     </script>
