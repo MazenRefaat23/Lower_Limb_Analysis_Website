@@ -6,8 +6,6 @@ from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
 #from google.cloud import bigquery
 
-from .CNN import prep
-
 def find_IC(midSwing, local_min):
     lst_IC = []
     lst_TO = []
@@ -75,8 +73,7 @@ def velocity(w, l, fs):
     vel = (2 * l * sintheta) / time
     return vel
 
-
-def analysis(data):
+def analysis():
     discarded=0
     data_out1 = pd.DataFrame()
     data_out2 = pd.DataFrame()
@@ -92,9 +89,7 @@ def analysis(data):
     fc = 5
     L = 1
     large_list = []
-
-    data_in = prep(data)
-    #data_in = pd.read_csv("analysis/AB194.csv", usecols=["Right_Shank_Gy", "Mode"])
+    data_in = pd.read_csv("analysis/AB194.csv", usecols=["Right_Shank_Gy", "Mode"])
     data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
     arr = np.array(data_in.groupby('Interval')['Mode'].agg(['count', 'max']))
 
@@ -442,4 +437,4 @@ def analysis(data):
     data_out1['msa'] = data_out1['Speed'].rolling(window=5).mean()
     data_out1['mast'] = data_out1['Stride_length'].rolling(window=5).mean()
   
-    return large_list,data_out1, data_out2
+    return large_list, data_out1, data_out2

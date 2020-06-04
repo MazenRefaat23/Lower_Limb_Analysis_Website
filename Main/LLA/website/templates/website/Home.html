@@ -83,7 +83,7 @@
             <div class="row headerText text-center">
                 <div class="col-sm-4" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                     <picture >
-                      <img src="/static/website/home.png" alt="pyramid" class="imgBx2">
+                      <img src="{% static 'website/home.png' %}" alt="pyramid" class="imgBx2">
                     </picture>
                 </div>
                 <div class=" offset-sm-1 col-sm-6">
@@ -97,9 +97,9 @@
             </div>
             <div class="col-sm-12">
                     <div>
-                        <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="imgBx text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
                             <video width="80%" controls>
-                                <source src="{% static 'website/movie1.mp4' %}" type="video/mp4">
+                                <source src="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Final.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -112,13 +112,13 @@
      <section class="sec2">
         <div class="container container-fluid h100">
             <div class=" headerText text-center ">
-                <h5 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">How can we co-operate together?</h5>
+                <h5 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >How can we co-operate together?</h5>
             </div>
             <div class="row">
                 <div class="column">
                     <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                         <div class="imgBx1 text-center">
-                            <img class="card-img-top rounded" src="{% static 'website/Iot.png' %}" alt=""/>
+                            <img class="card-img-top rounded" src="{% static 'website/Iot.png' %}" alt="" style="width:12rem;height:12rem;"/>
                         </div>
                         <div class="card-body text-center">
                             <h4 class="card-title">Step 1</h4>
@@ -130,7 +130,7 @@
                 <div class="column">
                     <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                         <div class="imgBx1 text-center">
-                            <img class="card-img-top rounded" src="{% static 'website/cloud.png' %}" alt=""/>
+                            <img class="card-img-top rounded" src="{% static 'website/cloud.png' %}" alt="" style="width:12rem;height:12rem;"/>
                         </div>
                         <div class="card-body text-center">
                             <h4 class="card-title">Step 2</h4>
@@ -159,7 +159,7 @@
                         <div class="card-body text-center">
                             <h4 class="card-title">Step 4</h4>
                             <p class="card-text">the results of the analysis is to be visualized, view pre-visualized data set in here.</p>
-                            <a class="btn btnD2" href="/analysis/1/">View Now</a>
+                            <a class="btn btnD2" href="/analysis/1">View Now</a>
                         </div>
                     </div>
                 </div>
@@ -173,20 +173,15 @@
                  <div class=" headerText text-center">
                    <div  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                      <picture >
-                     <img src="/static/website/new york times.PNG" alt="new york" class="imgBx3" >
+                     <img src="{% static 'website/new york times.png' %}"  style="width:40rem;height:12rem;" alt="new york" class="imgBx3" >
                      </picture>
                    </div>
                  </div>
                  <div class=" headerText text-center">
                    <div  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
                       <picture >
-                       <img src="/static/website/computer world.jpeg" alt="computer" class="imgBx3">
+                       <img src="{% static 'website/newspaper.jpeg' %}"  style="width:40rem;height:12rem;margin-top:10px;" alt="computer" class="imgBx3">
                        </picture>
-                    </div>
-                 </div>
-                 <div class=" contentBox text-center">
-                   <div  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
-                      <p>The world is taking new appraoch towards indulging IoT and machine learning at healthcare.</p>
                     </div>
                  </div>
             </div>
@@ -204,7 +199,7 @@
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                     <p class="cpryt"><a href="#page-top">Back Top</a></p>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a> <br> <a href="{% url 'about' %}">You can Learn More about us here</a></p>
                 </div>
             </div>
         </div>

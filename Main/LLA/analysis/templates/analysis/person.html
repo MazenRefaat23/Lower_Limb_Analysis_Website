@@ -10,29 +10,49 @@
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--Chart js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS CDN -->
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+     <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--     Fav Icon     -->
+    <link rel="shortcut icon" type="image/png" href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Logo.ico" sizes="1500x1500" />
+    <!-- font awesome CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+    <!-- animation on scroll CDN -->
+     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="{% static 'analysis\person.css' %}" />
 
 </head>
-<body id="page-top">
+<div id="page-top">
+   <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img src="{% static 'website/Logo.png' %}" alt="Logo" style="width:50px;">
+                    <span>LLA</span>
+                </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-    <nav class="navbar bg-dark navbar-dark navbar-expand-lg fixed-top" id="mainNav">
-        <div class="container">
-            <a href="#page-top" class="navbar-brand js-scroll-trigger">
-                <img src="{% static 'website/logo.png' %}" alt="Logo" style="width:40px;">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria- controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  ">
                         <a href="{% url 'home' %}" class="nav-link js-scroll-trigger">Home</a>
                     </li>
                     <li class="nav-item">
@@ -41,13 +61,11 @@
                     <li class="nav-item dropdown active">
                         <a href="#" class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown">Analysis</a>
                         <div class="dropdown-menu">
+                            {% for sub in subjects %}
 
-                            {% for s in subjects %}
-
-                            <a class="dropdown-item" href="{% url 'person' s.id %}">{{ s.name }}</a>
+                            <a class="dropdown-item" href="{% url 'person' sub.id %}">{{ sub.name }}</a>
 
                             {% endfor %}
-
                         </div>
                     </li>
                     <li class="nav-item">
@@ -57,13 +75,940 @@
                         <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">About Us</a>
                     </li>
                 </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="divv1">
+        <section class="main" >
+        <div class=" h100">
+            <div class="row">
+               <div class="col-sm-12 col-lg-6">
+                   <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">Personal Info</p>
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                        <ul  style="list-style:none; text-a " >
+                                <li>Name :&nbsp;&nbsp;&nbsp; {{sub.name }} </li>
+                                <br>
+                                <li>Age :&nbsp;&nbsp;&nbsp; {{sub.age }}</li>
+                                <br>
+                                <li>Weight :&nbsp;&nbsp;&nbsp; {{sub.weight}} </li>
+                                <br>
+                                <li>height :&nbsp;&nbsp;&nbsp; {{sub.height}} </li>
+                         </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000"> Modes  </p>
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">
+                        <div class="text-center">
+                            <canvas  id="scattered" ></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="jumbotron">
-        <h1 class="display-3">{{ sub.name }} .. </h1>
+    </section>
     </div>
+
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Total Statics  </p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{mean_val.0}} </p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+    <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn1()" href=#divv2>show graphs</a>
+
+
+    <div id="divv2">
+        <section class="main" id = "total_strides">
+        <div class=" h100" >
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="text-center">
+                            <canvas id="total_stridel"width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                            <p>Average Stride Length </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="text-center">
+                            <canvas id="speed" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                            <p>Average Speed  </p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> Activity: Level Ground Walking</p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.0}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.0}}</p>
+    <a data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn2()" href=#divv3>show graphs</a>
+
+    <div id="divv3">
+        <section class="main" id ="Level Ground Walking">
+        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0"> </p>
+        <br><br>
+        <div class=" h100">
+            <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="text-center">
+                               <canvas id="grd_sl" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Stride Length = {{data_out2.Avg_stride_length.0}}</p>
+                        </div>
+                     </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                        <div class="text-center">
+                                <canvas id="grd_speed" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Speed = {{data_out2.Avg_speed.0}}</p>
+                        </div>
+                    </div>
+                 </div>
+            <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1500">
+                        <div class="text-center">
+                                <canvas id="grd_time" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class="text-center">
+                                 <p>Average Time = {{data_out2.Avg_stride_time.0}}</p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    </div>
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.1}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.1}}</p>
+    <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn3()" href=#divv4>show graphs</a>
+
+    <div id="divv4">
+            <section class="main" id ="Ramp Ascent" >
+        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Ascent</p>
+        <br><br>
+        <div class=" h100">
+            <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="text-center">
+                               <canvas id="asc_sl" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Stride Length = {{data_out2.Avg_stride_length.1}}</p>
+                        </div>
+                     </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="text-center">
+                                <canvas id="asc_speed" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Speed = {{data_out2.Avg_speed.1}}A</p>
+                        </div>
+                    </div>
+                 </div>
+            <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                        <div class="text-center">
+                                <canvas id="asc_time" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class="text-center">
+                                 <p>Average Time = {{data_out2.Avg_stride_time.1}}</p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
+    <br>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Speed = {{data_out2.Avg_speed.2}}</p>
+    <p  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Average Time = {{data_out2.Avg_stride_time.2}}</p>
+    <a  data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" class="btn btnD1" onclick="fn4()" href=#divv5>show graphs</a>
+
+    <div id="divv5">
+        <section class="main" id="Ramp Descent" >
+        <p class="text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">  Activity: Ramp Descent </p>
+        <br><br>
+        <div class=" h100">
+            <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="text-center">
+                               <canvas id="des_sl" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Stride Length = {{data_out2.Avg_stride_length.2}}</p>
+                        </div>
+                     </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="text-center">
+                                <canvas id="des_speed" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class=" text-center">
+                                <p>Average Speed = {{data_out2.Avg_speed.2}}</p>
+                        </div>
+                    </div>
+                 </div>
+            <div class="col-sm-12 col-lg-4">
+                    <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                        <div class="text-center">
+                                <canvas id="des_time" width="1500" height="1000"></canvas>
+                        </div>
+                        <div class="text-center">
+                                 <p>Average Time = {{data_out2.Avg_stride_time.2}}</p>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    </div>
+        <!-- Tables -->
+
+        <div class="main">
+            <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Summary ..</h1>
+            <br><br>
+            <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Stride length Summary</h2>
+            <br><br>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="my_table" class="table table-striped table-dark" > {{ describe_Stride_length | safe }} </div>
+        </div>
+        <div class="main">
+            <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Stride Speed Summary</h2>
+            <br><br>
+            <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" id="my_table2" class="table table-striped table-dark"> {{ describe_Speed | safe }} </div>
+        </div>
+
+        <div  class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Total Strides per activity </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" id="myChart" width="1000" height="450"></canvas>
+
+        </div>
+        <div class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Total distance per activity </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" id="bar-chart-horizontal" width="1000" ;  height="450"></canvas>
+        </div>
+
+        <div class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Time Taken per activity </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" id="doughnut-chart" width="1000" height="450"></canvas>
+        </div>
+        <div  class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Total Staircase </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" id="myChart_staircase" width="1000" height="450"></canvas>
+
+    <div class="main chart-container" >
+        <div  class="main chart-container" >
+        <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" > </h3>
+        <canvas data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" id="myChart2" width="1000" height="450"></canvas>
+
+        </div>
+        <br><br><br>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="sci">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <p class="cpryt"><a href="#page-top">Back Top</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     document.getElementById("divv2").style.display= "none";
+     document.getElementById("divv3").style.display= "none";
+     document.getElementById("divv4").style.display= "none";
+     document.getElementById("divv5").style.display= "none";
+
+        function fn1() {
+            if (document.getElementById("divv2").style.display === "none") {
+                document.getElementById("divv2").style.display= "block";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn2() {
+            if (document.getElementById("divv3").style.display === "none") {
+                document.getElementById("divv3").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn3() {
+            if (document.getElementById("divv4").style.display === "none") {
+                document.getElementById("divv4").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv5").style.display= "none";
+
+            }
+        }
+        function fn4() {
+            if (document.getElementById("divv5").style.display === "none") {
+                document.getElementById("divv5").style.display= "block";
+                document.getElementById("divv2").style.display= "none";
+                document.getElementById("divv3").style.display= "none";
+                document.getElementById("divv4").style.display= "none";
+
+            }
+        }
+
+
+   var i;
+    new Chart(document.getElementById("scattered"), {
+        type: 'line',
+        data: {
+            datasets: [
+            {% for index in large_data %}
+                 {
+
+                        label: 'Scatter Dataset',
+                        backgroundColor: "rgba(246,156,85,1)",
+                        borderColor: "rgba(246,156,85,1)",
+                        fill: false,
+                        borderWidth : 15,
+                        pointRadius : 0,
+                        data: [
+                            {
+                                x: {{index.1}},
+                                y: {{index.0}}
+                            }, {
+                                x: {{index.2}},
+                                y: {{index.0}}
+                            }
+                        ]
+                    },
+             {% endfor %}
+            ]
+        },
+        options: {
+            legend : {
+                display : false
+            },
+            scales: {
+                xAxes: [{
+                    type: 'linear',
+                    position: 'bottom',
+                    ticks : {
+                        beginAtzero :true,
+                        stepSize : 1
+                    }
+                }],
+                yAxes : [{
+                    scaleLabel : {
+                        display : false
+                    },
+                    ticks : {
+                        beginAtZero :true,
+                        max : 10
+                    }
+                }]
+            }
+        }
+    });
+</script>
+   <script type="text/javascript">
+        $(document).scroll(function(){
+            $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+        });
+    </script>
+
+   <script type="text/javascript">
+        setTimeout(function(){
+            $('.loader-wrapper, .load').hide();
+        },2000);
+    </script>
+
+    <script id = "remove">
+        Element.prototype.remove = function() {
+        this.parentElement.removeChild(this);
+    }
+    NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+        for(var i = this.length - 1; i >= 0; i--) {
+            if(this[i] && this[i].parentElement) {
+                this[i].parentElement.removeChild(this[i]);
+            }
+        }
+    }
+
+    if({{data_out.mas.0}}<= 0){
+        document.getElementById("total_stridel").remove();
+    }
+    if({{data_out.mast.0}}<= 0){
+        document.getElementById("speed").remove();
+    }
+    document.getElementById("total_strides").remove();
+    var thres = 58
+        if({{data_out2.Total_strides.0}}<= thres){
+        document.getElementById("Level Ground Walking").remove();
+    }
+        if({{data_out2.Total_strides.1}}<= thers){
+        document.getElementById("Ramp Ascent").remove();
+    }
+        if({{data_out2.Total_strides.2}}<= thres){
+        document.getElementById("Ramp Descent").remove();
+    }
+    </script>
+    <script id="total">
+
+    var lbl_mas = [];
+    for (i = 1; i < {{mas_1}}.length; i++) {
+      lbl_mas.push(i);
+    }
+
+
+    new Chart(document.getElementById("speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_mas,
+        datasets: [{
+            data: {{mas_1}},
+            label: "Total Speed ",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride Speed (in meter/sec)'
+        }
+      }
+    });
+    new Chart(document.getElementById("total_stridel"), {
+      type: 'line',
+      data: {
+        labels: lbl_mas,
+        datasets: [{
+            data: {{mast_2}},
+            label: "Total Stride Length ",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride Length (in meter)'
+        }
+      }
+    });
+</script>
+   <script id = "grd">
+       var lbl_grd = [];
+    for (i = 1; i < {{grd_sl}}.length; i++) {
+      lbl_grd.push(i);
+    }
+    new Chart(document.getElementById("grd_sl"), {
+      type: 'line',
+      data: {
+        labels: lbl_grd,
+        datasets: [{
+            data: {{grd_sl}},
+            label: "Level ground walking",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride length (in meter)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("grd_speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_grd,
+        datasets: [{
+            data: {{grd_speed}},
+            label: "Level ground walking",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Speed (in meter/sec)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("grd_time"), {
+      type: 'line',
+      data: {
+        labels: lbl_grd,
+        datasets: [{
+            data: {{grd_time}},
+            label: "Level ground walking",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride time (in sec)'
+        }
+      }
+    });
+</script>
+   <script id = "asc">
+   var lbl_asc = [];
+    for (i = 1; i < {{asc_sl}}.length; i++) {
+      lbl_asc.push(i);
+    }
+    new Chart(document.getElementById("asc_sl"), {
+      type: 'line',
+      data: {
+        labels: lbl_asc,
+        datasets: [{
+            data: {{asc_sl}},
+            label: "Ramp ascent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride length (in meters)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("asc_speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_asc,
+        datasets: [{
+            data: {{asc_speed}},
+            label: "Ramp ascent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Speed (in meter/sec)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("asc_time"), {
+      type: 'line',
+      data: {
+        labels: lbl_asc,
+        datasets: [{
+            data: {{asc_time}},
+            label: "Ramp ascent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride time (in sec)'
+        }
+      }
+    });
+</script>
+   <script id = "des">
+    var lbl_des = [];
+    for (i = 1; i < {{des_sl}}.length; i++) {
+      lbl_des.push(i);
+    }
+    new Chart(document.getElementById("des_sl"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_sl}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride length (in meters)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_speed}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Speed (in meter/sec)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_time"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_time}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride time (in sec)'
+        }
+      }
+    });
+    </script>
+     <script id = "stairasc">
+    new Chart(document.getElementById("#des_sl"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_sl}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride length (in meters)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_speed}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Speed (in meter/sec)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_time"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_time}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride time (in sec)'
+        }
+      }
+    });
+    </script> // change data and id
+    <script id = "stairdes">
+    var lbl_des = [];
+    for (i = 1; i < {{des_sl}}.length; i++) {
+      lbl_des.push(i);
+    }
+    new Chart(document.getElementById("des_sl"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_sl}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride length (in meters)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_speed"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_speed}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Speed (in meter/sec)'
+        }
+      }
+    });
+
+    new Chart(document.getElementById("des_time"), {
+      type: 'line',
+      data: {
+        labels: lbl_des,
+        datasets: [{
+            data: {{des_time}},
+            label: "Ramp descent",
+            borderColor: "#3e95cd",
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          bezierCurve: false,
+          display: true,
+          text: 'Stride time (in sec)'
+        }
+      }
+    });
+    </script> // change data and id
+
+
+    <script id = "no of Strides">
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+            datasets: [{
+                label: '# of Strides',
+                data: [{{data_out2.Total_strides.0}},{{data_out2.Total_strides.1}},{{data_out2.Total_strides.2}}],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+    <script id ="stair staircase total">
+    var ctx = document.getElementById('myChart_staircase').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [ 'Stairs Ascent', 'Stairs Descent'],
+            datasets: [{
+                label: '# of Staircases',
+                data: [{{data_out2.Total_strides.3}},{{data_out2.Total_strides.4}}],
+                backgroundColor: ["#3e95cd", "#8e5ea2"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+    <script id = "bar-chart-horizontal-s">
+        new Chart(document.getElementById("bar-chart-horizontal"), {
+        type: 'horizontalBar',
+        data: {
+          labels: ["Walking", "Ramp Ascent", "Ramp Descent"],
+          datasets: [
+            {
+              label: "Total Distance",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+              barPercentage: 0.5,
+              barThickness: 3,
+              data: [{{data_out2.Total_distance.0}},{{data_out2.Total_distance.1}},{{data_out2.Total_distance.2}}]
+            }
+          ]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            text: 'Total Distance for each activity '
+          }
+        }
+    });
+     </script>
+
+      <script id ="doughnut-chart_s">
+        new Chart(document.getElementById("doughnut-chart"), {
+        type: 'doughnut',
+        data: {
+          labels: ["Walking", "Ramp Ascent", "Ramp Descent","Stairs ascent", "Stairs descent"],
+          datasets: [
+            {
+              label: "Time Taken",
+              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#3caa9f","#3aba5f"],
+              data: [{{data_out2.Total_time.0}},{{data_out2.Total_time.1}},{{data_out2.Total_time.2}},{{data_out2.Total_time.3}},{{data_out2.Total_time.4}}]
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: 'Time taken for each mode',
+
+          }
+        }
+    });
+      </script>
+    <script id = " Calories bar chart">
+    var ctx = document.getElementById('myChart2').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+            datasets: [{
+                label: '',
+                data: [{{data_out2.Calories.0}},{{data_out2.Calories.1}},{{data_out2.Calories.2}}],
+                backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+
+   <!-- animation on scroll CDN -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 
 </body>
 </html>
