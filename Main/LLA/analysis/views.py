@@ -25,8 +25,14 @@ def person(request, id):
     mas_1 = [x for x in mas_ if x == x]
     mast_ = list(data_out1.mast)
     mast_2 = [x for x in mast_ if x == x]
-    describe_Stride_length = data_out1.groupby('Activity')['Stride_length'].describe().to_html()
-    describe_Speed = data_out1.groupby('Activity')['Speed'].describe().to_html()
+    describe_sl=data_out1.groupby('Activity')['Stride_length'].describe()
+    describe_sd=data_out1.groupby('Activity')['Speed'].describe()
+    describe_sl.rename(columns={'50%':'median'},inplace=True)
+    describe_sd.rename(columns={'50%': 'median'}, inplace=True)
+    for i in range(len(describe_sl.columns)):
+        for j in range(len(describe_sl)):
+            describe_sl[describe_sl.columns[i]][j]=round(describe_sl[describe_sl.columns[i]][j],2)
+            describe_sd[describe_sd.columns[i]][j] = round(describe_sd[describe_sd.columns[i]][j], 2)
     for i in range(len(mean_val)):
         mean_val[i] = round(mean_val[i], 2)
 
@@ -39,6 +45,6 @@ def person(request, id):
                    'data_out2':data_out2,'mas_1':mas_1,
                    'mast_2':mast_2,
                    'mean_val':mean_val,
-                   'describe_Stride_length' : describe_Stride_length,
-                   'describe_Speed':describe_Speed,
+                   'describe_sl':describe_sl,
+                   'describe_sd': describe_sd,
                    "subjects": peaple.objects.all()})
