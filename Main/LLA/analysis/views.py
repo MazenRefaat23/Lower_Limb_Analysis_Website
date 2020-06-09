@@ -31,7 +31,7 @@ def person(request, id):
     describe_Speed = data_out1.groupby('Activity')['Speed'].describe().to_html()
 
     return render(request, "analysis/person.html",
-                  {"sub": subject,'grd_sl':grd_sl,
+                  {'grd_sl':grd_sl,
                    'asc_sl':asc_sl,'des_sl':des_sl,
                    'grd_speed':grd_speed,'asc_speed':asc_speed,
                    'des_speed':des_speed,'grd_time':grd_time,'large_data':largedata,
