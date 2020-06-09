@@ -372,7 +372,7 @@
                    <div class="chartBox">
                        <div>
                            <div class="content">
-                               <h4>Total distance per activity</h4>
+                               <h4>Total distance per activity (m)</h4>
                            </div>
                            <div class="box text-center">
                                <canvas id="bar-chart-horizontal"></canvas>
@@ -386,7 +386,7 @@
                    <div class="chartBox">
                        <div>
                            <div class="content">
-                               <h4>Time Taken per activity</h4>
+                               <h4>Time Taken per activity (sec)</h4>
                            </div>
                            <div class="box text-center">
                                <canvas id="doughnut-chart"></canvas>
@@ -867,7 +867,7 @@
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Total Distance for each activity'
+                    text: 'Total Distance in meters'
                 }
             }
         });
@@ -879,7 +879,7 @@
                 labels: ["Walking", "Ramp Ascent", "Ramp Descent","Stairs ascent", "Stairs descent"],
                 datasets: [{
                     label: "Time Taken",
-                    backgroundColor: ["rgb(255, 50, 26)", "rgb(255, 145, 27)", "rgb(165, 1, 74)", "rgb(69, 14, 255)", "rgb(34, 0, 112)"],
+                    backgroundColor: ["rgb(255, 50, 26)", "rgb(255, 145, 27)", "rgb(69, 14, 255)","rgb(165, 1, 74)", "rgb(34, 0, 112)"],
                     data: [{{data_out2.Total_time.0}},{{data_out2.Total_time.1}},{{data_out2.Total_time.2}},{{data_out2.Total_time.3}},{{data_out2.Total_time.4}}]
                 }
                 ]
@@ -888,7 +888,7 @@
                 legend: { display: false },
                 title: {
                     display: true,
-                    text: 'Time taken for each mode',
+                    text: 'Time in seconds',
                 }
             }
         });
@@ -902,7 +902,7 @@
                 datasets: [{
                     label: '# of Staircases',
                     data: [{{data_out2.Total_strides.3}},{{data_out2.Total_strides.4}}],
-                    backgroundColor: ["rgb(255, 50, 26)", "rgb(255, 145, 27)"],
+                    backgroundColor: ["rgb(165, 1, 74)", "rgb(34, 0, 112)"],
                     borderWidth: 1
                 }]
             },
