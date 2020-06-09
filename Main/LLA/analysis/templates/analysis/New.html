@@ -109,6 +109,7 @@
                            </div>
                            <div class="box1 text-center">
                                <canvas id="scattered" ></canvas>
+                               <h6 style="color:gray">Time (sec)</h6>
                            </div>
                        </div>
                    </div>
@@ -137,6 +138,7 @@
                            <div>
                                <div class="box text-center">
                                    <canvas id="total_stridel"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h4>Average Stride Length</h4>
@@ -149,6 +151,7 @@
                            <div>
                                <div class="box text-center">
                                    <canvas id="speed"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h4>Average Speed</h4>
@@ -207,6 +210,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="grd_sl"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}}</h5>
@@ -219,6 +223,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="grd_speed"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Speed = {{data_out2.Avg_speed.0}}</h5>
@@ -231,6 +236,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="grd_time"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Time = {{data_out2.Avg_stride_time.0}}</h5>
@@ -247,6 +253,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="asc_sl"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Stride Length = {{data_out2.Avg_stride_length.1}}</h5>
@@ -259,6 +266,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="asc_speed"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Speed = {{data_out2.Avg_speed.1}}</h5>
@@ -271,6 +279,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="asc_time"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Time = {{data_out2.Avg_stride_time.1}}</h5>
@@ -287,6 +296,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="des_sl"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Stride Length = {{data_out2.Avg_stride_length.2}}</h5>
@@ -299,6 +309,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="des_speed"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Speed = {{data_out2.Avg_speed.2}}</h5>
@@ -311,6 +322,7 @@
                            <div>
                                <div class="box2 text-center">
                                    <canvas id="des_time"></canvas>
+                                   <h6 style="color:gray">Number of Strides</h6>
                                </div>
                                <div class="content">
                                     <h5>Average Time = {{data_out2.Avg_stride_time.2}}</h5>
@@ -583,7 +595,7 @@
                 labels: lbl_mas,
                 datasets: [{
                     data: {{mas_1}},
-                    label: "Total Speed ",
+                    label: "Stride Speed ( m/sec ) ",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -593,7 +605,6 @@
                 title: {
                 bezierCurve: false,
                 display: true,
-                text: 'Stride Speed (in meter/sec)'
                 }
             }
         });
@@ -603,7 +614,7 @@
                 labels: lbl_mas,
                 datasets: [{
                     data: {{mast_2}},
-                    label: "Total Stride Length ",
+                    label: "Stride Length ( meter ) ",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -613,7 +624,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride Length (in meter)'
                     }
             }
          });
@@ -630,7 +640,7 @@
                 labels: lbl_grd,
                 datasets: [{
                     data: {{grd_sl}},
-                    label: "Level ground walking",
+                    label: "Stride length ( meter )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -640,7 +650,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride length (in meter)'
                 }
             }
         });
@@ -651,7 +660,7 @@
                 labels: lbl_grd,
                 datasets: [{
                     data: {{grd_speed}},
-                    label: "Level ground walking",
+                    label: "Speed ( m/sec )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -661,7 +670,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Speed (in meter/sec)'
                 }
             }
         });
@@ -672,7 +680,7 @@
                 labels: lbl_grd,
                 datasets: [{
                     data: {{grd_time}},
-                    label: "Level ground walking",
+                    label: "'Stride time ( sec )'",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -682,7 +690,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride time (in sec)'
                 }
             }
         });
@@ -699,7 +706,7 @@
                 labels: lbl_asc,
                 datasets: [{
                     data: {{asc_sl}},
-                    label: "Ramp ascent",
+                    label: "Stride length ( meters )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -709,7 +716,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride length (in meters)'
                 }
             }
         });
@@ -720,7 +726,7 @@
                 labels: lbl_asc,
                 datasets: [{
                     data: {{asc_speed}},
-                    label: "Ramp ascent",
+                    label: "Speed ( m/sec )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -730,7 +736,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Speed (in meter/sec)'
                 }
             }
         });
@@ -741,7 +746,7 @@
                 labels: lbl_asc,
                 datasets: [{
                     data: {{asc_time}},
-                    label: "Ramp ascent",
+                    label: "Stride time ( sec )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -751,7 +756,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride time (in sec)'
                 }
             }
         });
@@ -768,7 +772,7 @@
                 labels: lbl_des,
                 datasets: [{
                     data: {{des_sl}},
-                    label: "Ramp descent",
+                    label: "Stride length ( meters )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -778,7 +782,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride length (in meters)'
                 }
             }
         });
@@ -789,7 +792,7 @@
                 labels: lbl_des,
                 datasets: [{
                     data: {{des_speed}},
-                    label: "Ramp descent",
+                    label: "Speed ( m/sec )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -799,7 +802,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Speed (in meter/sec)'
                 }
             }
         });
@@ -810,7 +812,7 @@
                 labels: lbl_des,
                 datasets: [{
                     data: {{des_time}},
-                    label: "Ramp descent",
+                    label: "Stride time ( sec )",
                     borderColor: "rgb(252, 94, 1)",
                     fill: false
                 }
@@ -820,7 +822,6 @@
                 title: {
                     bezierCurve: false,
                     display: true,
-                    text: 'Stride time (in sec)'
                 }
             }
         });
