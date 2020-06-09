@@ -348,7 +348,50 @@
                    <div class="content">
                        <div>
                            <h4>Stride length Summary</h4>
-                           <div id="my_table" class="table table-striped table-dark">{{ describe_Stride_length | safe }}</div>
+                           <div id="my_table" class="table table-striped table-dark">
+                               <table>
+                                    <thead>
+                                         <tr>
+                                             <th scope="col">Activity</th>
+                                             <th scope="col">Count</th>
+                                             <th scope="col">Mean</th>
+                                             <th scope="col">Median</th>
+                                             <th scope="col">Std</th>
+                                             <th scope="col">Min</th>
+                                             <th scope="col">Max</th>
+                                         </tr>
+                                    </thead>
+                                   <tbody>
+                                        <tr>
+                                            <th scope="row">{{describe_sl.index.0}}</th>
+                                            <td>{{describe_sl.count.0}}</td>
+                                            <td>{{describe_sl.mean.0}}</td>
+                                            <td>{{describe_sl.median.0}}</td>
+                                            <td>{{describe_sl.std.0}}</td>
+                                            <td>{{describe_sl.min.0}}</td>
+                                            <td>{{describe_sl.max.0}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{describe_sl.index.1}}</th>
+                                            <td>{{describe_sl.count.1}}</td>
+                                            <td>{{describe_sl.mean.1}}</td>
+                                            <td>{{describe_sl.median.1}}</td>
+                                            <td>{{describe_sl.std.1}}</td>
+                                            <td>{{describe_sl.min.1}}</td>
+                                            <td>{{describe_sl.max.1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{describe_sl.index.2}}</th>
+                                            <td>{{describe_sl.count.2}}</td>
+                                            <td>{{describe_sl.mean.2}}</td>
+                                            <td>{{describe_sl.median.2}}</td>
+                                            <td>{{describe_sl.std.2}}</td>
+                                            <td>{{describe_sl.min.2}}</td>
+                                            <td>{{describe_sl.max.2}}</td>
+                                        </tr>
+                                   </tbody>
+                               </table>
+                           </div>
                        </div>
                    </div>
                </div>
@@ -358,7 +401,51 @@
                    <div class="content">
                        <div>
                            <h4>Stride Speed Summary</h4>
-                           <div id="my_table2" class="table table-striped table-dark">{{ describe_Speed | safe }}</div>
+                           <div id="my_table2" class="table table-striped table-dark">
+                               <table>
+                                    <thead>
+                                         <tr>
+                                             <th scope="col">Activity</th>
+                                             <th scope="col">Count</th>
+                                             <th scope="col">Mean</th>
+                                             <th scope="col">Median</th>
+                                             <th scope="col">Std</th>
+                                             <th scope="col">Min</th>
+                                             <th scope="col">Max</th>
+                                         </tr>
+                                    </thead>
+                                   <tbody>
+                                        <tr>
+                                            <th scope="row">{{describe_sd.index.0}}</th>
+                                            <td>{{describe_sd.count.0}}</td>
+                                            <td>{{describe_sd.mean.0}}</td>
+                                            <td>{{describe_sd.median.0}}</td>
+                                            <td>{{describe_sd.std.0}}</td>
+                                            <td>{{describe_sd.min.0}}</td>
+                                            <td>{{describe_sd.max.0}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{describe_sd.index.1}}</th>
+                                            <td>{{describe_sd.count.1}}</td>
+                                            <td>{{describe_sd.mean.1}}</td>
+                                            <td>{{describe_sd.median.1}}</td>
+                                            <td>{{describe_sd.std.1}}</td>
+                                            <td>{{describe_sd.min.1}}</td>
+                                            <td>{{describe_sd.max.1}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">{{describe_sd.index.2}}</th>
+                                            <td>{{describe_sd.count.2}}</td>
+                                            <td>{{describe_sd.mean.2}}</td>
+                                            <td>{{describe_sd.median.2}}</td>
+                                            <td>{{describe_sd.std.2}}</td>
+                                            <td>{{describe_sd.min.2}}</td>
+                                            <td>{{describe_sd.max.2}}</td>
+                                        </tr>
+                                   </tbody>
+                               </table>
+
+                           </div>
                        </div>
                    </div>
                </div>
