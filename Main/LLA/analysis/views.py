@@ -6,7 +6,8 @@ from . import data_analysis
 
 def person(request, id):
     subject = get_object_or_404(peaple, pk=id)
-    largedata,data_out1,data_out2=data_analysis.analysis()
+    string = str(subject)
+    largedata, data_out1, data_out2 = data_analysis.analysis(string[0:5])
     grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
     asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
     des = data_out1.loc[data_out1['Activity'] == 'Ramp descent']

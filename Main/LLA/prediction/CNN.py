@@ -1,11 +1,59 @@
 import pandas as pd
 import numpy as np
-from tensorflow.keras.models import load_model
+
+from tensorflow import keras
+from tensorflow.keras import layers
+
 from sklearn.preprocessing import StandardScaler
 import scipy.stats as stats
 
-Model = load_model(
-    r'C:\Users\user\Desktop\DeskTop\Lower_Limb_Analysis_Website\Main\LLA\prediction\static\prediction\CNN_Triple_version2.h5')
+
+def create_model():
+    input1 = keras.Input(shape=(1500, 3), name='in1')
+
+    x1 = layers.Conv1D(32, 3, activation='relu')(input1)
+    x1 = layers.Dropout(0.1)(x1)
+    x1 = layers.Conv1D(64, 3, activation='relu')(x1)
+    block_1_output = layers.Dropout(0.2)(x1)
+
+    input2 = keras.Input(shape=(1500, 3), name='in2')
+
+    x2 = layers.Conv1D(32, 3, activation='relu')(input2)
+    x2 = layers.Dropout(0.1)(x2)
+    x2 = layers.Conv1D(64, 3, activation='relu')(x2)
+    block_2_output = layers.Dropout(0.2)(x2)
+
+    input3 = keras.Input(shape=(1500, 3), name='in3')
+
+    x3 = layers.Conv1D(32, 3, activation='relu')(input3)
+    x3 = layers.Dropout(0.1)(x3)
+    x3 = layers.Conv1D(64, 3, activation='relu')(x3)
+    block_3_output = layers.Dropout(0.2)(x3)
+
+    input4 = keras.Input(shape=(1500, 3), name='in4')
+
+    x4 = layers.Conv1D(32, 3, activation='relu')(input4)
+    x4 = layers.Dropout(0.1)(x4)
+    x4 = layers.Conv1D(64, 3, activation='relu')(x4)
+    block_4_output = layers.Dropout(0.2)(x4)
+
+    x = layers.concatenate([block_1_output, block_2_output, block_3_output, block_4_output])
+
+    z = layers.Flatten()(x)
+
+    Y = layers.Dense(128, activation='relu')(z)
+    Y = layers.Dropout(0.5)(Y)
+
+    output = layers.Dense(7, activation='softmax')(Y)
+
+    model = keras.Model(inputs=[input1, input2, input3, input4], outputs=output)
+
+    model.load_weights(r'C:\Users\user\Desktop\DeskTop\Lower_Limb_Analysis_Website\Main\LLA\prediction\static\prediction\CNN_Triple_weights.h5')
+
+    return model
+
+
+Model = create_model()
 
 
 def get_frames(df, frame_size, hop_size):

@@ -73,7 +73,7 @@
             <div class="contentBox">
                 <div>
                     <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2000">Upload your file</h1>
-                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2500">Analyze your data by uploading your excel file here</p>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="2500"><strong>Analyze your data by uploading your excel file here</strong></p>
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="file" accept=".csv" id="real-file" name="document" hidden="hidden" >
@@ -99,8 +99,7 @@
                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
-                    <p class="cpryt"><a href="#page-top">Back Top</a></p>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
+                    <p class="cpryt"><a href="#page-top">Back Top</a></p><p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a> <br> <a href="{% url 'about' %}">You can Learn More about us here</a></p>
                 </div>
             </div>
         </div>

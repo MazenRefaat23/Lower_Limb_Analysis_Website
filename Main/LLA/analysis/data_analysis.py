@@ -73,7 +73,7 @@ def velocity(w, l, fs):
     vel = (2 * l * sintheta) / time
     return vel
 
-def analysis():
+def analysis(table_name):
     discarded=0
     data_out1 = pd.DataFrame()
     data_out2 = pd.DataFrame()
@@ -88,12 +88,23 @@ def analysis():
     fs = 1000
     fc = 5
     L = 1
+
     #####################
     
-    data_in = pd.read_csv("analysis/AB194.csv", usecols=["Right_Shank_Gy", "Mode"])
+    client = bigquery.Client.from_service_account_json("analysis/graduationproject-277217-1dbf1091220d.json")
+    query = """
+            SELECT  Mode,
+            Right_Shank_Gy,
+            FROM `graduationproject-277217.Raw_Data.{}`
+            ORDER BY Row
+            LIMIT 200000
+        """.format(table_name)
+    query_job = client.query(query)  # Make an API request.
+    data_in = query_job.to_dataframe()
     
     ##############
-    
+
+
     large_list = []
 
     data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
@@ -228,8 +239,8 @@ def analysis():
         walk_out1['Stride_length'] = grd_dis
         walk_out1['Speed'] = grd_vel
         walk_out1['Stride_time'] = grd_time
-        walk_out1['swing'] = grd_swing
-        walk_out1['stance'] = grd_stance
+        walk_out1['Swing'] = grd_swing
+        walk_out1['Stance'] = grd_stance
         walk_out1['Activity'] = grd_mode
 
         walk_out2["Total_strides"] = [walk_strides]
@@ -324,8 +335,8 @@ def analysis():
         ascent_out1['Stride_length'] = asc_dis
         ascent_out1['Speed'] = asc_vel
         ascent_out1['Stride_time'] = asc_time
-        ascent_out1['swing'] = asc_swing
-        ascent_out1['stance'] = asc_stance
+        ascent_out1['Swing'] = asc_swing
+        ascent_out1['Stance'] = asc_stance
         ascent_out1['Activity'] = asc_mode
 
         ascent_out2["Total_strides"] = [ascent_strides]
@@ -420,8 +431,8 @@ def analysis():
         descent_out1['Stride_length'] = des_dis
         descent_out1['Speed'] = des_vel
         descent_out1['Stride_time'] = des_time
-        descent_out1['swing'] = des_swing
-        descent_out1['stance'] = des_stance
+        descent_out1['Swing'] = des_swing
+        descent_out1['Stance'] = des_stance
         descent_out1['Activity'] = des_mode
 
         descent_out2["Total_strides"] = [descent_strides]
@@ -443,4 +454,4 @@ def analysis():
     data_out1['msa'] = data_out1['Speed'].rolling(window=5).mean()
     data_out1['mast'] = data_out1['Stride_length'].rolling(window=5).mean()
   
-    return large_list,data_out1, data_out2
+    return large_list, data_out1, data_out2

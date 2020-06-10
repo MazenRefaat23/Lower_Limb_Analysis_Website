@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--     Fav Icon     -->
-    <link rel="shortcut icon" type="image/png"
-          href="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Logo.ico" sizes="1500x1500" />
+    <link rel="shortcut icon" type="image/png" href=" {% static 'prediction/Favico.ico'  %}"  sizes="1500x1500" />
     <!-- font awesome CDN -->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -90,7 +89,6 @@
                    <div class="contentBox">
                        <div>
                            <h2>Lower Limb Gait Analysis</h2>
-                           <p>some thing will be writen here</p>
                        </div>
                    </div>
                </div>
@@ -117,7 +115,7 @@
                <div class="offset-sm-2 col-sm-8">
                    <div class="content">
                        <div class="border-2">
-                           <h3>Total Statics</h3>
+                           <h3>Total Statistics</h3>
                            <h4>Average Stride Length = {{mean_val.0}}</h4>
                            <h4>Average Speed = {{data_out2.Avg_speed.0}}</h4>
                            <a class="btn btnD1" onclick="fn1()" href="#div1">show graphs</a>
@@ -425,7 +423,7 @@
                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                     </ul>
                     <p class="cpryt"><a href="#page-top">Back Top</a></p>
-                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Mazen Refaat  & Joseph Moheb</a></p>
+                    <p class="cpryt">@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a> <br> <a href="{% url 'about' %}">You can Learn More about us here</a></p>
                 </div>
             </div>
         </div>

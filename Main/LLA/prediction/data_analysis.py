@@ -75,7 +75,6 @@ def velocity(w, l, fs):
     vel = (2 * l * sintheta) / time
     return vel
 
-
 def analysis(data):
     discarded=0
     data_out1 = pd.DataFrame()
