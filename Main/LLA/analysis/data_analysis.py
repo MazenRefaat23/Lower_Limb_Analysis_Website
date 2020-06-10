@@ -4,7 +4,7 @@ from scipy import signal
 import math
 from scipy.signal import find_peaks
 from scipy.signal import argrelextrema
-#from google.cloud import bigquery
+from google.cloud import bigquery
 
 def find_IC(midSwing, local_min):
     lst_IC = []
@@ -88,8 +88,14 @@ def analysis():
     fs = 1000
     fc = 5
     L = 1
-    large_list = []
+    #####################
+    
     data_in = pd.read_csv("analysis/AB194.csv", usecols=["Right_Shank_Gy", "Mode"])
+    
+    ##############
+    
+    large_list = []
+
     data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
     arr = np.array(data_in.groupby('Interval')['Mode'].agg(['count', 'max']))
 
@@ -222,8 +228,8 @@ def analysis():
         walk_out1['Stride_length'] = grd_dis
         walk_out1['Speed'] = grd_vel
         walk_out1['Stride_time'] = grd_time
-        walk_out1['Swing%'] = grd_swing
-        walk_out1['Stance%'] = grd_stance
+        walk_out1['swing'] = grd_swing
+        walk_out1['stance'] = grd_stance
         walk_out1['Activity'] = grd_mode
 
         walk_out2["Total_strides"] = [walk_strides]
@@ -232,8 +238,8 @@ def analysis():
         walk_out2["Avg_stride_length"] = [walk_avg_dis]
         walk_out2["Avg_speed"] = [walk_avg_vel]
         walk_out2["Avg_stride_time"] = [walk_avg_time]
-        walk_out2["Avg_swing%"] = [walk_avg_swing]
-        walk_out2["Avg_stance%"] = [walk_avg_stance]
+        walk_out2["Avg_swing"] = [walk_avg_swing]
+        walk_out2["Avg_stance"] = [walk_avg_stance]
         walk_out2["Avg_cadence"] = [walk_cadence]
         walk_out2["Activity"] = ["Level ground walking"]
     else:
@@ -318,8 +324,8 @@ def analysis():
         ascent_out1['Stride_length'] = asc_dis
         ascent_out1['Speed'] = asc_vel
         ascent_out1['Stride_time'] = asc_time
-        ascent_out1['Swing%'] = asc_swing
-        ascent_out1['Stance%'] = asc_stance
+        ascent_out1['swing'] = asc_swing
+        ascent_out1['stance'] = asc_stance
         ascent_out1['Activity'] = asc_mode
 
         ascent_out2["Total_strides"] = [ascent_strides]
@@ -328,8 +334,8 @@ def analysis():
         ascent_out2["Avg_stride_length"] = [ascent_avg_dis]
         ascent_out2["Avg_speed"] = [ascent_avg_vel]
         ascent_out2["Avg_stride_time"] = [ascent_avg_time]
-        ascent_out2["Avg_swing%"] = [ascent_avg_swing]
-        ascent_out2["Avg_stance%"] = [ascent_avg_stance]
+        ascent_out2["Avg_swing"] = [ascent_avg_swing]
+        ascent_out2["Avg_stance"] = [ascent_avg_stance]
         ascent_out2["Avg_cadence"] = [ascent_cadence]
         ascent_out2["Activity"] = ["Ramp ascent"]
     else:
@@ -414,8 +420,8 @@ def analysis():
         descent_out1['Stride_length'] = des_dis
         descent_out1['Speed'] = des_vel
         descent_out1['Stride_time'] = des_time
-        descent_out1['Swing%'] = des_swing
-        descent_out1['Stance%'] = des_stance
+        descent_out1['swing'] = des_swing
+        descent_out1['stance'] = des_stance
         descent_out1['Activity'] = des_mode
 
         descent_out2["Total_strides"] = [descent_strides]
@@ -424,8 +430,8 @@ def analysis():
         descent_out2["Avg_stride_length"] = [descent_avg_dis]
         descent_out2["Avg_speed"] = [descent_avg_vel]
         descent_out2["Avg_stride_time"] = [descent_avg_time]
-        descent_out2["Avg_swing%"] = [descent_avg_swing]
-        descent_out2["Avg_stance%"] = [descent_avg_stance]
+        descent_out2["Avg_swing"] = [descent_avg_swing]
+        descent_out2["Avg_stance"] = [descent_avg_stance]
         descent_out2["Avg_cadence"] = [descent_cadence]
         descent_out2["Activity"] = ["Ramp descent"]
     else:
@@ -437,4 +443,4 @@ def analysis():
     data_out1['msa'] = data_out1['Speed'].rolling(window=5).mean()
     data_out1['mast'] = data_out1['Stride_length'].rolling(window=5).mean()
   
-    return large_list, data_out1, data_out2
+    return large_list,data_out1, data_out2
