@@ -506,6 +506,20 @@
                    </div>
                </div>
            </div>
+           <div class="row">
+               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" class="col-sm-12 col-lg-6">
+                   <div class="chartBox">
+                       <div>
+                           <div class="content">
+                               <h4>Stance vs Swing percentage</h4>
+                           </div>
+                           <div class="box text-center">
+                               <canvas id="bar-chart-grouped" width="800" height="450"></canvas>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
        </div>
    </section>
 
@@ -1002,6 +1016,31 @@
                         }
                     }]
                 }
+            }
+        });
+    </script>
+    <script id = 'bar-chart-grouped_s'>
+        new Chart(document.getElementById("bar-chart-grouped"), {
+            type: 'bar',
+            data: {
+              labels: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+              datasets: [
+                {
+                  label: "Avg_stance%",
+                  backgroundColor: "#3e95cd",
+                  data: [{{data_out2.Avg_stance.0}},{{data_out2.Avg_stance.1}},{{data_out2.Avg_stance.2}}]
+                }, {
+                  label: "Avg_swing%",
+                  backgroundColor: "#8e5ea2",
+                  data: [{{data_out2.Avg_swing.0}},{{data_out2.Avg_swing.1}},{{data_out2.Avg_swing.2}}]
+                }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'stance vs swing percentage'
+              }
             }
         });
     </script>
