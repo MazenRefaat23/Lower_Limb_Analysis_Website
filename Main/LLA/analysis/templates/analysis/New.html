@@ -519,6 +519,18 @@
                        </div>
                    </div>
                </div>
+               <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000" class="col-sm-12 col-lg-6">
+                   <div class="chartBox">
+                       <div>
+                           <div class="content">
+                               <h4>Cadence (steps/min)</h4>
+                           </div>
+                           <div class="box text-center">
+                               <canvas id="cadence" width="800" height="450"></canvas>
+                           </div>
+                       </div>
+                   </div>
+               </div>
            </div>
        </div>
    </section>
@@ -1044,7 +1056,31 @@
             }
         });
     </script>
-
+    <script id ="cadence_s">
+        var ctx = document.getElementById('cadence').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [ 'Walking', 'Ramp ascent','Ramp descent', 'Stair ascent', 'Stair descent'],
+                datasets: [{
+                    label: '',
+                    data: [{{data_out2.Avg_cadence.0}},{{data_out2.Avg_cadence.1}},{{data_out2.Avg_cadence.2}},{{data_out2.Avg_cadence.3}},{{data_out2.Avg_cadence.4}}],
+                    backgroundColor: ["rgb(255, 50, 26)", "rgb(255, 145, 27)", "rgb(69, 14, 255)","rgb(165, 1, 74)", "rgb(34, 0, 112)"],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+            legend: { display: false },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>
