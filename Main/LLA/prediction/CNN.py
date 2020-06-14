@@ -48,7 +48,7 @@ def create_model():
 
     model = keras.Model(inputs=[input1, input2, input3, input4], outputs=output)
 
-    model.load_weights(r'C:\Users\user\Desktop\DeskTop\Lower_Limb_Analysis_Website\Main\LLA\prediction\static\prediction\CNN_Triple_weights.h5')
+    model.load_weights(r'prediction\CNN_Triple_weights.h5')
 
     return model
 

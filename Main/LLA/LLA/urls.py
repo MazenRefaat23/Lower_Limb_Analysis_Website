@@ -29,7 +29,7 @@ urlpatterns = [
     path('technical/', technical, name="technical"),
     path('analysis/', include('analysis.urls')),
     path('prediction/', upload, name="prediction"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 
 
 if settings.DEBUG:

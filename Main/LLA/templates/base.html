@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <!--     Fav Icon     -->
+    <link rel="shortcut icon" type="image/png" href=" {% static 'base/Favico.ico' %}"  sizes="1500x1500" />
+    <!-- font awesome CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+
+    <!-- animation on scroll CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="{% static 'base/base.css' %}">
+
+    {% block stylesheet %}{% endblock %}
+
+
+</head>
+<body id="page-top">
+
+<div id="all">
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#page-top">
+                    <img src="{% static 'website/Logo.png' %}" alt="Logo" style="width:40px;">
+                    <span>LLA</span>
+                </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                    <li class="nav-item  {% block homeClass %}{% endblock %}">
+                        <a href="{% url 'home' %}" class="nav-link js-scroll-trigger">Home</a>
+                    </li>
+                    <li class="nav-item {% block technicalClass %}{% endblock %}">
+                        <a href="{% url 'technical' %}" class="nav-link js-scroll-trigger">Technical</a>
+                    </li>
+                    <li class="nav-item dropdown {% block analysisClass %}{% endblock %}">
+                        <a href="#" class="nav-link js-scroll-trigger dropdown-toggle" data-toggle="dropdown">Analysis</a>
+                        <div class="dropdown-menu">
+                            {% for sub in subjects %}
+
+                            <a class="dropdown-item" href="{% url 'person' sub.id %}">{{ sub.name }}</a>
+
+                            {% endfor %}
+                        </div>
+                    </li>
+                    <li class="nav-item {% block predictionClass %}{% endblock %}">
+                        <a href="{% url 'prediction' %}" class="nav-link js-scroll-trigger">Prediction</a>
+                    </li>
+                    <li class="nav-item {% block aboutClass %}{% endblock %}">
+                        <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">About Us</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="sci">
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                    <div class="cpryt">
+                        <p><a href="#page-top">Back Top</a> | <a href="{% url 'home' %}">Home Page</a></p>
+                        <p>You can Learn More about us <a href="{% url 'about' %}">here</a><p/>
+                        <p>@ Copyright 2020 Lower Limb Analysis | website by <a href="https://github.com/MazenRefaat23/Lower_Limb_Analysis_Website">Ain Shams University Students</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="loader-inner">
+                <div class="loader-inner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("all").style.display= "none";
+
+        $(window).on("load", function(){
+            $('.loader-wrapper').remove();
+            document.getElementById("all").style.display= "block";
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).scroll(function(){
+            $('.navbar').toggleClass('scrolled', $(this).scrollTop() > $('.navbar').height());
+        });
+    </script>
+
+    {% block script %}
+    {% endblock %}
+
+    <!-- Bootstrap JS CDN -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- animation on scroll CDN -->
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Error{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'prediction/wrong.css' %}" />
+{% endblock %}
+
+{% block homeClass %}{% endblock %}
+{% block technicalClass %}{% endblock %}
+{% block analysisClass %}{% endblock %}
+{% block predictionClass %}active{% endblock %}
+{% block aboutClass %}{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid banner" id="prediction">
+        <div class="container h100">
+            <div class="contentBox">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Oops! Your CSV file data format is wrong</h1>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Data columns name must be as follows:</p>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700"> 'Right_Shank_Ax', 'Right_Shank_Ay', 'Right_Shank_Az', 'Right_Shank_Gx', 'Right_Shank_Gy', 'Right_Shank_Gz',<br>'Right_Thigh_Ax', 'Right_Thigh_Ay', 'Right_Thigh_Az', 'Right_Thigh_Gx', 'Right_Thigh_Gy', 'Right_Thigh_Gz'</p>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="900"> Rows count must be more than "1500 record"</p>
+                    <form method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1500">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btnD1" name="back">Try another file</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        document.getElementById("bt2").style.display= "none";
+        const realFileBtn = document.getElementById("real-file")
+        const customBtn = document.getElementById("custom-button")
+        const customTxt = document.getElementById("custom-text")
+
+        customBtn.addEventListener("click", function(){
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function() {
+            if(realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+                document.getElementById("bt2").style.display= "block";
+                document.getElementById("custom-button").style.display= "none";
+            }
+            else {
+                customTxt.innerHTML = "NO FILE CHOSEN";
+            }
+        });
+
+    </script>
+
+{% endblock %}

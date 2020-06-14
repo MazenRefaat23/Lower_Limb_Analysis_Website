@@ -7,7 +7,7 @@ from . import data_analysis
 def person(request, id):
     subject = get_object_or_404(peaple, pk=id)
     string = str(subject)
-    largedata, data_out1, data_out2 = data_analysis.analysis(string[0:5])
+    largedata, data_out1, data_out2, activity_list = data_analysis.analysis(string[0:5])
     grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
     asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
     des = data_out1.loc[data_out1['Activity'] == 'Ramp descent']
@@ -37,7 +37,7 @@ def person(request, id):
     for i in range(len(mean_val)):
         mean_val[i] = round(mean_val[i], 2)
 
-    return render(request, "analysis/new.html",
+    return render(request, "analysis/New.html",
                   {"sub": subject,'grd_sl':grd_sl,
                    'asc_sl':asc_sl,'des_sl':des_sl,
                    'grd_speed':grd_speed,'asc_speed':asc_speed,
@@ -48,4 +48,5 @@ def person(request, id):
                    'mean_val':mean_val,
                    'describe_sl':describe_sl,
                    'describe_sd': describe_sd,
+                   'activity_all': activity_list,
                    "subjects": peaple.objects.all()})

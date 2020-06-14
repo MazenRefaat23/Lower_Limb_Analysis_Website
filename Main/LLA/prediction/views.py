@@ -8,7 +8,7 @@ from . import data_analysis
 
 
 def upload(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and 'up' in request.POST:
         try:
             uploaded_file = request.FILES['document']
 
@@ -20,7 +20,8 @@ def upload(request):
         fs.save(uploaded_file.name, uploaded_file)
         data_in = pd.read_csv("media/" + uploaded_file.name)
         if Check_data_frame(data_in):
-            largedata, data_out1, data_out2 = data_analysis.analysis(data_in)
+            largedata, data_out1, data_out2, activity_list = data_analysis.analysis(data_in)
+            fs.delete(uploaded_file.name)
             grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
             asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
             des = data_out1.loc[data_out1['Activity'] == 'Ramp descent']
@@ -39,11 +40,16 @@ def upload(request):
             mas_1 = [x for x in mas_ if x == x]
             mast_ = list(data_out1.mast)
             mast_2 = [x for x in mast_ if x == x]
-            describe_Stride_length = data_out1.groupby('Activity')['Stride_length'].describe().to_html()
-            describe_Speed = data_out1.groupby('Activity')['Speed'].describe().to_html()
+            describe_sl = data_out1.groupby('Activity')['Stride_length'].describe()
+            describe_sd = data_out1.groupby('Activity')['Speed'].describe()
+            describe_sl.rename(columns={'50%': 'median'}, inplace=True)
+            describe_sd.rename(columns={'50%': 'median'}, inplace=True)
+            for i in range(len(describe_sl.columns)):
+                for j in range(len(describe_sl)):
+                    describe_sl[describe_sl.columns[i]][j] = round(describe_sl[describe_sl.columns[i]][j], 2)
+                    describe_sd[describe_sd.columns[i]][j] = round(describe_sd[describe_sd.columns[i]][j], 2)
             for i in range(len(mean_val)):
                 mean_val[i] = round(mean_val[i], 2)
-
 
             return render(request, "prediction/New.html",
                           {'grd_sl': grd_sl,
@@ -54,14 +60,19 @@ def upload(request):
                            'data_out2': data_out2, 'mas_1': mas_1,
                            'mast_2': mast_2,
                            'mean_val': mean_val,
-                           'describe_Stride_length': describe_Stride_length,
-                           'describe_Speed': describe_Speed,
+                           'describe_sl': describe_sl,
+                           'describe_sd': describe_sd,
+                           'activity_all': activity_list,
                            "subjects": peaple.objects.all()})
 
         else:
             fs.delete(uploaded_file.name)
             return render(request, 'prediction/Wrongformat.html',
                           {"subjects": peaple.objects.all()})
+
+    elif request.method == 'POST' and 'back' in request.POST:
+        return render(request, 'prediction/prediction.html',
+                      {"subjects": peaple.objects.all()})
 
     return render(request, 'prediction/prediction.html',
                   {"subjects": peaple.objects.all()})

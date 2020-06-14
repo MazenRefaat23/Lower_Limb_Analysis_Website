@@ -1,0 +1,1368 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Prediction{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'prediction\new.css' %}" />
+{% endblock %}
+
+{% block homeClass %}{% endblock %}
+{% block technicalClass %}{% endblock %}
+{% block analysisClass %}{% endblock %}
+{% block predictionClass %}active{% endblock %}
+{% block aboutClass %}{% endblock %}
+
+{% block content %}
+
+   <div class="jumbotron jumbotron-fluid banner">
+       <div class="container h100">
+           <div class="contentBox">
+               <div>
+                   <h1>Prediction</h1>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="offset-sm-2 col-sm-8">
+                   <div class="contentBox">
+                       <div>
+                           <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Lower Limb Gait Analysis</h2>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="offset-lg-1 col-lg-10">
+                   <div class="chartBox" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Activities Timeline</h4>
+                           </div>
+                           <div class="box1 text-center">
+                               <div class="w100">
+                                   <div id="scattered-apex" ></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="offset-sm-2 col-sm-8">
+                   <div class="content">
+                       <div class="border-2">
+                           <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >Total Statistics</h3>
+                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >Average Stride Length = {{mean_val.0}}</h4>
+                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >Average Speed = {{data_out2.Avg_speed.0}}</h4>
+                           <a class="btn btnD1" onclick="fn1()" href="#div1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" >show graphs</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="div1">
+               <div class="row">
+                   <div class="col-sm-12 col-lg-6">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box text-center">
+                                   <div class="w100">
+                                       <div id="total_stridel-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h4>Average Stride Length</h4>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-6">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box text-center">
+                                   <div class="w100">
+                                       <div id="speed-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h4>Average Speed</h4>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="col-sm-12 col-lg-4">
+                   <div class="content">
+                       <div class="border-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                           <h3>Ground Walking</h3>
+                           <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}} m</h5>
+                           <h5>Average Speed = {{data_out2.Avg_speed.0}} m/s</h5>
+                           <h5>Average Stride Time = {{data_out2.Avg_stride_time.0}} s</h5>
+                           <h5>Cadence = {{data_out2.Avg_cadence.0}} steps/min</h5>
+                           <a class="btn btnD1" onclick="fn2()" href="#div2">show graphs</a>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-4">
+                   <div class="content">
+                       <div class="border-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                           <h3>Ramp Ascent</h3>
+                           <h5>Average Stride Length = {{data_out2.Avg_stride_length.1}} m</h5>
+                           <h5>Average Speed = {{data_out2.Avg_speed.1}} m/s</h5>
+                           <h5>Average Stride Time = {{data_out2.Avg_stride_time.1}} s</h5>
+                           <h5>Cadence = {{data_out2.Avg_cadence.1}} steps/min</h5>
+                           <a class="btn btnD1" onclick="fn3()" href="#div3">show graphs</a>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-4">
+                   <div class="content">
+                       <div class="border-2" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                           <h3>Ramp Descent</h3>
+                           <h5>Average Stride Length = {{data_out2.Avg_stride_length.2}} m</h5>
+                           <h5>Average Speed = {{data_out2.Avg_speed.2}} m/s</h5>
+                           <h5>Average Stride Time = {{data_out2.Avg_stride_time.2}} s</h5>
+                           <h5>Cadence = {{data_out2.Avg_cadence.2}} steps/min</h5>
+                           <a class="btn btnD1"  onclick="fn4()" href="#div4">show graphs</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+           <div id="div2">
+               <div class="row">
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div  class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="grd_sl-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="grd_speed-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Speed = {{data_out2.Avg_speed.0}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="grd_time-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Time = {{data_out2.Avg_stride_time.0}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="div3">
+               <div class="row">
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="asc_sl-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Stride Length = {{data_out2.Avg_stride_length.1}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="asc_speed-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Speed = {{data_out2.Avg_speed.1}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div  class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="asc_time-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Time = {{data_out2.Avg_stride_time.1}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div id="div4">
+               <div class="row">
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="des_sl-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Stride Length = {{data_out2.Avg_stride_length.2}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="des_speed-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Speed = {{data_out2.Avg_speed.2}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-sm-12 col-lg-4">
+                       <div class="chartBox">
+                           <div class="w100">
+                               <div class="box2 text-center">
+                                   <div class="w100">
+                                       <div id="des_time-apex"></div>
+                                   </div>
+                               </div>
+                               <div class="content">
+                                    <h5>Average Time = {{data_out2.Avg_stride_time.2}}</h5>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+   <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="offset-sm-2 col-sm-8">
+                   <div class="contentBox" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                       <h2>Summary</h2>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="offset-sm-2 col-sm-8 text-center">
+                   <div class="content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >
+                        <h4>Stride length Summary</h4>
+                   </div>
+                   <table class="myTable" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >
+                       <thead>
+                           <tr>
+                               <th scope="col">Activity</th>
+                               <th scope="col">Count</th>
+                               <th scope="col">Mean</th>
+                               <th scope="col">Median</th>
+                               <th scope="col">Std</th>
+                               <th scope="col">Min</th>
+                               <th scope="col">Max</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <th scope="row">{{describe_sl.index.0}}</th>
+                               <td>{{describe_sl.count.0}}</td>
+                               <td>{{describe_sl.mean.0}}</td>
+                               <td>{{describe_sl.median.0}}</td>
+                               <td>{{describe_sl.std.0}}</td>
+                               <td>{{describe_sl.min.0}}</td>
+                               <td>{{describe_sl.max.0}}</td>
+                           </tr>
+                           <tr>
+                               <th scope="row">{{describe_sl.index.1}}</th>
+                               <td>{{describe_sl.count.1}}</td>
+                               <td>{{describe_sl.mean.1}}</td>
+                               <td>{{describe_sl.median.1}}</td>
+                               <td>{{describe_sl.std.1}}</td>
+                               <td>{{describe_sl.min.1}}</td>
+                               <td>{{describe_sl.max.1}}</td>
+                           </tr>
+                           <tr>
+                               <th scope="row">{{describe_sl.index.2}}</th>
+                               <td>{{describe_sl.count.2}}</td>
+                               <td>{{describe_sl.mean.2}}</td>
+                               <td>{{describe_sl.median.2}}</td>
+                               <td>{{describe_sl.std.2}}</td>
+                               <td>{{describe_sl.min.2}}</td>
+                               <td>{{describe_sl.max.2}}</td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+           <div class="row">
+               <div class="offset-sm-2 col-sm-8 text-center">
+                   <div class="content" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >
+                        <h4>Stride Speed Summary</h4>
+                   </div>
+                   <table class="myTable" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >
+                       <thead>
+                           <tr>
+                               <th scope="col">Activity</th>
+                               <th scope="col">Count</th>
+                               <th scope="col">Mean</th>
+                               <th scope="col">Median</th>
+                               <th scope="col">Std</th>
+                               <th scope="col">Min</th>
+                               <th scope="col">Max</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <th scope="row">{{describe_sd.index.0}}</th>
+                               <td>{{describe_sd.count.0}}</td>
+                               <td>{{describe_sd.mean.0}}</td>
+                               <td>{{describe_sd.median.0}}</td>
+                               <td>{{describe_sd.std.0}}</td>
+                               <td>{{describe_sd.min.0}}</td>
+                               <td>{{describe_sd.max.0}}</td>
+                           </tr>
+                           <tr>
+                               <th scope="row">{{describe_sd.index.1}}</th>
+                               <td>{{describe_sd.count.1}}</td>
+                               <td>{{describe_sd.mean.1}}</td>
+                               <td>{{describe_sd.median.1}}</td>
+                               <td>{{describe_sd.std.1}}</td>
+                               <td>{{describe_sd.min.1}}</td>
+                               <td>{{describe_sd.max.1}}</td>
+                           </tr>
+                           <tr>
+                               <th scope="row">{{describe_sd.index.2}}</th>
+                               <td>{{describe_sd.count.2}}</td>
+                               <td>{{describe_sd.mean.2}}</td>
+                               <td>{{describe_sd.median.2}}</td>
+                               <td>{{describe_sd.std.2}}</td>
+                               <td>{{describe_sd.min.2}}</td>
+                               <td>{{describe_sd.max.2}}</td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+           </div>
+       </div>
+   </section>
+   <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total Strides per activity</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="myChart-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total distance per activity (m)</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="bar-chart-horizontal-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Time Taken per activity (sec)</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div>
+                                   <div id="doughnut-chart-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total Staircase</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="myChart_staircase-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+
+    <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div class="contentBox">
+                        <div>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btnD1" name="back">Try another file</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}
+
+{% block script %}
+
+    <!-- apexcharts CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.19.2/apexcharts.js" integrity="sha256-bG1Re1uhZ/jg7Gyb6dSh066WlbVqDmtYARtM6bYt948=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        document.getElementById("div1").style.display= "none";
+        document.getElementById("div2").style.display= "none";
+        document.getElementById("div3").style.display= "none";
+        document.getElementById("div4").style.display= "none";
+
+        function fn1() {
+            if (document.getElementById("div1").style.display === "none") {
+                document.getElementById("div1").style.display= "block";
+                document.getElementById("div2").style.display= "none";
+                document.getElementById("div3").style.display= "none";
+                document.getElementById("div4").style.display= "none";
+            }
+        }
+        function fn2() {
+            if (document.getElementById("div2").style.display === "none") {
+                document.getElementById("div2").style.display= "block";
+                document.getElementById("div1").style.display= "none";
+                document.getElementById("div3").style.display= "none";
+                document.getElementById("div4").style.display= "none";
+            }
+        }
+        function fn3() {
+            if (document.getElementById("div3").style.display === "none") {
+                document.getElementById("div3").style.display= "block";
+                document.getElementById("div1").style.display= "none";
+                document.getElementById("div2").style.display= "none";
+                document.getElementById("div4").style.display= "none";
+            }
+        }
+        function fn4() {
+            if (document.getElementById("div4").style.display === "none") {
+                document.getElementById("div4").style.display= "block";
+                document.getElementById("div1").style.display= "none";
+                document.getElementById("div2").style.display= "none";
+                document.getElementById("div3").style.display= "none";
+            }
+        }
+
+
+        var all = [];
+        for (i = 1; i < {{activity_all}}.length; i++) {
+            all.push(i);
+        }
+
+        var options20 = {
+            series: [{
+                name: 'Activity',
+                data: {{activity_all}},
+            }],
+            chart: {
+                type: 'area',
+                width: "100%",
+                height: 300,
+            },
+            stroke: {
+                curve: 'stepline',
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: all,
+                title: {
+                    text: 'time (Sec)'
+                },
+                tickPlacement: 'on',
+            },
+            yaxis: {
+                seriesName: ["Sitting", "Walking", "Ramp Ascent", "Ramp Descent", "Stair Ascent", "Stair Descent", "Standing"],
+                title: {
+                    text: 'Activities'
+                },
+                tickAmount: 7,
+                labels: {
+                    formatter: function(val, index) {
+                        if(val == 0){ return "Sitting"};
+                        if(val == 1){ return "Walking"};
+                        if(val == 2){ return "Ramp As"};
+                        if(val == 3){ return "Ramp Des"};
+                        if(val == 4){ return "Stair As"};
+                        if(val == 5){ return "Stair Des"};
+                        if(val == 6){ return "Standing"};
+                    }
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+
+        var chart = new ApexCharts(document.querySelector("#scattered-apex"), options20);
+        chart.render();
+
+    </script>
+    <script id="total">
+        var lbl_mas = [];
+        for (i = 1; i < {{mas_1}}.length; i++) {
+            lbl_mas.push(i);
+        }
+
+        var options14 = {
+            series: [{
+                name: 'Stride Speed',
+                data: {{mas_1}},
+            }],
+            chart: {
+                type: 'area',
+                width: "100%",
+                height: 300
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_mas,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride Speed (m/sec)'
+                },
+                tickAmount: 6,
+                min: 0,
+                max: 1.8,
+                labels: {
+                    formatter: function(val, index) {
+                        return val.toFixed(2);
+                    }
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#speed-apex"), options14);
+        chart.render();
+
+        var options15 = {
+            series: [{
+                name: 'Stride Length',
+                data: {{mast_2}},
+            }],
+            chart: {
+                type: 'area',
+                width: "100%",
+                height: 300
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_mas,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride Length (meter)'
+                },
+                tickAmount: 6,
+                min: 0,
+                max: 1.8,
+                labels: {
+                    formatter: function(val, index) {
+                        return val.toFixed(2);
+                    }
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#total_stridel-apex"), options15);
+        chart.render();
+
+    </script>
+    <script id = "grd">
+        var lbl_grd = [];
+        for (i = 1; i < {{grd_sl}}.length; i++) {
+            lbl_grd.push(i);
+        }
+
+        var options11 = {
+            series: [{
+                name: 'Stride length',
+                data: {{grd_sl}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_grd,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride Length (m)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#grd_sl-apex"), options11);
+        chart.render();
+
+
+        var options12 = {
+            series: [{
+                name: 'Speed',
+                data: {{grd_speed}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_grd,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Speed (m/sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#grd_speed-apex"), options12);
+        chart.render();
+
+        var options13 = {
+            series: [{
+                name: 'Stride time',
+                data: {{grd_time}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_grd,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride time (sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#grd_time-apex"), options13);
+        chart.render();
+
+    </script>
+    <script id = "asc">
+        var lbl_asc = [];
+        for (i = 1; i < {{asc_sl}}.length; i++) {
+            lbl_asc.push(i);
+        }
+
+        var options8 = {
+            series: [{
+                name: 'Stride length',
+                data: {{asc_sl}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_asc,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride Length (m)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#asc_sl-apex"), options8);
+        chart.render();
+
+        var options9 = {
+            series: [{
+                name: 'Speed',
+                data: {{asc_speed}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_asc,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Speed (m/sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#asc_speed-apex"), options9);
+        chart.render();
+
+        var options10 = {
+            series: [{
+                name: 'Stride time',
+                data: {{asc_time}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_asc,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride time (sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#asc_time-apex"), options10);
+        chart.render();
+
+    </script>
+    <script id ="des">
+        var lbl_des = [];
+        for (i = 1; i < {{des_sl}}.length; i++) {
+            lbl_des.push(i);
+        }
+
+        var options5 = {
+            series: [{
+                name: 'Stride length',
+                data: {{des_sl}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_des,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride Length (m)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#des_sl-apex"), options5);
+        chart.render();
+
+
+        var options6 = {
+            series: [{
+                name: 'Speed',
+                data: {{des_speed}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_des,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Speed (m/sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#des_speed-apex"), options6);
+        chart.render();
+
+        var options7 = {
+            series: [{
+                name: 'Stride time',
+                data: {{des_time}},
+            }],
+            chart: {
+                type: 'area',
+                width:"100%",
+                height: 250
+            },
+            stroke: {
+                curve: 'smooth'
+             },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: lbl_des,
+                title: {
+                    text: 'Number of Stride'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Stride time (sec)'
+                },
+                min: 0,
+                max: 1.8,
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#des_time-apex"), options7);
+        chart.render();
+    </script>
+    <script id = "no of Strides">
+        var options4 = {
+            series: [{
+                name: '# of Strides',
+                data: [{{data_out2.Total_strides.0}},{{data_out2.Total_strides.1}},{{data_out2.Total_strides.2}}],
+            }],
+            chart: {
+                type: 'bar',
+                width:"100%",
+                height: 300
+            },
+            dataLabels: {
+                enabled: true
+            },
+            xaxis: {
+                categories: ['Walking', 'Ramp As', 'Ramp Des'],
+            },
+            yaxis: {
+                title: {
+                    text: '# of Strides'
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#myChart-apex"), options4);
+        chart.render();
+
+
+    </script>
+    <script id = "bar-chart-horizontal-s">
+
+    var options3 = {
+            series: [{
+                name: 'Total Distance in meters',
+                data: [{{data_out2.Total_distance.0}},{{data_out2.Total_distance.1}},{{data_out2.Total_distance.2}}]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300
+            },
+            dataLabels: {
+                enabled: true
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: true,
+                }
+            },
+            xaxis: {
+                categories: ["Walking", "Ramp As", "Ramp Des"],
+                title: {
+                    text: 'Total Distance in meters'
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: false,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#bar-chart-horizontal-apex"), options3);
+        chart.render();
+    </script>
+    <script id ="doughnut-chart_s">
+        var options1 = {
+            chart: {
+                height: 300,
+                type: 'donut'
+            },
+            series: [{{data_out2.Total_time.0}},{{data_out2.Total_time.1}},{{data_out2.Total_time.2}},{{data_out2.Total_time.3}},{{data_out2.Total_time.4}}],
+            labels: ["Walking", "Ramp As", "Ramp Des","Stairs As", "Stairs Des"],
+            colors:["#dc2f02", "#faa307", "rgb(69, 14, 255)","#6a040f", "rgb(34, 0, 112)"],
+            legend: {
+                show: true,
+                position: 'bottom',
+                onItemClick: {
+                    toggleDataSeries: true,
+                },
+                onItemHover: {
+                    highlightDataSeries: true,
+                },
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                    legend: {
+                        position: 'right',
+                    }
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#doughnut-chart-apex"), options1);
+        chart.render();
+
+    </script>
+    <script id ="stair staircase total">
+        var options2 = {
+            series: [{
+                name: '# of Stair steps',
+                data: [{{data_out2.Total_strides.3}}, {{data_out2.Total_strides.4}}]
+            }],
+            chart: {
+                type: 'bar',
+                width:"100%",
+                height: 300
+            },
+            dataLabels: {
+                enabled: true
+            },
+            xaxis: {
+                categories: ['Stairs As', 'Stairs Des'],
+            },
+            yaxis: {
+                title: {
+                    text: '# of Stair steps'
+                }
+            },
+            colors:["#dc2f02"],
+            grid: {
+                show: true,
+                borderColor: '#370617',
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#myChart_staircase-apex"), options2);
+        chart.render();
+
+    </script>
+
+{% endblock %}

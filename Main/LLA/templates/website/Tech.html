@@ -1,0 +1,275 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Technical Details{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'website/technical.css' %}" />
+{% endblock %}
+
+{% block homeClass %}{% endblock %}
+{% block technicalClass %}active{% endblock %}
+{% block analysisClass %}{% endblock %}
+{% block predictionClass %}{% endblock %}
+{% block aboutClass %}{% endblock %}
+
+{% block content %}
+
+
+    <div class="jumbotron jumbotron-fluid banner">
+        <div class="container h100">
+            <div class="contentBox">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Technical Details Overview</h1>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">Our project consists of three main sections</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="main">
+        <div class="container container-fluid h100">
+            <div class="row">
+                <div class="col-sm-12 col-lg-4">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/iot2.jpeg' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Internet of things</h4>
+                            <p class="card-text">This section discusses our hardware components, connection and
+                                how it is used with cloud based on ESP8266 module.</p>
+                            <a class="btn btnD1" onclick="fn1()" href="#iot">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/cloud2.jpeg' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Cloud Computing</h4>
+                            <p class="card-text">This section discusses our Lower Limb Analysis project system architecture, development and deployment
+                            over Google cloud platform.</p>
+                            <a class="btn btnD1" onclick="fn2()" href="#cloud">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-4">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/deep.jpeg' %}" alt=""/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Data Analysis</h4>
+                            <p class="card-text">This section discusses how we performed analysis and ML on
+                                our dataset and how we developed models to predict the gait events of it.</p>
+                            <a class="btn btnD1" onclick="fn3()" href="#ml">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="iot">
+        <section class="sec1">
+            <div class="container h100">
+                <div class="contentBox">
+                    <div>
+                        <h1>Hardware Section</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <h1>Components used</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h2>1 - Nodemcu</h2>
+                            <p>Nodemcu is a low-cost open-source firmware and development kit that helps
+                                you to prototype or build IoT product. It includes firmware which runs on
+                                the ESP8266 Wi-Fi SoC from Espressif Systems of power 3.3 v or 5 v and USB
+                                port for programming and debugging ., and hardware which is based on the
+                                ESP-12 module. The firmware uses the Lua scripting language. It is based on
+                                the eLua project, and built on the Espressif Non-OS SDK for ESP8266</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/Nodemcu.jpg' %}" alt="Nodemcu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/IMU.jpg' %}" alt="IMU">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h2>2 - IMUs</h2>
+                            <p>An inertial measurement unit (IMU) is an electronic device that measures and
+                                reports a body's specific force, angular rate, and sometimes the orientation
+                                of the body, using a combination of accelerometers, gyroscopes, and sometimes
+                                magnetometers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h1>Connections</h1>
+                            <p>A Nodemcu can communicate with MPU6050 using I2C communication protocol,
+                                reading Accelerometer, Gyroscope and Temperature parameters from the MPU6050
+                                module</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/connection.jpg' %}" alt="connection">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="cloud">
+        <section class="sec1" style="background: rgba(0,0,0,.5);">
+            <div class="container h100">
+                <div class="contentBox">
+                    <div>
+                        <h1>Cloud Section</h1>
+                        <p>We are using <strong>Google cloud platform</strong> to develop and deploy our environment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2" style="background: rgba(0,0,0,.5);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="content">
+                            <h1>Components used</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h2>1 - Bigquery</h2>
+                            <p>Storing and querying massive datasets can be time consuming and expensive without
+                                the right hardware and infrastructure. BigQuery is an enterprise data warehouse
+                                that solves this problem by enabling super-fast SQL queries using the processing
+                                power of Google's infrastructure, that’s where we store our raw dataset.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/cl1.jpg' %}" alt="Bigquery">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2" style="background: rgba(0,0,0,.5);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/cl2.jpg' %}" alt="AI Platform">
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h2>2 - AI Platform</h2>
+                            <p>Google AI Platform is a managed service that enables you to easily build machine
+                                learning models, that work on any type of data, of any size, that’s how we deployed
+                                our machine and deep learning models.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="sec2" style="background: rgba(0,0,0,.5);">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="content">
+                            <h2>3 - Google App engine</h2>
+                            <p>Fully managed serverless application platform Where we can build and deploy
+                                applications on a fully managed platform. Scale our application seamlessly
+                                from zero to planet scale without having to worry about managing the underlying
+                                infrastructure. With zero server management and zero configuration deployments,
+                                we can focus only on building great applications without the management overhead.
+                                App Engine enables us to stay more productive and agile by supporting popular
+                                development languages and a wide range of developer tools and that’s we host our
+                                website.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="imgBx2 text-center">
+                            <img class="rounded" src="{% static 'website/cl3.jpg' %}" alt="Google App engine">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        document.getElementById("iot").style.display= "none";
+        document.getElementById("cloud").style.display= "none";
+        document.getElementById("ml").style.display= "none";
+
+        function fn1() {
+            if (document.getElementById("iot").style.display === "none") {
+                document.getElementById("iot").style.display= "block";
+                document.getElementById("cloud").style.display= "none";
+                document.getElementById("ml").style.display= "none";
+            }
+        }
+
+
+        function fn2() {
+            if (document.getElementById("cloud").style.display === "none") {
+                document.getElementById("iot").style.display= "none";
+                document.getElementById("cloud").style.display= "block";
+                document.getElementById("ml").style.display= "none";
+            }
+        }
+
+        function fn3() {
+            if (document.getElementById("ml").style.display === "none") {
+                document.getElementById("iot").style.display= "none";
+                document.getElementById("cloud").style.display= "none";
+                document.getElementById("ml").style.display= "block";
+            }
+        }
+    </script>
+
+{% endblock %}

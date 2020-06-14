@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'website/home.css' %}" />
+{% endblock %}
+
+{% block homeClass %}active{% endblock %}
+{% block technicalClass %}{% endblock %}
+{% block analysisClass %}{% endblock %}
+{% block predictionClass %}{% endblock %}
+{% block aboutClass %}{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid banner">
+        <div class="container h100">
+            <div class="landBox">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">Lower Limb Analysis</h1>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">IoT Big-Data Analytics Cloud
+                        Platform for Lower-Limb</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="imgBx text-center" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="0">
+                        <img src="{% static 'website/home.png' %}" alt="pyramid">
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="contentBox">
+                       <div>
+                           <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">our dedication
+                               is what you can trust</h2>
+                           <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">we are helping
+                               you to know everything about your lower limb through a very well trained machine
+                               learning model , just insert your gait data and the analysis is our mission.</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="text-center">
+                        <video width="60%" style="margin-top:30px;" controls>
+                            <source src="https://storage.cloud.google.com/graduationprojectwebsite/static/Pages/Final.mp4"
+                                    type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec1">
+        <div class="container container-fluid h100">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="contentBox text-center">
+                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">How can we co-operate
+                            together?</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top" src="{% static 'website/Iot.png' %}"/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 1</h4>
+                            <p class="card-text">adjust the device at the bottom of your lower limb and enjoy your
+                                day with all kinds of moods.</p>
+                            <a class="btn btnD1" href="/technical/">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/cloud.png' %}"/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 2</h4>
+                            <p class="card-text">collect the data sent from the device to the cloud in .csv file
+                                and upload it on our website.</p>
+                            <a class="btn btnD1" href="/prediction/">Upload Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/machine.png' %}"/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 3</h4>
+                            <p class="card-text">your data is then sent to a well trained model to detect the mode
+                                of your activity and be analyzed.</p>
+                            <a class="btn btnD1" href="/prediction/">Submit Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="card cardD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                        <div class="imgBx1 text-center">
+                            <img class="card-img-top rounded" src="{% static 'website/data.png' %}"/>
+                        </div>
+                        <div class="card-body text-center">
+                            <h4 class="card-title">Step 4</h4>
+                            <p class="card-text">the results of the analysis is to be visualized, view pre-visualized
+                                data set in here.</p>
+                            <a class="btn btnD1" href="/analysis/1">View Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="contentBox text-center">
+                        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">New Approach</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-8">
+                    <div class="imgBx3 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300">
+                        <img src="{% static 'website/new york times.png' %}" alt="new york">
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-8">
+                    <div class="imgBx3 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">
+                        <img src="{% static 'website/newspaper.jpeg' %}" alt="computer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}{% endblock %}

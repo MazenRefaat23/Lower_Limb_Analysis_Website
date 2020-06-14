@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Prediction{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'prediction/style6.css' %}" />
+{% endblock %}
+
+{% block homeClass %}{% endblock %}
+{% block technicalClass %}{% endblock %}
+{% block analysisClass %}{% endblock %}
+{% block predictionClass %}active{% endblock %}
+{% block aboutClass %}{% endblock %}
+
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid banner" id="prediction">
+        <div class="container h100">
+            <div class="contentBox">
+                <div>
+                    <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0">Upload your file</h1>
+                    <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="700">Analyze your data by uploading your excel file here</p>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="file" accept=".csv" id="real-file" name="document" hidden="hidden" >
+                        <button type="button" id="custom-button" class="btn btnD1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1000">CHOOSE A FILE</button>
+                        <div class="text-center" id="bt2">
+                            <input type="submit" class="btn btnD1" name="up">
+                            <p id="custom-text">NO FILE CHOSEN</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+        document.getElementById("bt2").style.display= "none";
+        const realFileBtn = document.getElementById("real-file")
+        const customBtn = document.getElementById("custom-button")
+        const customTxt = document.getElementById("custom-text")
+
+        customBtn.addEventListener("click", function(){
+            realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function() {
+            if(realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+                document.getElementById("bt2").style.display= "block";
+                document.getElementById("custom-button").style.display= "none";
+            }
+            else {
+                customTxt.innerHTML = "NO FILE CHOSEN";
+            }
+        });
+
+    </script>
+
+{% endblock %}
