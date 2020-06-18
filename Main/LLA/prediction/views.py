@@ -20,7 +20,7 @@ def upload(request):
         fs.save(uploaded_file.name, uploaded_file)
         data_in = pd.read_csv("media/" + uploaded_file.name)
         if Check_data_frame(data_in):
-            largedata, data_out1, data_out2, activity_list = data_analysis.analysis(data_in)
+            data_out1, data_out2, activity_list,lst_map = data_analysis.analysis(data_in)
             fs.delete(uploaded_file.name)
             grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
             asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
@@ -55,7 +55,7 @@ def upload(request):
                           {'grd_sl': grd_sl,
                            'asc_sl': asc_sl, 'des_sl': des_sl,
                            'grd_speed': grd_speed, 'asc_speed': asc_speed,
-                           'des_speed': des_speed, 'grd_time': grd_time, 'large_data': largedata,
+                           'des_speed': des_speed, 'grd_time': grd_time,
                            'asc_time': asc_time, 'des_time': des_time,
                            'data_out2': data_out2, 'mas_1': mas_1,
                            'mast_2': mast_2,
@@ -63,6 +63,7 @@ def upload(request):
                            'describe_sl': describe_sl,
                            'describe_sd': describe_sd,
                            'activity_all': activity_list,
+                           'lst_map': lst_map,
                            "subjects": peaple.objects.all()})
 
         else:
