@@ -7,7 +7,7 @@ from . import data_analysis
 def person(request, id):
     subject = get_object_or_404(peaple, pk=id)
     string = str(subject)
-    largedata, data_out1, data_out2, activity_list = data_analysis.analysis(string[0:5])
+    data_out1, data_out2, activity_list,lst_map = data_analysis.analysis(string[0:5])
     grd = data_out1.loc[data_out1['Activity'] == 'Level ground walking']
     asc = data_out1.loc[data_out1['Activity'] == 'Ramp ascent']
     des = data_out1.loc[data_out1['Activity'] == 'Ramp descent']
@@ -41,7 +41,7 @@ def person(request, id):
                   {"sub": subject,'grd_sl':grd_sl,
                    'asc_sl':asc_sl,'des_sl':des_sl,
                    'grd_speed':grd_speed,'asc_speed':asc_speed,
-                   'des_speed':des_speed,'grd_time':grd_time,'large_data':largedata,
+                   'des_speed':des_speed,'grd_time':grd_time,
                    'asc_time':asc_time,'des_time':des_time,
                    'data_out2':data_out2,'mas_1':mas_1,
                    'mast_2':mast_2,
@@ -49,4 +49,5 @@ def person(request, id):
                    'describe_sl':describe_sl,
                    'describe_sd': describe_sd,
                    'activity_all': activity_list,
+                   'lst_map': lst_map,
                    "subjects": peaple.objects.all()})
