@@ -60,6 +60,124 @@
            </div>
        </div>
    </section>
+    <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="offset-lg-1 col-lg-10">
+                   <div class="chartBox" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Activities Heatmap</h4>
+                           </div>
+                           <div class="box1 text-center">
+                               <div class="w100">
+                                   <div id="heat_map" ></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </section>
+    <section class="sec1">
+       <div class="container">
+           <div class="row">
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total Strides per activity</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="myChart-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total distance per activity (m)</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="bar-chart-horizontal-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Time Taken per activity (sec)</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div>
+                                   <div id="doughnut-chart-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-12 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Total Staircase</h4>
+                           </div>
+                           <div class="box text-center">
+                               <div class="w100">
+                                   <div id="myChart_staircase-apex"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <div class="row">
+               <div class="col-sm-14 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4> Stance vs Swing percentage </h4>
+                           </div>
+                           <div class="box text-center">
+                               <div>
+                                   <div id="chart"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-sm-14 col-lg-6">
+                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
+                       <div class="w100">
+                           <div class="content">
+                               <h4>Cadence (steps/min) </h4>
+                           </div>
+                           <div class="box text-center">
+                               <div>
+                                   <div id="cadence"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+           </div>
+
+       </div>
+
+   </section>
+
    <section class="sec1">
        <div class="container">
            <div class="row">
@@ -67,8 +185,8 @@
                    <div class="content">
                        <div class="border-2">
                            <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >Total Statistics</h3>
-                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >Average Stride Length = {{mean_val.0}}</h4>
-                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >Average Speed = {{data_out2.Avg_speed.0}}</h4>
+                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >Average Stride Length = {{mean_val.0}} m</h4>
+                           <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >Average Speed = {{data_out2.Avg_speed.0}} m/sec</h4>
                            <a class="btn btnD1" onclick="fn1()" href="#div1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" >show graphs</a>
                        </div>
                    </div>
@@ -118,7 +236,7 @@
                            <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}} m</h5>
                            <h5>Average Speed = {{data_out2.Avg_speed.0}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.0}} s</h5>
-                           <h5>Cadence = {{data_out2.Avg_cadence.0}} steps/min</h5>
+
                            <a class="btn btnD1" onclick="fn2()" href="#div2">show graphs</a>
                        </div>
                    </div>
@@ -130,7 +248,7 @@
                            <h5>Average Stride Length = {{data_out2.Avg_stride_length.1}} m</h5>
                            <h5>Average Speed = {{data_out2.Avg_speed.1}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.1}} s</h5>
-                           <h5>Cadence = {{data_out2.Avg_cadence.1}} steps/min</h5>
+
                            <a class="btn btnD1" onclick="fn3()" href="#div3">show graphs</a>
                        </div>
                    </div>
@@ -142,7 +260,7 @@
                            <h5>Average Stride Length = {{data_out2.Avg_stride_length.2}} m</h5>
                            <h5>Average Speed = {{data_out2.Avg_speed.2}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.2}} s</h5>
-                           <h5>Cadence = {{data_out2.Avg_cadence.2}} steps/min</h5>
+
                            <a class="btn btnD1"  onclick="fn4()" href="#div4">show graphs</a>
                        </div>
                    </div>
@@ -160,7 +278,7 @@
                                    </div>
                                </div>
                                <div class="content">
-                                    <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}}</h5>
+                                    <h5>Average Stride Length = {{data_out2.Avg_stride_length.0}} m</h5>
                                </div>
                            </div>
                        </div>
@@ -174,7 +292,7 @@
                                    </div>
                                </div>
                                <div class="content">
-                                    <h5>Average Speed = {{data_out2.Avg_speed.0}}</h5>
+                                    <h5>Average Speed = {{data_out2.Avg_speed.0}} m/sec</h5>
                                </div>
                            </div>
                        </div>
@@ -398,70 +516,6 @@
            </div>
        </div>
    </section>
-   <section class="sec1">
-       <div class="container">
-           <div class="row">
-               <div class="col-sm-12 col-lg-6">
-                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
-                       <div class="w100">
-                           <div class="content">
-                               <h4>Total Strides per activity</h4>
-                           </div>
-                           <div class="box text-center">
-                               <div class="w100">
-                                   <div id="myChart-apex"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-sm-12 col-lg-6">
-                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
-                       <div class="w100">
-                           <div class="content">
-                               <h4>Total distance per activity (m)</h4>
-                           </div>
-                           <div class="box text-center">
-                               <div class="w100">
-                                   <div id="bar-chart-horizontal-apex"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <div class="row">
-               <div class="col-sm-12 col-lg-6">
-                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" >
-                       <div class="w100">
-                           <div class="content">
-                               <h4>Time Taken per activity (sec)</h4>
-                           </div>
-                           <div class="box text-center">
-                               <div>
-                                   <div id="doughnut-chart-apex"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-sm-12 col-lg-6">
-                   <div class="chartBox h400" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >
-                       <div class="w100">
-                           <div class="content">
-                               <h4>Total Staircase</h4>
-                           </div>
-                           <div class="box text-center">
-                               <div class="w100">
-                                   <div id="myChart_staircase-apex"></div>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-   </section>
 
 {% endblock %}
 
@@ -532,17 +586,34 @@
                 enabled: false
             },
             xaxis: {
+                type: 'numeric',
                 categories: all,
                 title: {
-                    text: 'time (Sec)'
+                    text: 'time (Sec)',
+                    style:{
+                    color:"#D3D3D3"
+                    },
                 },
-                tickPlacement: 'on',
+                tickAmount: 50,
+                labels:{
+                hideOverlappingLabels: true,
+                style:{
+                fontSize: '11px',
+                colors:"#D3D3D3"
+                },
+
+                },
+
             },
             yaxis: {
                 seriesName: ["Sitting", "Walking", "Ramp Ascent", "Ramp Descent", "Stair Ascent", "Stair Descent", "Standing"],
                 title: {
-                    text: 'Activities'
+                    text: 'Activities',
+                        style:{
+                    color:"#D3D3D3"
+                    },
                 },
+
                 tickAmount: 7,
                 labels: {
                     formatter: function(val, index) {
@@ -553,13 +624,17 @@
                         if(val == 4){ return "Stair As"};
                         if(val == 5){ return "Stair Des"};
                         if(val == 6){ return "Standing"};
-                    }
-                }
+                    },
+                    style:{
+                    colors:"#D3D3D3"
+                    },
+                },
+
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -604,27 +679,41 @@
             },
             xaxis: {
                 categories: lbl_mas,
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
                 title: {
-                    text: 'Stride Speed (m/sec)'
+                    text: 'Stride Speed (m/sec)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 tickAmount: 6,
                 min: 0,
                 max: 1.8,
                 labels: {
+                    style:{
+                        colors:'#D3D3D3'
+                        },
                     formatter: function(val, index) {
                         return val.toFixed(2);
                     }
                 }
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -661,27 +750,41 @@
             },
             xaxis: {
                 categories: lbl_mas,
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
                 title: {
-                    text: 'Stride Length (meter)'
+                    text: 'Stride Length (meter)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 tickAmount: 6,
                 min: 0,
                 max: 1.8,
                 labels: {
+                    style:{
+                        colors:'#D3D3D3'
+                        },
                     formatter: function(val, index) {
                         return val.toFixed(2);
                     }
                 }
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -725,21 +828,37 @@
             },
             xaxis: {
                 categories: lbl_grd,
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Stride Length (m)'
+                    text: 'Stride Length (m)',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#e0f7fa"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -777,21 +896,37 @@
             },
             xaxis: {
                 categories: lbl_grd,
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Speed (m/sec)'
+                    text: 'Speed (m/sec)',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -827,22 +962,38 @@
                 enabled: false
             },
             xaxis: {
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 categories: lbl_grd,
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Stride time (sec)'
+                    text: 'Stride time (sec)',
+                    style:{
+                    color:'#D3D3D3'
+                    },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -886,21 +1037,40 @@
             },
             xaxis: {
                 categories: lbl_asc,
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Number of Stride'
-                }
+                    text: 'Number of Stride',
+
+                    style:{
+                        color:'#D3D3D3'
+                        },
+
+                    }
             },
             yaxis: {
+                labels:{
+                style:{
+                    colors:'#D3D3D3'
+                    },
+                },
                 title: {
-                    text: 'Stride Length (m)'
+                    text: 'Stride Length (m)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
+
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -937,21 +1107,37 @@
             },
             xaxis: {
                 categories: lbl_asc,
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Speed (m/sec)'
+                    text: 'Speed (m/sec)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -987,22 +1173,38 @@
                 enabled: false
             },
             xaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 categories: lbl_asc,
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Stride time (sec)'
+                    text: 'Stride time (sec)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -1045,22 +1247,38 @@
                 enabled: false
             },
             xaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 categories: lbl_des,
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Stride Length (m)'
+                    text: 'Stride Length (m)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -1098,21 +1316,37 @@
             },
             xaxis: {
                 categories: lbl_des,
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Speed (m/sec)'
+                    text: 'Speed (m/sec)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -1149,21 +1383,37 @@
             },
             xaxis: {
                 categories: lbl_des,
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Number of Stride'
+                    text: 'Number of Stride',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 }
             },
             yaxis: {
+                labels:{
+                style:{
+                        colors:'#D3D3D3'
+                        },
+                },
                 title: {
-                    text: 'Stride time (sec)'
+                    text: 'Stride time (sec)',
+                    style:{
+                        color:'#D3D3D3'
+                        },
                 },
                 min: 0,
                 max: 1.8,
             },
-            colors:["#dc2f02"],
+            colors:["#bbdefb"],
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -1194,20 +1444,45 @@
                 height: 300
             },
             dataLabels: {
-                enabled: true
+                enabled: false
             },
             xaxis: {
                 categories: ['Walking', 'Ramp As', 'Ramp Des'],
+                labels:{
+                    style: {
+                          colors: ["#D3D3D3","#D3D3D3","#D3D3D3"],
+                      },
+                  },
             },
             yaxis: {
+                labels: {
+
+                     style: {
+                         colors: '#D3D3D3',
+
+                     },
+                 },
                 title: {
-                    text: '# of Strides'
-                }
+                    text: '# of Strides',
+                    style: {
+                          color: '#D3D3D3'
+                      },
+                },
+
             },
-            colors:["#dc2f02"],
+            colors: ['#ED5959','#ec7424',"#118ab2"],
+               plotOptions: {
+               bar: {
+                 distributed: true,
+
+               }
+             },
+             legend: {
+             show:false
+             },
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             zoom: {
                 type: 'x',
@@ -1216,8 +1491,10 @@
             responsive: [{
                 breakpoint: 1000,
                 options: {
+
                     chart: {
                         height: 200,
+
                     },
                 },
             }],
@@ -1240,20 +1517,36 @@
                 height: 300
             },
             dataLabels: {
-                enabled: true
+                enabled: false
             },
             plotOptions: {
                 bar: {
+                    distributed: true,
                     horizontal: true,
                 }
             },
             xaxis: {
                 categories: ["Walking", "Ramp As", "Ramp Des"],
-                title: {
-                    text: 'Total Distance in meters'
-                }
+                labels:{
+                    style: {
+                          colors: ["#D3D3D3"],
+
+                      },
+                  },
+
+
             },
-            colors:["#dc2f02"],
+            colors:['#ED5959','#ec7424',"#118ab2"],
+            yaxis: {
+                labels:{
+                style:{
+                    colors:['#D3D3D3','#D3D3D3','#D3D3D3']
+                },
+                },
+            },
+            legend: {
+             show:false
+             },
             grid: {
                 show: false,
             },
@@ -1278,8 +1571,11 @@
             },
             series: [{{data_out2.Total_time.0}},{{data_out2.Total_time.1}},{{data_out2.Total_time.2}},{{data_out2.Total_time.3}},{{data_out2.Total_time.4}}],
             labels: ["Walking", "Ramp As", "Ramp Des","Stairs As", "Stairs Des"],
-            colors:["#dc2f02", "#faa307", "rgb(69, 14, 255)","#6a040f", "rgb(34, 0, 112)"],
+            colors:[ '#ED5959','#ec7424', "#118ab2", '#4D9D9C', '#474898'],
             legend: {
+                labels:{
+                colors:['#D3D3D3']
+                },
                 show: true,
                 position: 'bottom',
                 onItemClick: {
@@ -1321,20 +1617,46 @@
                 height: 300
             },
             dataLabels: {
-                enabled: true
+                enabled: false
             },
             xaxis: {
                 categories: ['Stairs As', 'Stairs Des'],
+                labels:{
+                    style: {
+                          colors: ["#D3D3D3","#D3D3D3"],
+
+                      },
+                  },
             },
             yaxis: {
+                labels: {
+
+                     style: {
+                         colors: '#D3D3D3',
+
+                     },
+                 },
                 title: {
-                    text: '# of Stair steps'
-                }
+                    text: '# of Stairs',
+                    style: {
+                          color: '#D3D3D3'
+                      },
+                },
+
             },
-            colors:["#dc2f02"],
+            colors:['#4D9D9C', '#474898'],
+            legend:{
+            show:false
+            },
+            plotOptions: {
+               bar: {
+                 distributed: true,
+
+               }
+             },
             grid: {
                 show: true,
-                borderColor: '#370617',
+                borderColor: '#121212',
             },
             responsive: [{
                 breakpoint: 1000,
@@ -1349,6 +1671,281 @@
 
         var chart = new ApexCharts(document.querySelector("#myChart_staircase-apex"), options2);
         chart.render();
+
+    </script>
+    <script>
+
+    var options_heat = {
+      series: [
+        {
+          name: "Sitting",
+          data: {{lst_map.0}}
+        },
+        {
+          name: "Walking",
+          data: {{lst_map.1}}
+        },
+        {
+          name: "Ramp As",
+          data: {{lst_map.2}}
+        },
+        {
+          name: "Ramp Des",
+          data: {{lst_map.3}}
+        },
+        {
+          name: "Stair As",
+          data: {{lst_map.4}}
+        },
+        {
+          name: "Stair Des",
+          data: {{lst_map.5}}
+        },
+        {
+          name: "Standing",
+          data: {{lst_map.6}}
+        },
+
+      ],
+      chart: {
+        height: 350,
+        type: "heatmap"
+      },
+      dataLabels: {
+        enabled: false
+      },
+
+      xaxis: {
+        type: "category",
+        categories: {{lst_map.7}},
+        title: {
+          text: 'Time (sec)',
+
+          style: {
+              color: "#D3D3D3",
+
+          },
+      },
+        labels:{
+                    style: {
+                          colors: "#D3D3D3",
+
+                      },
+                  },
+      },
+        yaxis: {
+
+        labels:{
+                    style: {
+                          colors: "#D3D3D3",
+
+                      },
+                  },
+      },
+      grid: {
+        show:false,
+        padding: {
+          right: 20
+        }
+      },
+    legend:{
+   labels:{
+    colors:"#D3D3D3"
+    },
+    },
+      plotOptions: {
+        heatmap: {
+          enableShades: false,
+          shadeIntensity: 1,
+          colorScale: {
+            ranges: [
+              {
+                from: 0,
+                to: 0,
+                name: "doesn't exist",
+                color: '#fbe9e7'
+
+              },
+              {
+                from: 1,
+                to: 3,
+                name: "low",
+                color: '#ffccbc'
+              },
+              {
+                from: 4,
+                to: 7,
+                name: "medium",
+                color: '#ff8a65'
+
+              },
+              {
+                from: 8,
+                to: 30,
+                name: "high",
+                color: '#ff5722'
+              }
+            ]
+          }
+        }
+      }
+    };
+  
+        var chart = new ApexCharts(document.querySelector("#heat_map"), options_heat);
+        chart.render();
+
+
+    </script>
+    <script>
+
+        var options = {
+          series: [{
+          name: 'stance%',
+          data: [{{data_out2.Avg_stance.0}},{{data_out2.Avg_stance.1}},{{data_out2.Avg_stance.2}}]
+        }, {
+          name: 'swing%',
+          data: [{{data_out2.Avg_swing.0}},{{data_out2.Avg_swing.1}},{{data_out2.Avg_swing.2}}]
+        }],
+          chart: {
+          type: 'bar',
+          height: 320
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        colors:[ '#474898','#ec7424'],
+        xaxis: {
+          categories: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+          labels:{
+                    style: {
+                          colors: "#D3D3D3",
+
+                      },
+                  },
+        },
+        yaxis: {
+            labels:{
+                    style: {
+                          colors: "#D3D3D3",
+
+                      },
+                  },
+          title: {
+            text: 'percentage',
+            style:{
+                color:"#D3D3D3"
+            },
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function (val) {
+              return val + " s"
+            }
+          }
+        },
+        grid: {
+                show: true,
+                borderColor: '#121212',
+            },
+         legend:{
+            labels:{
+             colors:"#D3D3D3"
+             },
+          },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+
+    </script>
+    <script id = "cadence_s">
+        var options_cadence = {
+            series: [{
+                name: '# of Strides',
+                data: [{{data_out2.Avg_cadence.0}},{{data_out2.Avg_cadence.1}},{{data_out2.Avg_cadence.2}},{{data_out2.Avg_cadence.3}},{{data_out2.Avg_cadence.4}}],
+            }],
+            chart: {
+                type: 'bar',
+                width:"100%",
+                height: 300
+            },
+            dataLabels: {
+                enabled: false
+            },
+            xaxis: {
+                categories: ['Walking', 'Ramp As', 'Ramp Des','Stair As','Stair Des'],
+                labels:{
+                    style: {
+                          colors: '#D3D3D3',
+                      },
+                  },
+            },
+            yaxis: {
+                labels: {
+
+                     style: {
+                         colors: '#D3D3D3',
+
+                     },
+                 },
+                title: {
+                    text: 'steps/min',
+                    style: {
+                          color: '#D3D3D3'
+                      },
+                },
+
+            },
+            colors:[ '#ED5959','#ec7424', "#118ab2", '#4D9D9C', '#474898'],
+               plotOptions: {
+               bar: {
+                 distributed: true,
+
+               }
+             },
+             legend: {
+             show:false
+             },
+            grid: {
+                show: true,
+                borderColor: '#121212',
+            },
+            zoom: {
+                type: 'x',
+                enabled: true,
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+
+                    chart: {
+                        height: 200,
+
+                    },
+                },
+            }],
+        };
+
+        var chart = new ApexCharts(document.querySelector("#cadence"), options_cadence);
+        chart.render();
+
 
     </script>
 
