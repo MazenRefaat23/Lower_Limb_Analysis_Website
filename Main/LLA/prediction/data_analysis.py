@@ -92,8 +92,7 @@ def analysis(data):
     fc = 5
     L = 1
 
-    large_list = []
-
+    
     data_in = prep(data)
     mazen_temp = list(data_in['Mode'])
 
@@ -101,15 +100,30 @@ def analysis(data):
     for zz in range(0, len(mazen_temp), 1000):
         mazen_list.append(mazen_temp[zz])
 
-    data_in['Interval'] = (data_in.Mode != data_in.Mode.shift()).cumsum()
-    arr = np.array(data_in.groupby('Interval')['Mode'].agg(['count', 'max']))
+    start=0
+    end=30
+    lst_map=[]
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
+    lst_map.append([])
 
-    start = 0
-    finish = 0
-    for i in range(len(arr)):
-        finish += arr[i][0] / 1000
-        large_list.append([arr[i][1], start, finish])
-        start = finish
+    while(end<len(mazen_list)):
+        lst_map[0].append(mazen_list[start:end].count(0))
+        lst_map[1].append(mazen_list[start:end].count(1))
+        lst_map[2].append(mazen_list[start:end].count(2))
+        lst_map[3].append(mazen_list[start:end].count(3))
+        lst_map[4].append(mazen_list[start:end].count(4))
+        lst_map[5].append(mazen_list[start:end].count(5))
+        lst_map[6].append(mazen_list[start:end].count(6))
+        start=end
+        lst_map[7].append(end)
+        end+=30
+        
     # data_in = pd.read_csv("analysis/" + name + ".csv", usecols=["Right_Shank_Gy", "Mode"])
     lst_activity = activity_segmentation(data_in, [1, 2, 3, 4, 5])
     stair_ascent = lst_activity[3]
@@ -449,4 +463,4 @@ def analysis(data):
     data_out1['msa'] = data_out1['Speed'].rolling(window=5).mean()
     data_out1['mast'] = data_out1['Stride_length'].rolling(window=5).mean()
 
-    return large_list, data_out1, data_out2, mazen_list
+    return data_out1, data_out2, mazen_list,lst_map
