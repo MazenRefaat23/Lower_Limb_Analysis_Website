@@ -151,7 +151,7 @@
                            </div>
                            <div class="box text-center">
                                <div>
-                                   <div id="chart"></div>
+                                   <div id="chart-vs"></div>
                                </div>
                            </div>
                        </div>
@@ -187,7 +187,7 @@
                            <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="0" >Total Statistics</h3>
                            <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" >Average Stride Length = {{mean_val.0}} m</h4>
                            <h4 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" >Average Speed = {{data_out2.Avg_speed.0}} m/sec</h4>
-                           <a class="btn btnD1" onclick="fn1()" href="#div1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" >show graphs</a>
+                           <a class="btn btnD1" onclick="fn1();scroll_to_any('div1');" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600" >show graphs</a>
                        </div>
                    </div>
                </div>
@@ -237,7 +237,7 @@
                            <h5>Average Speed = {{data_out2.Avg_speed.0}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.0}} s</h5>
 
-                           <a class="btn btnD1" onclick="fn2()" href="#div2">show graphs</a>
+                           <a class="btn btnD1" onclick="fn2();scroll_to_any('div2');">show graphs</a>
                        </div>
                    </div>
                </div>
@@ -249,7 +249,7 @@
                            <h5>Average Speed = {{data_out2.Avg_speed.1}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.1}} s</h5>
 
-                           <a class="btn btnD1" onclick="fn3()" href="#div3">show graphs</a>
+                           <a class="btn btnD1" onclick="fn3();scroll_to_any('div3');">show graphs</a>
                        </div>
                    </div>
                </div>
@@ -261,7 +261,7 @@
                            <h5>Average Speed = {{data_out2.Avg_speed.2}} m/s</h5>
                            <h5>Average Stride Time = {{data_out2.Avg_stride_time.2}} s</h5>
 
-                           <a class="btn btnD1"  onclick="fn4()" href="#div4">show graphs</a>
+                           <a class="btn btnD1"  onclick="fn4();scroll_to_any('div4');">show graphs</a>
                        </div>
                    </div>
                </div>
@@ -517,6 +517,57 @@
        </div>
    </section>
 
+    <section class="sec1">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-12">
+                    <div class="contentBox">
+                        <div>
+                            <form method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" id="img_1" name="image_1">
+
+                                <input type="hidden" id="img_2_1" name="image_2_1">
+                                <input type="hidden" id="img_2_2" name="image_2_2">
+
+                                <input type="hidden" id="img_3_1_1" name="image_3_1_1">
+                                <input type="hidden" id="img_3_1_2" name="image_3_1_2">
+                                <input type="hidden" id="img_3_1_3" name="image_3_1_3">
+
+                                <input type="hidden" id="img_3_2_1" name="image_3_2_1">
+                                <input type="hidden" id="img_3_2_2" name="image_3_2_2">
+                                <input type="hidden" id="img_3_2_3" name="image_3_2_3">
+
+                                <input type="hidden" id="img_3_3_1" name="image_3_3_1">
+                                <input type="hidden" id="img_3_3_2" name="image_3_3_2">
+                                <input type="hidden" id="img_3_3_3" name="image_3_3_3">
+
+                                <input type="hidden" id="img_4_1" name="image_4_1">
+
+                                <input type="hidden" id="img_4_2" name="image_4_2">
+
+                                <input type="hidden" id="img_4_3" name="image_4_3">
+
+                                <input type="hidden" id="img_4_4" name="image_4_4">
+
+                                <input type="hidden" id="img_4_5" name="image_4_5">
+
+                                <input type="hidden" id="img_4_6" name="image_4_6">
+
+                                <input type="hidden" id="img_4_7" name="image_4_7">
+
+                                <button type="button" id="custom-button" class="btn btnD1">Download Report</button>
+                                <input type="submit" name="save" id="save" hidden="hidden">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+           </div>
+        </div>
+    </section>
+
+
+
 {% endblock %}
 
 {% block script %}
@@ -525,6 +576,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.19.2/apexcharts.js" integrity="sha256-bG1Re1uhZ/jg7Gyb6dSh066WlbVqDmtYARtM6bYt948=" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+
+        /* ==========================================================
+
+                            display and hide sections
+
+        ============================================================= */
+
+
+
         document.getElementById("div1").style.display= "none";
         document.getElementById("div2").style.display= "none";
         document.getElementById("div3").style.display= "none";
@@ -564,6 +624,15 @@
         }
 
 
+
+        /* ==========================================================
+
+                            activities chart
+
+        ============================================================= */
+
+
+
         var all = [];
         for (i = 1; i < {{activity_all}}.length; i++) {
             all.push(i);
@@ -578,6 +647,7 @@
                 type: 'area',
                 width: "100%",
                 height: 300,
+                background: '#252525',
             },
             stroke: {
                 curve: 'stepline',
@@ -596,21 +666,19 @@
                 },
                 tickAmount: 50,
                 labels:{
-                hideOverlappingLabels: true,
-                style:{
-                fontSize: '11px',
-                colors:"#D3D3D3"
+                    hideOverlappingLabels: true,
+                    style:{
+                        fontSize: '11px',
+                        colors:"#D3D3D3"
+                    },
                 },
-
-                },
-
             },
             yaxis: {
                 seriesName: ["Sitting", "Walking", "Ramp Ascent", "Ramp Descent", "Stair Ascent", "Stair Descent", "Standing"],
                 title: {
                     text: 'Activities',
-                        style:{
-                    color:"#D3D3D3"
+                    style:{
+                        color:"#D3D3D3"
                     },
                 },
 
@@ -631,7 +699,7 @@
                 },
 
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -651,11 +719,19 @@
         };
 
 
-        var chart = new ApexCharts(document.querySelector("#scattered-apex"), options20);
-        chart.render();
+        var chart_1 = new ApexCharts(document.querySelector("#scattered-apex"), options20);
+        chart_1.render();
 
-    </script>
-    <script id="total">
+
+
+        /* ==========================================================
+
+                            total speed and strides charts
+
+        ============================================================= */
+
+
+
         var lbl_mas = [];
         for (i = 1; i < {{mas_1}}.length; i++) {
             lbl_mas.push(i);
@@ -669,7 +745,8 @@
             chart: {
                 type: 'area',
                 width: "100%",
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -678,11 +755,13 @@
                 enabled: false
             },
             xaxis: {
+                type: 'category',
                 categories: lbl_mas,
                 labels:{
-                style:{
+                    hideOverlappingLabels: true,
+                    style:{
                         colors:'#D3D3D3'
-                        },
+                    },
                 },
                 title: {
                     text: 'Number of Stride',
@@ -710,7 +789,7 @@
                     }
                 }
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -729,8 +808,9 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#speed-apex"), options14);
-        chart.render();
+        var chart_2_1 = new ApexCharts(document.querySelector("#speed-apex"), options14);
+        chart_2_1.render();
+
 
         var options15 = {
             series: [{
@@ -740,7 +820,8 @@
             chart: {
                 type: 'area',
                 width: "100%",
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -781,7 +862,7 @@
                     }
                 }
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -800,11 +881,19 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#total_stridel-apex"), options15);
-        chart.render();
+        var chart_2_2 = new ApexCharts(document.querySelector("#total_stridel-apex"), options15);
+        chart_2_2.render();
 
-    </script>
-    <script id = "grd">
+
+
+        /* ==========================================================
+
+                            level ground walking charts
+
+        ============================================================= */
+
+
+
         var lbl_grd = [];
         for (i = 1; i < {{grd_sl}}.length; i++) {
             lbl_grd.push(i);
@@ -818,7 +907,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -855,7 +945,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#e0f7fa"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -874,8 +964,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#grd_sl-apex"), options11);
-        chart.render();
+        var chart_3_1_1 = new ApexCharts(document.querySelector("#grd_sl-apex"), options11);
+        chart_3_1_1.render();
 
 
         var options12 = {
@@ -886,7 +976,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -923,7 +1014,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -942,8 +1033,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#grd_speed-apex"), options12);
-        chart.render();
+        var chart_3_1_2 = new ApexCharts(document.querySelector("#grd_speed-apex"), options12);
+        chart_3_1_2.render();
 
         var options13 = {
             series: [{
@@ -953,7 +1044,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -990,7 +1082,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1009,11 +1101,19 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#grd_time-apex"), options13);
-        chart.render();
+        var chart_3_1_3 = new ApexCharts(document.querySelector("#grd_time-apex"), options13);
+        chart_3_1_3.render();
 
-    </script>
-    <script id = "asc">
+
+
+        /* ==========================================================
+
+                            Ramp Ascending charts
+
+        ============================================================= */
+
+
+
         var lbl_asc = [];
         for (i = 1; i < {{asc_sl}}.length; i++) {
             lbl_asc.push(i);
@@ -1027,7 +1127,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1067,7 +1168,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1086,8 +1187,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#asc_sl-apex"), options8);
-        chart.render();
+        var chart_3_2_1 = new ApexCharts(document.querySelector("#asc_sl-apex"), options8);
+        chart_3_2_1.render();
 
         var options9 = {
             series: [{
@@ -1097,7 +1198,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1134,7 +1236,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1153,8 +1255,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#asc_speed-apex"), options9);
-        chart.render();
+        var chart_3_2_2 = new ApexCharts(document.querySelector("#asc_speed-apex"), options9);
+        chart_3_2_2.render();
 
         var options10 = {
             series: [{
@@ -1164,7 +1266,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1201,7 +1304,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1220,11 +1323,19 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#asc_time-apex"), options10);
-        chart.render();
+        var chart_3_2_3 = new ApexCharts(document.querySelector("#asc_time-apex"), options10);
+        chart_3_2_3.render();
 
-    </script>
-    <script id ="des">
+
+
+        /* ==========================================================
+
+                            Ramp descending charts
+
+        ============================================================= */
+
+
+
         var lbl_des = [];
         for (i = 1; i < {{des_sl}}.length; i++) {
             lbl_des.push(i);
@@ -1238,7 +1349,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1275,7 +1387,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1294,8 +1406,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#des_sl-apex"), options5);
-        chart.render();
+        var chart_3_3_1 = new ApexCharts(document.querySelector("#des_sl-apex"), options5);
+        chart_3_3_1.render();
 
 
         var options6 = {
@@ -1306,7 +1418,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1343,7 +1456,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1362,8 +1475,8 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#des_speed-apex"), options6);
-        chart.render();
+        var chart_3_3_2 = new ApexCharts(document.querySelector("#des_speed-apex"), options6);
+        chart_3_3_2.render();
 
         var options7 = {
             series: [{
@@ -1373,7 +1486,8 @@
             chart: {
                 type: 'area',
                 width:"100%",
-                height: 250
+                height: 250,
+                background: '#252525',
             },
             stroke: {
                 curve: 'smooth'
@@ -1410,7 +1524,7 @@
                 min: 0,
                 max: 1.8,
             },
-            colors:["#bbdefb"],
+            colors:["#1E82E6"],
             grid: {
                 show: true,
                 borderColor: '#121212',
@@ -1429,10 +1543,19 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#des_time-apex"), options7);
-        chart.render();
-    </script>
-    <script id = "no of Strides">
+        var chart_3_3_3 = new ApexCharts(document.querySelector("#des_time-apex"), options7);
+        chart_3_3_3.render();
+
+
+
+        /* ==========================================================
+
+                            no. of strides charts
+
+        ============================================================= */
+
+
+
         var options4 = {
             series: [{
                 name: '# of Strides',
@@ -1441,7 +1564,8 @@
             chart: {
                 type: 'bar',
                 width:"100%",
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             dataLabels: {
                 enabled: false
@@ -1500,21 +1624,28 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#myChart-apex"), options4);
-        chart.render();
+        var chart_4_1 = new ApexCharts(document.querySelector("#myChart-apex"), options4);
+        chart_4_1.render();
 
 
-    </script>
-    <script id = "bar-chart-horizontal-s">
 
-    var options3 = {
+        /* ==========================================================
+
+                            bar-horizontal chart
+
+        ============================================================= */
+
+
+
+        var options3 = {
             series: [{
                 name: 'Total Distance in meters',
                 data: [{{data_out2.Total_distance.0}},{{data_out2.Total_distance.1}},{{data_out2.Total_distance.2}}]
             }],
             chart: {
                 type: 'bar',
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             dataLabels: {
                 enabled: false
@@ -1560,14 +1691,24 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#bar-chart-horizontal-apex"), options3);
-        chart.render();
-    </script>
-    <script id ="doughnut-chart_s">
+        var chart_4_2 = new ApexCharts(document.querySelector("#bar-chart-horizontal-apex"), options3);
+        chart_4_2.render();
+
+
+
+        /* ==========================================================
+
+                            donut chart
+
+        ============================================================= */
+
+
+
         var options1 = {
             chart: {
                 height: 300,
-                type: 'donut'
+                type: 'donut',
+                background: '#252525',
             },
             series: [{{data_out2.Total_time.0}},{{data_out2.Total_time.1}},{{data_out2.Total_time.2}},{{data_out2.Total_time.3}},{{data_out2.Total_time.4}}],
             labels: ["Walking", "Ramp As", "Ramp Des","Stairs As", "Stairs Des"],
@@ -1601,11 +1742,19 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#doughnut-chart-apex"), options1);
-        chart.render();
+        var chart_4_3 = new ApexCharts(document.querySelector("#doughnut-chart-apex"), options1);
+        chart_4_3.render();
 
-    </script>
-    <script id ="stair staircase total">
+
+
+        /* ==========================================================
+
+                            stairs case chart
+
+        ============================================================= */
+
+
+
         var options2 = {
             series: [{
                 name: '# of Stair steps',
@@ -1614,7 +1763,8 @@
             chart: {
                 type: 'bar',
                 width:"100%",
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             dataLabels: {
                 enabled: false
@@ -1668,214 +1818,236 @@
             }],
         };
 
-
-        var chart = new ApexCharts(document.querySelector("#myChart_staircase-apex"), options2);
-        chart.render();
-
-    </script>
-    <script>
-
-    var options_heat = {
-      series: [
-        {
-          name: "Sitting",
-          data: {{lst_map.0}}
-        },
-        {
-          name: "Walking",
-          data: {{lst_map.1}}
-        },
-        {
-          name: "Ramp As",
-          data: {{lst_map.2}}
-        },
-        {
-          name: "Ramp Des",
-          data: {{lst_map.3}}
-        },
-        {
-          name: "Stair As",
-          data: {{lst_map.4}}
-        },
-        {
-          name: "Stair Des",
-          data: {{lst_map.5}}
-        },
-        {
-          name: "Standing",
-          data: {{lst_map.6}}
-        },
-
-      ],
-      chart: {
-        height: 350,
-        type: "heatmap"
-      },
-      dataLabels: {
-        enabled: false
-      },
-
-      xaxis: {
-        type: "category",
-        categories: {{lst_map.7}},
-        title: {
-          text: 'Time (sec)',
-
-          style: {
-              color: "#D3D3D3",
-
-          },
-      },
-        labels:{
-                    style: {
-                          colors: "#D3D3D3",
-
-                      },
-                  },
-      },
-        yaxis: {
-
-        labels:{
-                    style: {
-                          colors: "#D3D3D3",
-
-                      },
-                  },
-      },
-      grid: {
-        show:false,
-        padding: {
-          right: 20
-        }
-      },
-    legend:{
-   labels:{
-    colors:"#D3D3D3"
-    },
-    },
-      plotOptions: {
-        heatmap: {
-          enableShades: false,
-          shadeIntensity: 1,
-          colorScale: {
-            ranges: [
-              {
-                from: 0,
-                to: 0,
-                name: "doesn't exist",
-                color: '#fbe9e7'
-
-              },
-              {
-                from: 1,
-                to: 3,
-                name: "low",
-                color: '#ffccbc'
-              },
-              {
-                from: 4,
-                to: 7,
-                name: "medium",
-                color: '#ff8a65'
-
-              },
-              {
-                from: 8,
-                to: 30,
-                name: "high",
-                color: '#ff5722'
-              }
-            ]
-          }
-        }
-      }
-    };
-  
-        var chart = new ApexCharts(document.querySelector("#heat_map"), options_heat);
-        chart.render();
+        var chart_4_4 = new ApexCharts(document.querySelector("#myChart_staircase-apex"), options2);
+        chart_4_4.render();
 
 
-    </script>
-    <script>
 
-        var options = {
-          series: [{
-          name: 'stance%',
-          data: [{{data_out2.Avg_stance.0}},{{data_out2.Avg_stance.1}},{{data_out2.Avg_stance.2}}]
-        }, {
-          name: 'swing%',
-          data: [{{data_out2.Avg_swing.0}},{{data_out2.Avg_swing.1}},{{data_out2.Avg_swing.2}}]
-        }],
-          chart: {
-          type: 'bar',
-          height: 320
-        },
-        plotOptions: {
-          bar: {
-            horizontal: false,
-            columnWidth: '55%',
+        /* ==========================================================
 
-          },
-        },
-        dataLabels: {
-          enabled: false
-        },
-        stroke: {
-          show: true,
-          width: 2,
-          colors: ['transparent']
-        },
-        colors:[ '#474898','#ec7424'],
-        xaxis: {
-          categories: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
-          labels:{
-                    style: {
-                          colors: "#D3D3D3",
+                                Heat chart
 
-                      },
-                  },
-        },
-        yaxis: {
-            labels:{
-                    style: {
-                          colors: "#D3D3D3",
+        ============================================================= */
 
-                      },
-                  },
-          title: {
-            text: 'percentage',
-            style:{
-                color:"#D3D3D3"
+
+
+        var options_heat = {
+            series: [
+            {
+                name: "Sitting",
+                data: {{lst_map.0}}
             },
-          }
-        },
-        fill: {
-          opacity: 1
-        },
-        tooltip: {
-          y: {
-            formatter: function (val) {
-              return val + " s"
-            }
-          }
-        },
-        grid: {
+            {
+                name: "Walking",
+                data: {{lst_map.1}}
+            },
+            {
+                name: "Ramp As",
+                data: {{lst_map.2}}
+            },
+            {
+                name: "Ramp Des",
+                data: {{lst_map.3}}
+            },
+            {
+                name: "Stair As",
+                data: {{lst_map.4}}
+            },
+            {
+                name: "Stair Des",
+                data: {{lst_map.5}}
+            },
+            {
+                name: "Standing",
+                data: {{lst_map.6}}
+            },
+
+            ],
+            chart: {
+                height: 300,
+                type: "heatmap",
+                background: '#252525',
+            },
+            dataLabels: {
+                enabled: false
+            },
+
+            xaxis: {
+                type: "category",
+                categories: {{lst_map.7}},
+                title: {
+                    text: 'Time (sec)',
+
+                    style: {
+                        color: "#D3D3D3",
+                    },
+                },
+                labels:{
+                    style: {
+                          colors: "#D3D3D3",
+                    },
+                },
+            },
+            yaxis: {
+                labels:{
+                    style: {
+                        colors: "#D3D3D3",
+                    },
+                },
+            },
+            grid: {
+                show:false,
+                padding: {
+                    right: 20
+                }
+            },
+            legend:{
+                labels:{
+                    colors:"#D3D3D3"
+                },
+            },
+            plotOptions: {
+                heatmap: {
+                    enableShades: false,
+                    shadeIntensity: 1,
+                    colorScale: {
+                        ranges: [
+                        {
+                            from: 0,
+                            to: 0,
+                            name: "doesn't exist",
+                            color: '#fbe9e7'
+                        },
+                        {
+                            from: 1,
+                            to: 3,
+                            name: "low",
+                            color: '#ffccbc'
+                        },
+                        {
+                            from: 4,
+                            to: 7,
+                            name: "medium",
+                            color: '#ff8a65'
+
+                        },
+                        {
+                            from: 8,
+                            to: 30,
+                            name: "high",
+                            color: '#ff5722'
+                        }
+                        ]
+                    }
+                }
+            },
+            responsive: [{
+                breakpoint: 1000,
+                options: {
+                    chart: {
+                        height: 200,
+                    },
+                },
+            }],
+        };
+
+        var chart_4_5 = new ApexCharts(document.querySelector("#heat_map"), options_heat);
+        chart_4_5.render();
+
+
+
+        /* ==========================================================
+
+                           stand Vs Swing chart
+
+        ============================================================= */
+
+
+
+        var options30 = {
+            series: [{
+                name: 'stance%',
+                data: [{{data_out2.Avg_stance.0}},{{data_out2.Avg_stance.1}},{{data_out2.Avg_stance.2}}]
+            }, {
+                name: 'swing%',
+                data: [{{data_out2.Avg_swing.0}},{{data_out2.Avg_swing.1}},{{data_out2.Avg_swing.2}}]
+            }],
+            chart: {
+                type: 'bar',
+                height: 300,
+                background: '#252525',
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            colors:[ '#474898','#ec7424'],
+            xaxis: {
+                categories: ['Walking', 'Ramp Ascent', 'Ramp Descent'],
+                labels:{
+                    style: {
+                          colors: "#D3D3D3",
+                    },
+                },
+            },
+            yaxis: {
+                labels:{
+                    style: {
+                          colors: "#D3D3D3",
+
+                    },
+                },
+                title: {
+                    text: 'percentage',
+                    style:{
+                    color:"#D3D3D3"
+                    },
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + " s"
+                    }
+                }
+            },
+            grid: {
                 show: true,
                 borderColor: '#121212',
             },
-         legend:{
-            labels:{
-             colors:"#D3D3D3"
-             },
-          },
+            legend:{
+                labels:{
+                    colors:"#D3D3D3"
+                },
+            },
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-        chart.render();
+        var chart_4_6 = new ApexCharts(document.querySelector("#chart-vs"), options30);
+        chart_4_6.render();
 
 
-    </script>
-    <script id = "cadence_s">
+
+        /* ==========================================================
+
+                            Cadence Chart
+
+        ============================================================= */
+
+
+
         var options_cadence = {
             series: [{
                 name: '# of Strides',
@@ -1884,7 +2056,8 @@
             chart: {
                 type: 'bar',
                 width:"100%",
-                height: 300
+                height: 300,
+                background: '#252525',
             },
             dataLabels: {
                 enabled: false
@@ -1934,7 +2107,6 @@
             responsive: [{
                 breakpoint: 1000,
                 options: {
-
                     chart: {
                         height: 200,
 
@@ -1943,10 +2115,146 @@
             }],
         };
 
-        var chart = new ApexCharts(document.querySelector("#cadence"), options_cadence);
-        chart.render();
+        var chart_4_7 = new ApexCharts(document.querySelector("#cadence"), options_cadence);
+        chart_4_7.render();
 
+
+
+        /* ==========================================================
+
+                            Sending charts to back-end
+
+        ============================================================= */
+
+
+        document.getElementById("custom-button").addEventListener("click", function(){
+
+            document.getElementById("div4").style.display= "block";
+            document.getElementById("div1").style.display= "block";
+            document.getElementById("div2").style.display= "block";
+            document.getElementById("div3").style.display= "block";
+
+
+            setTimeout(function(){
+
+                var dataURL_1 = chart_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_1").value = imgURI;
+                });
+
+
+
+                var dataURL_2_1 = chart_2_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_2_1").value = imgURI;
+                });
+                var dataURL_2_2 = chart_2_2.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_2_2").value = imgURI;
+                });
+
+
+
+                var dataURL_3_1_1 = chart_3_1_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_1_1").value = imgURI;
+                });
+                var dataURL_3_1_2 = chart_3_1_2.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_1_2").value = imgURI;
+                });
+                var dataURL_3_1_3 = chart_3_1_3.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_1_3").value = imgURI;
+                });
+
+
+
+                var dataURL_3_2_1 = chart_3_2_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_2_1").value = imgURI;
+                });
+                var dataURL_3_2_2 = chart_3_2_2.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_2_2").value = imgURI;
+                });
+                var dataURL_3_2_3 = chart_3_2_3.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_2_3").value = imgURI;
+                });
+
+
+
+                var dataURL_3_3_1 = chart_3_3_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_3_1").value = imgURI;
+                });
+                var dataURL_3_3_2 = chart_3_3_2.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_3_2").value = imgURI;
+                });
+                var dataURL_3_3_3 = chart_3_3_3.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_3_3_3").value = imgURI;
+                });
+
+
+
+                var dataURL_4_1 = chart_4_1.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_1").value = imgURI;
+                });
+
+
+
+                var dataURL_4_2 = chart_4_2.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_2").value = imgURI;
+                });
+
+
+
+                var dataURL_4_3 = chart_4_3.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_3").value = imgURI;
+                });
+
+
+
+                var dataURL_4_4 = chart_4_4.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_4").value = imgURI;
+                });
+
+                var dataURL_4_5 = chart_4_5.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_5").value = imgURI;
+                });
+
+                var dataURL_4_6 = chart_4_6.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_6").value = imgURI;
+                });
+
+                var dataURL_4_7 = chart_4_7.dataURI().then(({ imgURI, blob }) => {
+                    document.getElementById("img_4_7").value = imgURI;
+                });
+
+
+                Promise.all([dataURL_1, dataURL_2_1, dataURL_2_2,
+                             dataURL_3_1_1, dataURL_3_1_2, dataURL_3_1_3,
+                             dataURL_3_2_1, dataURL_3_2_2, dataURL_3_2_3,
+                             dataURL_3_3_1, dataURL_3_3_2, dataURL_3_3_3,
+                             dataURL_4_1, dataURL_4_2, dataURL_4_3, dataURL_4_4,
+                             dataURL_4_5, dataURL_4_6, dataURL_4_7]).then( values => {
+
+                    document.getElementById("save").click();
+
+                    document.getElementById("div4").style.display= "none";
+                    document.getElementById("div1").style.display= "none";
+                    document.getElementById("div2").style.display= "none";
+                    document.getElementById("div3").style.display= "none";
+
+
+                });
+
+            }, 500);
+
+        });
+
+
+        function scroll_to_any(element_id) {
+
+            var element = document.getElementById(element_id);
+            var y = element.offsetTop - 100;
+
+            window.scrollTo(0, y);
+
+        };
 
     </script>
+
 
 {% endblock %}

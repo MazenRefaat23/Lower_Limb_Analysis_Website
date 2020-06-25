@@ -6,8 +6,31 @@ from .Checker import Check_data_frame
 import pandas as pd
 from . import data_analysis
 
+from .pdf import dynamic_save_pdf
+from io import BytesIO
+from PIL import Image
+import re
+import base64
+
+
+def makeImg(request, name, saveName):
+    image_data = request.POST.get(name, '')
+    image_data = re.sub("^data:image/png;base64,", "", image_data)
+    image_data = base64.b64decode(image_data)
+    image_data = BytesIO(image_data)
+
+    fs = FileSystemStorage()
+    fs.save(saveName, image_data)
+
 
 def upload(request):
+
+    global describe_sl
+    global describe_sd
+    global grd_sl
+    global data_out2
+    global mean_val
+
     if request.method == 'POST' and 'up' in request.POST:
         try:
             uploaded_file = request.FILES['document']
@@ -74,6 +97,74 @@ def upload(request):
     elif request.method == 'POST' and 'back' in request.POST:
         return render(request, 'prediction/prediction.html',
                       {"subjects": peaple.objects.all()})
+
+
+    elif request.method == 'POST' and 'save' in request.POST:
+
+        makeImg(request, 'image_1', 'out_1.jpg')
+
+        makeImg(request, 'image_2_1', 'out_2_1.jpg')
+        makeImg(request, 'image_2_2', 'out_2_2.jpg')
+
+        makeImg(request, 'image_3_1_1', 'out_3_1_1.jpg')
+        makeImg(request, 'image_3_1_2', 'out_3_1_2.jpg')
+        makeImg(request, 'image_3_1_3', 'out_3_1_3.jpg')
+
+        makeImg(request, 'image_3_2_1', 'out_3_2_1.jpg')
+        makeImg(request, 'image_3_2_2', 'out_3_2_2.jpg')
+        makeImg(request, 'image_3_2_3', 'out_3_2_3.jpg')
+
+        makeImg(request, 'image_3_3_1', 'out_3_3_1.jpg')
+        makeImg(request, 'image_3_3_2', 'out_3_3_2.jpg')
+        makeImg(request, 'image_3_3_3', 'out_3_3_3.jpg')
+
+        makeImg(request, 'image_4_1', 'out_4_1.jpg')
+
+        makeImg(request, 'image_4_2', 'out_4_2.jpg')
+
+        makeImg(request, 'image_4_3', 'out_4_3.jpg')
+
+        makeImg(request, 'image_4_4', 'out_4_4.jpg')
+
+        makeImg(request, 'image_4_5', 'out_4_5.jpg')
+
+        makeImg(request, 'image_4_6', 'out_4_6.jpg')
+
+        makeImg(request, 'image_4_7', 'out_4_7.jpg')
+
+        dynamic_save_pdf(describe_sl, describe_sd, grd_sl, data_out2, mean_val)
+
+        fs = FileSystemStorage()
+
+        fs.delete('out_1.jpg')
+
+        fs.delete('out_2_1.jpg')
+        fs.delete('out_2_2.jpg')
+
+        fs.delete('out_3_1_1.jpg')
+        fs.delete('out_3_1_2.jpg')
+        fs.delete('out_3_1_3.jpg')
+
+        fs.delete('out_3_2_1.jpg')
+        fs.delete('out_3_2_2.jpg')
+        fs.delete('out_3_2_3.jpg')
+
+        fs.delete('out_3_3_1.jpg')
+        fs.delete('out_3_3_2.jpg')
+        fs.delete('out_3_3_3.jpg')
+
+        fs.delete('out_4_1.jpg')
+        fs.delete('out_4_2.jpg')
+        fs.delete('out_4_3.jpg')
+        fs.delete('out_4_4.jpg')
+
+        with fs.open('output.pdf', 'rb') as pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment;filename=output.pdf'
+
+            fs.delete('output.pdf')
+
+            return response
 
     return render(request, 'prediction/prediction.html',
                   {"subjects": peaple.objects.all()})
